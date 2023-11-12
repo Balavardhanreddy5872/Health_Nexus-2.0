@@ -7,8 +7,8 @@ import Doctor from "./pages/Doctor";
 import Labtest from "./pages/Labtest";
 import Contact from "./pages/Contactus";
 import Register from "./pages/Auth/Register";
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from "./pages/Auth/Login";
 
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
       <Routes>
         <Route path = "/" element= {<Homepage />}/>
         <Route path = "/register" element= {<Register/>}/>
+        <Route path = "/login" element= {<Login />}/>
         <Route path = "/aboutus" element= {<Aboutus />}/>
         <Route path = "*" element= {<Pagenotfound />}/>
         <Route path = "/medicine" element= {<Medicine />}/>

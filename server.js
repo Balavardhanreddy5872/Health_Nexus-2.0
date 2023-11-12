@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import authRouter from './routes/authRoutes.js';
+import cors from 'cors';
 
 // calling env object 
 config();
@@ -21,6 +22,7 @@ db.once('open', () => {
 
 
 // middle ware 
+app.use(cors());
 app.use(json());
 app.use(morgan('dev'));
 
