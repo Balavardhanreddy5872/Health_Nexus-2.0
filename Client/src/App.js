@@ -9,7 +9,6 @@ import Contact from "./pages/Contactus";
 import Register from "./pages/Auth/Register";
 import 'react-toastify/dist/ReactToastify.css';
 import Login from "./pages/Auth/Login";
-<<<<<<< HEAD
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
 import AdminRoute from "./components/Routes/AdminRoute";
@@ -17,10 +16,9 @@ import Admindashboard from "./pages/Admin/Admindashboard";
 import CreateCategory from "./pages/Admin/Createcategory";
 import Addmedicine from "./pages/Admin/Addmedicine";
 import Users from "./pages/Admin/User";
-=======
 import Doctorlogin from "./pages/Doctorlogin";
 import Doctorreg from "./pages/Doctorreg";
->>>>>>> 4ddc566eab62ac3f044e1261f1b0091dffc5abf8
+
 
 
 function App() {
