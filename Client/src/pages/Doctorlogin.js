@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Layout from '../components/Layout/Layout'
 
 const Doctorlogin = () => {
     return (
-        <>
+        <Layout>
             <section className="vh-100" style={{ backgroundColor: "#00BFFF" }}>
                 <div className="container h-100 ">
                     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -45,7 +46,7 @@ const Doctorlogin = () => {
                     </div>
                 </div>
             </section>
-        </>
+        </Layout>
     )
 }
 

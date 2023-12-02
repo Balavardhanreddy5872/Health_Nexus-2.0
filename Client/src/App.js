@@ -13,11 +13,17 @@ import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
 import AdminRoute from "./components/Routes/AdminRoute";
 import Admindashboard from "./pages/Admin/Admindashboard";
-import CreateCategory from "./pages/Admin/Createcategory";
 import Addmedicine from "./pages/Admin/Addmedicine";
 import Users from "./pages/Admin/User";
 import Doctorlogin from "./pages/Doctorlogin";
 import Doctorreg from "./pages/Doctorreg";
+import Profile from "./pages/user/Profile";
+import Orders from "./pages/user/Orders"
+import Doctorsapp from "./pages/user/Doctorsapp";
+import LabTests from "./pages/user/LabTests";
+import Labreport from "./pages/Admin/Labreport";
+import Products from "./pages/Admin/Product";
+import UpdateProduct from "./pages/Admin/Updateproduct";
 
 
 
@@ -29,12 +35,18 @@ function App() {
         <Route path = "/register" element= {<Register/>}/>
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
+          <Route path="user/orders" element = {<Orders />}/>
+          <Route path="user/profile" element = {<Profile />} />
+          <Route path = "user/app" element = {<Doctorsapp />} />
+          <Route path = "user/lab" element = {<LabTests />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute/>}>
           <Route path="admin" element={<Admindashboard/>} />
-          <Route path="admin/create-category" element={<CreateCategory />} />
           <Route path="admin/create-product" element={<Addmedicine />} />
           <Route path="admin/users" element={<Users />} />
+          <Route path="admin/products" element={<Products/>} />
+          <Route path="admin/product/:slug" element={<UpdateProduct />} />
+          <Route path = "admin/labs" element = {<Labreport/>} />
         </Route>
         <Route path = "/login" element= {<Login />}/>
         <Route path = "/aboutus" element= {<Aboutus />}/>

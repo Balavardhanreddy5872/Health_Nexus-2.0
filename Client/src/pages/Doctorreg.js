@@ -1,10 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom' 
 import '../styles/Doctorreg.css'
+import Layout from '../components/Layout/Layout'
 
 const Doctorreg = () => {
   return (
-    <>
+    <Layout>
       {/* <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{marginTop:"60px",}}>
       <form className=' mx-auto col-10 col-md-8 col-lg-4'>
         <div className="form-group input-group my-3 ">
@@ -127,7 +128,7 @@ const Doctorreg = () => {
           </div>
         </div>
       </section>
-    </>
+    </Layout>
   )
 }
 
