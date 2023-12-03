@@ -30,7 +30,7 @@ const Addmedicine = () => {
       
       );
       if (data?.success) {
-        // toast.error(data?.message);
+        toast.error(data?.message);
       } else {
          toast.success("Product Created Successfully");
          navigate("/admin");

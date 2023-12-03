@@ -19,10 +19,10 @@ export const addProductController = async (req, res) => {
                 return res.status(500).send({ error: "Price is Required" });
             case !quantity:
                 return res.status(500).send({ error: "Quantity is Required" });
-            case photo && photo.size > 1000000:
+            case photo && photo.size > 10000000:
                 return res
                     .status(500)
-                    .send({ error: "photo is Required and should be less then 1mb" });
+                    .send({ error: "photo is Required and should be less then 10mb" });
         }
 
         const products = new productModel({ ...req.fields, slug: slugify(name) });
@@ -54,7 +54,6 @@ export const getProductController = async (req, res) => {
         const products = await productModel
             .find({})
             .select("-photo")
-            .limit(12)
             .sort({ createdAt: -1 });
         res.status(200).send({
             success: true,
@@ -129,10 +128,10 @@ export const updateProductController = async (req, res) => {
                 return res.status(500).send({ error: "Price is Required" });
             case !quantity:
                 return res.status(500).send({ error: "Quantity is Required" });
-            case photo && photo.size > 1000000:
+            case photo && photo.size > 10000000:
                 return res
                     .status(500)
-                    .send({ error: "photo is Required and should be less then 1mb" });
+                    .send({ error: "photo is Required and should be less then 10mb" });
         }
 
         const products = await productModel.findByIdAndUpdate(
@@ -177,3 +176,26 @@ export const deleteProductController = async (req, res) => {
       });
     }
   };
+
+
+  export const searchProductcontroller = async(req,res) =>{
+    try {
+        const { keyword } = req.params;
+        const resutls = await productModel
+          .find({
+            $or: [
+              { name: { $regex: keyword, $options: "i" } },
+              { description: { $regex: keyword, $options: "i" } },
+            ],
+          })
+          .select("-photo");
+        res.json(resutls);
+      } catch (error) {
+        console.log(error);
+        res.status(400).send({
+          success: false,
+          message: "Error In Search Product API",
+          error,
+        });
+      }
+  }

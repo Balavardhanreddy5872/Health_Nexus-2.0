@@ -24,6 +24,9 @@ import LabTests from "./pages/user/LabTests";
 import Labreport from "./pages/Admin/Labreport";
 import Products from "./pages/Admin/Product";
 import UpdateProduct from "./pages/Admin/Updateproduct";
+import Search from "./pages/Search";
+import Productdetails from "./pages/Productdetails";
+import Cart from "./pages/Cart";
 
 
 
@@ -33,6 +36,8 @@ function App() {
       <Routes>
         <Route path = "/" element= {<Homepage />}/>
         <Route path = "/register" element= {<Register/>}/>
+        <Route path = "/cart" element= {<Cart/>}/>
+        <Route path = "/productdetails/:slug" element= {<Productdetails/>}/>
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
           <Route path="user/orders" element = {<Orders />}/>
@@ -52,6 +57,7 @@ function App() {
         <Route path = "/aboutus" element= {<Aboutus />}/>
         <Route path = "*" element= {<Pagenotfound />}/>
         <Route path = "/medicine" element= {<Medicine />}/>
+        <Route path = "/search" element={<Search />}/>
         <Route path = "/doctor" element= {<Doctor />}/>
         <Route path = "/labtests" element= {<Labtest />}/>
         <Route path = "/contact" element={<Contact />} />

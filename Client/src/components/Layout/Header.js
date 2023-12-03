@@ -2,9 +2,11 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
-
+import SearchInput from '../Forms/Searchinput';
+import { useCart } from "../../context/cart";
 const Header = () => {
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -37,6 +39,7 @@ const Header = () => {
                 <NavLink className="nav-link " to="/doctor"><i class="fa fa-user-nurse"></i> Doctor</NavLink>
               </li>
             </ul>
+            <SearchInput />
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               {!auth?.user ? (
                 <>
@@ -78,7 +81,7 @@ const Header = () => {
                 </>
               )}
               <li className="nav-item mx-4">
-                <NavLink className="nav-link " to="/cart"> <i class="fa-solid fa-cart-shopping"></i> Cart(0)</NavLink>
+                <NavLink className="nav-link " to="/cart"> <i class="fa-solid fa-cart-shopping"></i> Cart </NavLink>
               </li>
             </ul>
           </div>

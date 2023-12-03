@@ -34,7 +34,7 @@ app.use("/api/product", productRoutes);
 // Requests
 app.get("/",(req,res)=>{
    res.send({
-      message: "Welcome to E-commers app",
+      message: "Welcome to HealthNexus  app",
    });
 });
 
