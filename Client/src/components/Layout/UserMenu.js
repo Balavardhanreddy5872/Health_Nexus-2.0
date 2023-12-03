@@ -1,39 +1,40 @@
-import React from "react";
+import React from 'react'
 import { NavLink } from "react-router-dom";
-const AdminMenu = () => {
+
+const UserMenu = () => {
   return (
-    <>
+    <div>
       <div className="text-center">
         <div className="list-group">
-          <h4>Admin Panel</h4>
+          <h4>Dashboard</h4>
           <NavLink
-            to="/dashboard/admin/create-product"
+            to="/dashboard/user/profile"
             className="list-group-item list-group-item-action"
           >
-            Add-Medicine
+            Profile
           </NavLink>
           <NavLink
-            to="/dashboard/admin/products"
+            to="/dashboard/user/orders"
             className="list-group-item list-group-item-action"
           >
-            Medicines
+            Orders
           </NavLink>
           <NavLink
-            to="/dashboard/admin/users"
+            to="/dashboard/user/lab"
             className="list-group-item list-group-item-action"
           >
-            Users
+            LabTests
           </NavLink>
           <NavLink
-            to="/dashboard/admin/labs"
+            to="/dashboard/user/app"
             className="list-group-item list-group-item-action"
           >
-            LabReports
+            Doctors-app
           </NavLink>
         </div>
       </div>
-    </>
-  );
-};
+    </div>
+  )
+}
 
-export default AdminMenu;
+export default UserMenu

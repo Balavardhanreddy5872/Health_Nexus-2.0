@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Doctorreg.css";
+=======
+import React from 'react'
+import {Link} from 'react-router-dom' 
+import '../styles/Doctorreg.css'
+import Layout from '../components/Layout/Layout'
+>>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 const Doctorreg = () => {
   const [details, setDetails] = useState({
@@ -29,8 +36,68 @@ const Doctorreg = () => {
   const nameRegex = (namee) => /^[A-Z]{4,}$/.test(namee);
 
   return (
+<<<<<<< HEAD
     <>
       <section className="vh-100" style={{ backgroundColor: "rgba(0,147,173,0.4)" }}>
+=======
+    <Layout>
+      {/* <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{marginTop:"60px",}}>
+      <form className=' mx-auto col-10 col-md-8 col-lg-4'>
+        <div className="form-group input-group my-3 ">
+          <div className="input-group-prepend">
+            <span className="input-group-text h-100"> <i className="fa fa-user"></i> </span>
+          </div>
+          <div className="w-50">
+            <input className="form-control" placeholder="Full name" type="text" /></div>
+        </div>
+
+        <div className="form-group input-group  my-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text h-100"> <i className="fa fa-envelope"></i> </span>
+          </div>
+           <div className="w-50">
+            <input className="form-control" placeholder="Email address" type="email" />
+            </div>
+        </div>  
+
+        <div className="form-group input-group my-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text h-100"> <i className="fa fa-lock"></i> </span>
+          </div>
+          <div className="w-50">
+          <input className="form-control" placeholder="Create password" type="password" /></div>
+        </div> 
+
+        <div className="form-group input-group my-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text h-100"> <i className="fas fa-key"></i> </span>
+          </div>
+          <div className="w-50">
+          <input className="form-control" placeholder="Repeat password" type="password" /></div>
+        </div>
+
+        // <div className="form-group input-group my-3">
+        //   <div className="input-group-prepend">
+        //     <span className="input-group-text h-100"><i className="fa-solid fa-user-doctor"></i> </span>
+        //   </div>
+        //   <div className="w-50">
+        //     <input className="form-control" placeholder="Specialization" type="text" /></div>
+        // </div>
+
+        <div className="form-group input-group my-3">
+          <textarea className="form-control" placeholder="Description" style={{maxWidth:"450px"}} rows={7}>Description</textarea>
+        </div> 
+        
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary btn-block"> Create Account  </button>
+        </div> 
+        <p className="my-2">Have an account? <Link style={{textDecoration:"none"}} to="./doctorlogin">Log In..</Link> </p>
+      </form>
+      </div> */}
+
+
+      <section className="vh-100" style={{ backgroundColor: "#00BFFF" }}>
+>>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
@@ -210,8 +277,14 @@ const Doctorreg = () => {
           </div>
         </div>
       </section>
+<<<<<<< HEAD
     </>
   );
 };
+=======
+    </Layout>
+  )
+}
+>>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 export default Doctorreg;
