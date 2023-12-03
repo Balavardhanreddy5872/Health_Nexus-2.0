@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. John Doe",
+    "specialization": "Cardiologist",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "image": "https://i.imgur.com/LohyFIN.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Jane Smith",
+    "specialization": "Pediatrician",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "https://media.istockphoto.com/id/1330046035/photo/headshot-portrait-of-smiling-female-doctor-in-hospital.jpg?s=612x612&w=0&k=20&c=fsNQPbmFIxoKA-PXl3G745zj7Cvr_cFIGsYknSbz_Tg="
+  },
+  {
+    "id": 3,
+    "name": "Dr. Jane Smith",
+    "specialization": "Pediatrician",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_K0iR0bcmA9mfWcPoqGFfJVg1GakllyV1biCqbm6wZw&s"
+  },
+  {
+    "id": 4,
+    "name": "Dr. Jane Smith",
+    "specialization": "Pediatrician",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "https://i.imgur.com/LohyFIN.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Dr. Jane Smith",
+    "specialization": "Pediatrician",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "image": "https://i.imgur.com/LohyFIN.jpg"
+  }
+]
