@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/Layout/Layout'
-import '../styles/Doctpat.css'
+// import '../styles/Doctpat.css'
 const Doctor = () => {
     return (
         <Layout>

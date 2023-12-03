@@ -1,8 +1,7 @@
 import React ,{useState} from 'react'
 import {Link} from 'react-router-dom' 
-import '../styles/Doctorreg.css'
+// import '../styles/Doctorreg.css'
 import Layout from '../components/Layout/Layout'
-
 const Doctorreg = () => {
   const [details, setDetails] = useState({
     name: "",

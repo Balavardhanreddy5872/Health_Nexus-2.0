@@ -1,7 +1,7 @@
 import React ,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
-
+// import '../styles/'
 const Doctorlogin = () => {
     const [details, setDetails] = useState({
         email: "",
