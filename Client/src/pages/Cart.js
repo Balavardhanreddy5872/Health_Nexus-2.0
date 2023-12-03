@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
@@ -9,17 +9,24 @@ const Cart = () => {
   const navigate = useNavigate();
 
   //total price
+  const [quantities, setQuantities] = useState({}); // State to track product quantities
+
   const totalPrice = () => {
     try {
       let total = 0;
-      cart?.map((item) => {
-        total = total + item.price;
-        return total;
+      cart?.forEach((item) => {
+        total = total + item.price * (quantities[item._id] || 1); // Multiply by quantity
+      });
+      return total.toLocaleString("en-IN", {
+        style: "currency",
+        currency: "INR",
       });
     } catch (error) {
       console.log(error);
     }
   };
+
+
   //detele item
   const removeCartItem = (pid) => {
     try {
@@ -32,6 +39,13 @@ const Cart = () => {
       console.log(error);
     }
   };
+
+  const updateQuantity = (pid, quantity) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [pid]: quantity,
+    }));
+  };
   return (
     <Layout>
       <div className="container">
@@ -42,14 +56,13 @@ const Cart = () => {
             </h1>
             <h4 className="text-center">
               {cart?.length
-                ? `You Have ${cart.length} items in your cart ${
-                    auth?.token ? "" : "please login to checkout"
-                  }`
+                ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout"
+                }`
                 : " Your Cart Is Empty"}
             </h4>
           </div>
         </div>
-        <br/>
+        <br />
 
         <div className="row">
           <div className="col-md-8">
@@ -64,11 +77,20 @@ const Cart = () => {
                     height={"200px"}
                   />
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-8" style={{textAlign:'center'}}>
                   <p><b> Name:{p.name}</b></p>
                   <p><b>{p.description.substring(0, 30)}</b></p>
                   <p><b> ₹ {p.price} </b> </p>
-                   <i class="fa-solid fa-trash" onClick={() => removeCartItem(p._id)}></i>
+                  <input
+                    type="number"
+                    min="1"
+                    value={quantities[p._id] || 1}
+                    onChange={(e) => updateQuantity(p._id, parseInt(e.target.value, 10))}
+                    style={{ border: 'none', outline: 'none' }}
+                  />
+                  <br />
+                  <br/>
+                  <i class="fa-solid fa-trash" onClick={() => removeCartItem(p._id)} style={{cursor:'pointer'}}></i>
 
                 </div>
               </div>
@@ -77,7 +99,7 @@ const Cart = () => {
           <div className="col-md-4 text-center">
             <h2>Cart Summary</h2>
             <p>Total | Checkout | Payment</p>
-            <h4>Total : {totalPrice} </h4>
+            <h4>Total : {totalPrice()}</h4>
             {auth?.user?.address ? (
               <>
                 <div className="mb-3">
@@ -117,6 +139,8 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <br/>
+      <br/>
     </Layout>
   );
 };
