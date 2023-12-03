@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-=======
-import React from 'react'
+import React ,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import Layout from '../components/Layout/Layout'
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 const Doctorlogin = () => {
     const [details, setDetails] = useState({
@@ -24,13 +19,8 @@ const Doctorlogin = () => {
     const passwordRegex = (password) => /^(?=.*\d).{6,}$/.test(password);
 
     return (
-<<<<<<< HEAD
-        <>
-            <section className="vh-100" style={{ backgroundColor: "rgba(0,147,173,0.4)" }}>
-=======
         <Layout>
             <section className="vh-100" style={{ backgroundColor: "#00BFFF" }}>
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
                 <div className="container h-100 ">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-lg-12 col-xl-11">
@@ -135,14 +125,8 @@ const Doctorlogin = () => {
                     </div>
                 </div>
             </section>
-<<<<<<< HEAD
-        </>
-    );
-};
-=======
         </Layout>
     )
 }
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 export default Doctorlogin;

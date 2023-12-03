@@ -17,10 +17,7 @@ import Addmedicine from "./pages/Admin/Addmedicine";
 import Users from "./pages/Admin/User";
 import Doctorlogin from "./pages/Doctorlogin";
 import Doctorreg from "./pages/Doctorreg";
-<<<<<<< HEAD
 import DoctPatient from "./pages/DoctPatient";
-
-=======
 import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders"
 import Doctorsapp from "./pages/user/Doctorsapp";
@@ -31,7 +28,6 @@ import UpdateProduct from "./pages/Admin/Updateproduct";
 import Search from "./pages/Search";
 import Productdetails from "./pages/Productdetails";
 import Cart from "./pages/Cart";
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 
 

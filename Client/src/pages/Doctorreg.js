@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/Doctorreg.css";
-=======
-import React from 'react'
+import React ,{useState} from 'react'
 import {Link} from 'react-router-dom' 
 import '../styles/Doctorreg.css'
 import Layout from '../components/Layout/Layout'
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 const Doctorreg = () => {
   const [details, setDetails] = useState({
@@ -36,10 +30,6 @@ const Doctorreg = () => {
   const nameRegex = (namee) => /^[A-Z]{4,}$/.test(namee);
 
   return (
-<<<<<<< HEAD
-    <>
-      <section className="vh-100" style={{ backgroundColor: "rgba(0,147,173,0.4)" }}>
-=======
     <Layout>
       {/* <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{marginTop:"60px",}}>
       <form className=' mx-auto col-10 col-md-8 col-lg-4'>
@@ -97,7 +87,6 @@ const Doctorreg = () => {
 
 
       <section className="vh-100" style={{ backgroundColor: "#00BFFF" }}>
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11">
@@ -277,14 +266,8 @@ const Doctorreg = () => {
           </div>
         </div>
       </section>
-<<<<<<< HEAD
-    </>
-  );
-};
-=======
     </Layout>
   )
 }
->>>>>>> 89f0e82903cfadcc1ab00548914251cbbdf5874e
 
 export default Doctorreg;
