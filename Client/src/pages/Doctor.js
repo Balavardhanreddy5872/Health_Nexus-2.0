@@ -19,11 +19,21 @@ const Doctor = () => {
     fetchData();
   }, []);
 
+  const chunkArray = (arr, chunkSize) => {
+    const result = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+      result.push(arr.slice(i, i + chunkSize));
+    }
+    return result;
+  };
+
+  const doctorRows = chunkArray(doctorDetails, 4);
  
   return (
     <Layout>
       <div>
         <h1>Doctor Details</h1>
+
           {doctorDetails.map((doctor, index) => ( 
             
               <div key={index} >
