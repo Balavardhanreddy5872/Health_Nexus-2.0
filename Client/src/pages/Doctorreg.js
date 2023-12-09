@@ -76,7 +76,7 @@ const Doctorreg = () => {
   return (
     // Done
     <Layout>
-      <section className="vh-10" style={{ backgroundColor: "#00BFFF" }}>
+      <section className="vh-10" style={{ backgroundImage: backgroundURL, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11" style={{ width: "700px" }}>
