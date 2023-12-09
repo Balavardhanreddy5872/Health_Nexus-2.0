@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import authRouter from './routes/authRoutes.js';
 import cors from 'cors';
 import productRoutes from './routes/ProductRoutes.js'
-
+import labRoutes from './routes/labRoutes.js'
 // calling env object 
 config();
 
@@ -30,6 +30,7 @@ app.use(morgan('dev'));
 // Routes 
 app.use("/api/auth",authRouter);
 app.use("/api/product", productRoutes);
+app.use("/api/lab", labRoutes)
 
 // Requests
 app.get("/",(req,res)=>{

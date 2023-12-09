@@ -1,26 +1,72 @@
-import React from 'react'
-import Layout from '../../components/Layout/Layout'
-import UserMenu from '../../components/Layout/UserMenu'
+import Layout from '../../components/Layout/Layout';
+import UserMenu from '../../components/Layout/UserMenu';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
+import { useTrail, animated } from 'react-spring';
+import moment from "moment";
 
 const LabTests = () => {
+  const [lab, setLab] = useState([]);
+  const [auth, setAuth] = useAuth();
+
+  const fadeInTrail = useTrail(lab.length, {
+    opacity: 1,
+    from: { opacity: 0 },
+    config: { duration: 800 },
+  });
+
+  const getOrders = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:8080/api/lab/formstatus");
+      setLab(data.orders);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (auth?.token) getOrders();
+  }, [auth?.token]);
+
   return (
     <Layout>
-    <div className="container-flui p-3">
-      <div className="row">
-        <div className="col-md-3">
-          <UserMenu />
-        </div>
-        <div className="col-md-9">
-          <h1>LabTests</h1>
-          <form>
-            {/* Search of Patient name or  mobileNumber  */}
-          </form>
-          {/* results of the search result will be displayed  */}
+      <div className="container-fluid p-3 dashboard">
+        <div className="row">
+          <div className="col-md-3">
+            <UserMenu />
+          </div>
+          <div className="col-md-9">
+            <h1 className="text-center mb-4">All Reports</h1>
+            <table className="table table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">Patient Name</th>
+                  <th scope="col">Number</th>
+                  <th scope="col">Pincode</th>
+                  <th scope="col">Package</th>
+                  <th scope="col">Test</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fadeInTrail.map(({ opacity }, index) => (
+                  <animated.tr key={lab[index]._id} style={{ opacity }}>
+                    <td>{lab[index].name}</td>
+                    <td>{lab[index].number}</td>
+                    <td>{lab[index].pincode}</td>
+                    <td>{lab[index].Package}</td>
+                    <td>{lab[index].test}</td>
+                    <td>{lab[index].status}</td>
+                  </animated.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
-  </Layout>
-  )
-}
+    </Layout>
+  );
+};
 
-export default LabTests
+export default LabTests;
