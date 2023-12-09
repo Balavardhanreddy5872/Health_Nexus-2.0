@@ -17,7 +17,6 @@ import Addmedicine from "./pages/Admin/Addmedicine";
 import Users from "./pages/Admin/User";
 import Doctorlogin from "./pages/Doctorlogin";
 import Doctorreg from "./pages/Doctorreg";
-import DoctPatient from "./pages/DoctPatient";
 import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders"
 import Doctorsapp from "./pages/user/Doctorsapp";
@@ -64,8 +63,6 @@ function App() {
         <Route path = "/contact" element={<Contact />} />
         <Route path = "/doctorlogin" element={<Doctorlogin />} />
         <Route path="/doctorreg" element={<Doctorreg />} />
-        <Route path="/doctorpat" element={<DoctPatient />} />
-
       </Routes>
     </>
   );

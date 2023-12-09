@@ -1,7 +1,6 @@
-import React ,{useState} from 'react'
-import {Link} from 'react-router-dom' 
-import '../styles/Doctorreg.css'
-import Layout from '../components/Layout/Layout'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Layout from '../components/Layout/Layout';
 
 const Doctorreg = () => {
   const [details, setDetails] = useState({
@@ -20,6 +19,14 @@ const Doctorreg = () => {
     specialization: false,
   });
 
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+    repassword: "",
+    specialization: "",
+  });
+
   const testEmailValidity = (email) =>
     /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
 
@@ -29,97 +36,90 @@ const Doctorreg = () => {
 
   const nameRegex = (namee) => /^[A-Z]{4,}$/.test(namee);
 
+  const validateForm = () => {
+    const newErrors = {
+      name: "",
+      email: "",
+      password: "",
+      repassword: "",
+      specialization: "",
+    };
+
+    if (!nameRegex(details.name)) {
+      newErrors.name = "Name is not valid";
+    }
+
+    if (!testEmailValidity(details.email)) {
+      newErrors.email = "Email is not valid";
+    }
+
+    if (!passwordRegex(details.password)) {
+      newErrors.password = "Password is not valid";
+    }
+
+    if (!passwordRe(details.repassword)) {
+      newErrors.repassword = "Passwords do not match";
+    }
+
+    if (!nameRegex(details.specialization)) {
+      newErrors.specialization = "Specialization not entered";
+    }
+
+    setErrors(newErrors);
+
+    // Check if there are no errors
+    return Object.values(newErrors).every((error) => error === "");
+  };
+
+  const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")';
+
   return (
     <Layout>
-      {/* <div class="shadow-lg p-3 mb-5 bg-white rounded" style={{marginTop:"60px",}}>
-      <form className=' mx-auto col-10 col-md-8 col-lg-4'>
-        <div className="form-group input-group my-3 ">
-          <div className="input-group-prepend">
-            <span className="input-group-text h-100"> <i className="fa fa-user"></i> </span>
-          </div>
-          <div className="w-50">
-            <input className="form-control" placeholder="Full name" type="text" /></div>
-        </div>
-
-        <div className="form-group input-group  my-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text h-100"> <i className="fa fa-envelope"></i> </span>
-          </div>
-           <div className="w-50">
-            <input className="form-control" placeholder="Email address" type="email" />
-            </div>
-        </div>  
-
-        <div className="form-group input-group my-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text h-100"> <i className="fa fa-lock"></i> </span>
-          </div>
-          <div className="w-50">
-          <input className="form-control" placeholder="Create password" type="password" /></div>
-        </div> 
-
-        <div className="form-group input-group my-3">
-          <div className="input-group-prepend">
-            <span className="input-group-text h-100"> <i className="fas fa-key"></i> </span>
-          </div>
-          <div className="w-50">
-          <input className="form-control" placeholder="Repeat password" type="password" /></div>
-        </div>
-
-        // <div className="form-group input-group my-3">
-        //   <div className="input-group-prepend">
-        //     <span className="input-group-text h-100"><i className="fa-solid fa-user-doctor"></i> </span>
-        //   </div>
-        //   <div className="w-50">
-        //     <input className="form-control" placeholder="Specialization" type="text" /></div>
-        // </div>
-
-        <div className="form-group input-group my-3">
-          <textarea className="form-control" placeholder="Description" style={{maxWidth:"450px"}} rows={7}>Description</textarea>
-        </div> 
-        
-        <div className="form-group">
-          <button type="submit" className="btn btn-primary btn-block"> Create Account  </button>
-        </div> 
-        <p className="my-2">Have an account? <Link style={{textDecoration:"none"}} to="./doctorlogin">Log In..</Link> </p>
-      </form>
-      </div> */}
-
-
-      <section className="vh-100" style={{ backgroundColor: "#00BFFF" }}>
+      <section className="vh-10" style={{
+        backgroundImage: backgroundURL, backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-lg-12 col-xl-11">
+            <div className="col-lg-12 col-xl-11" style={{ width: "700px" }}>
               <div
                 className="card text-black xyzp"
-                style={{ backgroundColor: "", borderRadius: "25px" }}
+                style={{
+                  borderRadius: "25px", width: "700px", height: "750px", backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
               >
                 <div className="card-body p-md-5">
                   <div className="row justify-content-center">
-                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                      <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                        Registration
-                      </p>
+                    <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" style={{ width: "450px" }}>
+                      <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registration</p>
                       <form
                         className="mx-1 mx-md-4"
                         action="#"
                         method="POST"
                         onSubmit={(e) => {
                           e.preventDefault();
-
-
-                          setActive({
-                            name: true,
-                            email: true,
-                            password: true,
-                            repassword: true,
-                            specialization: true,
-                          });
-                          //
-                          //
+                          if (validateForm()) {
+                            setDetails({
+                              name: "",
+                              email: "",
+                              password: "",
+                              repassword: "",
+                              specialization: "",
+                            });
+                            window.location.reload();
+                          } else {
+                            setActive({
+                              name: true,
+                              email: true,
+                              password: true,
+                              repassword: true,
+                              specialization: true,
+                            });
+                          }
                         }}
                       >
-                        <div className="d-flex flex-row align-items-center mb-4 ">
+                        <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
                             <input
@@ -127,22 +127,21 @@ const Doctorreg = () => {
                               id="name"
                               name="name"
                               placeholder="Your Name"
-                              className="form-control"
+                              className={`form-control ${isActive.name && 'is-invalid'}`}
                               onChange={(e) => {
                                 setDetails({
                                   ...details,
                                   name: e.target.value,
                                 });
-                                setActive(x => ({ ...x, name: e.target.value !== "" }))
+                                setActive((x) => ({ ...x, name: e.target.value !== "" }));
                               }}
                               value={details.name}
                             />
-                            {(isActive.name) && !nameRegex(details.name) && <p style={{ color: "red" }}>{"*name is not Entered"}</p>}
-
-
+                            {errors.name && <div className="invalid-feedback">{errors.name}</div>}
                           </div>
                         </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
+
+                        <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
                             <input
@@ -150,7 +149,7 @@ const Doctorreg = () => {
                               id="email"
                               name="email"
                               placeholder="Your Email"
-                              className="form-control"
+                              className={`form-control ${isActive.email && 'is-invalid'}`}
                               onChange={(e) => {
                                 setDetails({
                                   ...details,
@@ -159,16 +158,11 @@ const Doctorreg = () => {
                               }}
                               value={details.email}
                             />
-                            {(details.email || isActive.email) &&
-                              !testEmailValidity(details.email) && (
-                                <p style={{ color: "red" }}>
-                                  {"*Email is not valid"}
-                                </p>
-                              )}
-
+                            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                           </div>
                         </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
+
+                        <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
                             <input
@@ -176,7 +170,7 @@ const Doctorreg = () => {
                               id="password"
                               name="password"
                               placeholder="Your Password"
-                              className="form-control"
+                              className={`form-control ${isActive.password && 'is-invalid'}`}
                               onChange={(e) => {
                                 setDetails({
                                   ...details,
@@ -185,16 +179,11 @@ const Doctorreg = () => {
                               }}
                               value={details.password}
                             />
-                            {(details.password || isActive.password) &&
-                              !passwordRegex(details.password) && (
-                                <p style={{ color: "red" }}>
-                                  {"*password is not valid"}
-                                </p>
-                              )}
-
+                            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                           </div>
                         </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
+
+                        <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-key fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
                             <input
@@ -202,7 +191,7 @@ const Doctorreg = () => {
                               id="repassword"
                               name="repassword"
                               placeholder="ReEnter password"
-                              className="form-control"
+                              className={`form-control ${isActive.repassword && 'is-invalid'}`}
                               onChange={(e) => {
                                 setDetails({
                                   ...details,
@@ -211,14 +200,11 @@ const Doctorreg = () => {
                               }}
                               value={details.repassword}
                             />
-                            {isActive.repassword &&
-                              !passwordRe(details.repassword) && <p style={{ color: "red" }}>
-                                {"*password doesn't match"}
-                              </p>}
-
+                            {errors.repassword && <div className="invalid-feedback">{errors.repassword}</div>}
                           </div>
                         </div>
-                        <div className="d-flex flex-row align-items-center mb-4">
+
+                        <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-user-doctor fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
                             <input
@@ -226,7 +212,7 @@ const Doctorreg = () => {
                               id="specialization"
                               placeholder="specialization"
                               name="specialization"
-                              className="form-control"
+                              className={`form-control ${isActive.specialization && 'is-invalid'}`}
                               onChange={(e) => {
                                 setDetails({
                                   ...details,
@@ -235,11 +221,10 @@ const Doctorreg = () => {
                               }}
                               value={details.specialization}
                             />
-                            {(isActive.specialization) && !nameRegex(details.specialization) && true && <p style={{ color: "red" }}>
-                              {"*specialization not entered"}
-                            </p>}
+                            {errors.specialization && <div className="invalid-feedback">{errors.specialization}</div>}
                           </div>
                         </div>
+
                         <div className="d-grid gap-2 col-6 mx-auto">
                           <button
                             type="submit"
@@ -248,6 +233,7 @@ const Doctorreg = () => {
                             Register
                           </button>
                         </div>
+
                         <p className="my-2">
                           Have an account?{" "}
                           <Link
@@ -267,7 +253,7 @@ const Doctorreg = () => {
         </div>
       </section>
     </Layout>
-  )
-}
+  );
+};
 
 export default Doctorreg;

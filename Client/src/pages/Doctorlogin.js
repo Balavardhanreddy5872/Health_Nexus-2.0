@@ -1,6 +1,156 @@
-import React ,{useState} from 'react'
-import { Link } from 'react-router-dom'
-import Layout from '../components/Layout/Layout'
+// import React ,{useState} from 'react'
+// import { Link } from 'react-router-dom'
+// import Layout from '../components/Layout/Layout'
+
+// const Doctorlogin = () => {
+//     const [details, setDetails] = useState({
+//         email: "",
+//         password: "",
+//     });
+
+//     const [isActive, setActive] = useState({
+//         email: false,
+//         password: false,
+//     });
+
+//     const testEmailValidity = (email) =>
+//         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
+
+//     const passwordRegex = (password) => /^(?=.*\d).{6,}$/.test(password);
+
+//     const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")'
+
+//     // const backgroundCard = 'url("https://img.freepik.com/premium-vector/abstract-medical-background-with-flat-icons-symbols-template-design-with-concept-idea-healthcare-technology-innovation-medicine-health-science-research_120542-508.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")'
+
+
+//     return (
+//         <Layout>
+//             <section className="vh-100" style={{
+//                 backgroundImage: backgroundURL, backgroundSize: 'cover',
+//                 backgroundPosition: 'center',
+//                  }}>
+//                 <div className="container h-100 ">
+//                     <div className="row d-flex justify-content-center align-items-center h-100" >
+//                         <div className="col-lg-12 col-xl-11" style={{ width: "580px" }} >
+//                             <div className="card text-black" style={{
+                            
+//                                 borderRadius: "25px", width: "530px", height: "520px" }}>
+//                                 <div className="card-body p-md-5" >
+//                                     <div className="row justify-content-center" >
+//                                         <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" style={{ width:"450px" }}>
+//                                             <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+//                                                 Login
+//                                             </p>
+
+
+//                                             <form
+//                                                 className="mx-1 mx-md-4"
+//                                                 action="#"
+//                                                 method="POST"
+//                                                 onSubmit={(e) => {
+//                                                     e.preventDefault();
+//                                                     setActive({
+//                                                         password: true,
+//                                                         email: true,
+//                                                     });
+//                                                     //
+//                                                     //
+//                                                 }}
+//                                             >
+//                                                 <div className="d-flex flex-row align-items-center mb-4" style={{marginLeft:"-23px"}}>
+//                                                     <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
+//                                                     <div className="form-outline flex-fill mb-0">
+//                                                         <input
+//                                                             type="email"
+//                                                             id="email"
+//                                                             name="email"
+//                                                             placeholder="Your Email"
+//                                                             className="form-control"
+//                                                             onChange={(e) => {
+//                                                                 setDetails({
+//                                                                     ...details,
+//                                                                     email: e.target.value,
+//                                                                 });
+//                                                             }}
+//                                                             value={details.email}
+//                                                         />                               
+//                                                     </div>
+//                                                 </div>
+//                                                 {(details.email || isActive.email) &&
+//                                                     !testEmailValidity(details.email) && (
+//                                                         <p style={{ color: "red" }}>
+//                                                             {"*Email is not valid"}
+//                                                         </p>
+//                                                     )}
+
+                                                
+//                                                 <div className="d-flex flex-row align-items-center mb-3" style={{ marginLeft: "-23px" }}>
+//                                                     <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+//                                                     <div className="form-outline flex-fill mb-0">
+//                                                         <input
+//                                                             type="password"
+//                                                             id="password"
+//                                                             name="password"
+//                                                             placeholder="Your Password"
+//                                                             className="form-control"
+//                                                             onChange={(e) => {
+//                                                                 setDetails({
+//                                                                     ...details,
+//                                                                     password: e.target.value,
+//                                                                 });
+//                                                             }}
+//                                                             value={details.password}
+//                                                         />                                                   
+//                                                     </div>
+//                                                 </div>
+//                                                 {(details.password || isActive.password) &&
+//                                                     !passwordRegex(details.password) && (
+//                                                         <p style={{ color: "red" }}>
+//                                                             {"*password is not valid"}
+//                                                         </p>
+//                                                     )}
+
+
+// <br />
+//                                                 <div className="d-grid gap-2 col-6 mx-auto">
+//                                                     <button
+//                                                         type="submit"
+//                                                         className="btn btn-primary btn-lg"
+//                                                     >
+//                                                         Login
+//                                                     </button>
+//                                                 </div>
+                                              
+//                                                 <p className="my-3">
+//                                                     Don't Have an account?{" "}
+//                                                     <Link
+//                                                         style={{ textDecoration: "none" }}
+//                                                         to="../doctorreg"
+//                                                     >
+//                                                         Register..
+//                                                     </Link>{" "}
+//                                                 </p>
+//                                             </form>
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </section>
+//         </Layout>
+//     )
+// }
+
+// export default Doctorlogin;
+
+
+
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Layout from '../components/Layout/Layout';
 
 const Doctorlogin = () => {
     const [details, setDetails] = useState({
@@ -13,39 +163,71 @@ const Doctorlogin = () => {
         password: false,
     });
 
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+    });
+
     const testEmailValidity = (email) =>
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email);
 
     const passwordRegex = (password) => /^(?=.*\d).{6,}$/.test(password);
 
+    const validateForm = () => {
+        const newErrors = {
+            email: "",
+            password: "",
+        };
+
+        if (!testEmailValidity(details.email)) {
+            newErrors.email = "Email is not valid";
+        }
+
+        if (!passwordRegex(details.password)) {
+            newErrors.password = "Password is not valid";
+        }
+
+        setErrors(newErrors);
+
+        // Check if there are no errors
+        return Object.values(newErrors).every((error) => error === "");
+    };
+
+    const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")';
+
     return (
         <Layout>
-            <section className="vh-100" style={{ backgroundColor: "#00BFFF" }}>
+            <section className="vh-100" style={{ backgroundImage: backgroundURL, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="container h-100 ">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
-                        <div className="col-lg-12 col-xl-11">
-                            <div className="card text-black" style={{ borderRadius: "25px" }}>
-                                <div className="card-body p-md-5">
-                                    <div className="row justify-content-center">
-                                        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                                                Login
-                                            </p>
+                    <div className="row d-flex justify-content-center align-items-center h-100" >
+                        <div className="col-lg-12 col-xl-11" style={{ width: "580px" }} >
+                            <div className="card text-black" style={{ borderRadius: "25px", width: "530px", height: "520px" }}>
+                                <div className="card-body p-md-5" >
+                                    <div className="row justify-content-center" >
+                                        <div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" style={{ width: "450px" }}>
+                                            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Login</p>
+
                                             <form
                                                 className="mx-1 mx-md-4"
                                                 action="#"
                                                 method="POST"
                                                 onSubmit={(e) => {
                                                     e.preventDefault();
-                                                    setActive({
-                                                        password: true,
-                                                        email: true,
-                                                    });
-                                                    //
-                                                    //
+                                                    if (validateForm()) {                                   
+                                                        setDetails({
+                                                            email: "",
+                                                            password: "",
+                                                        });                                                      
+                                                        window.location.reload();
+                                                    } else {                                                       
+                                                        setActive({
+                                                            password: true,
+                                                            email: true,
+                                                        });
+                                                    }
                                                 }}
                                             >
-                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                                                     <i className="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input
@@ -53,27 +235,24 @@ const Doctorlogin = () => {
                                                             id="email"
                                                             name="email"
                                                             placeholder="Your Email"
-                                                            className="form-control"
+                                                            className={`form-control ${isActive.email && 'is-invalid'}`}
                                                             onChange={(e) => {
                                                                 setDetails({
                                                                     ...details,
                                                                     email: e.target.value,
                                                                 });
+                                                                setActive({
+                                                                    ...isActive,
+                                                                    email: false,
+                                                                });
                                                             }}
                                                             value={details.email}
                                                         />
-                                                        {(details.email || isActive.email)&&
-                                                            !testEmailValidity(details.email) && (
-                                                                <p style={{ color: "red" }}>
-                                                                    {"*Email is not valid"}
-                                                                </p>
-                                                            )}
-                                                        {/* {isActive.email && (
-                                                            <p style={{ color: "red" }}>{"*Enter Email"}</p>
-                                                        )} */}
+                                                        {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                                                     </div>
                                                 </div>
-                                                <div className="d-flex flex-row align-items-center mb-4">
+
+                                                <div className="d-flex flex-row align-items-center mb-3" style={{ marginLeft: "-23px" }}>
                                                     <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                                     <div className="form-outline flex-fill mb-0">
                                                         <input
@@ -81,40 +260,32 @@ const Doctorlogin = () => {
                                                             id="password"
                                                             name="password"
                                                             placeholder="Your Password"
-                                                            className="form-control"
+                                                            className={`form-control ${isActive.password && 'is-invalid'}`}
                                                             onChange={(e) => {
                                                                 setDetails({
                                                                     ...details,
                                                                     password: e.target.value,
                                                                 });
+                                                                setActive({
+                                                                    ...isActive,
+                                                                    password: false,
+                                                                });
                                                             }}
                                                             value={details.password}
                                                         />
-                                                        {(details.password || isActive.password)&&
-                                                            !passwordRegex(details.password) && (
-                                                                <p style={{ color: "red" }}>
-                                                                    {"*password is not valid"}
-                                                                </p>
-                                                            )}
-                                            
+                                                        {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                                                     </div>
                                                 </div>
+
+                                                <br />
+
                                                 <div className="d-grid gap-2 col-6 mx-auto">
-                                                    <button
-                                                        type="submit"
-                                                        className="btn btn-primary btn-lg"
-                                                    >
-                                                        Login
-                                                    </button>
+                                                    <button type="submit" className="btn btn-primary btn-lg">Login</button>
                                                 </div>
+
                                                 <p className="my-3">
                                                     Don't Have an account?{" "}
-                                                    <Link
-                                                        style={{ textDecoration: "none" }}
-                                                        to="../doctorreg"
-                                                    >
-                                                        Register..
-                                                    </Link>{" "}
+                                                    <Link style={{ textDecoration: "none" }} to="../doctorreg">Register..</Link>{" "}
                                                 </p>
                                             </form>
                                         </div>
@@ -126,7 +297,7 @@ const Doctorlogin = () => {
                 </div>
             </section>
         </Layout>
-    )
-}
+    );
+};
 
 export default Doctorlogin;

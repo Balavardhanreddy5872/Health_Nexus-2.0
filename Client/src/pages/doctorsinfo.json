@@ -4,34 +4,27 @@
     "name": "Dr. John Doe",
     "specialization": "Cardiologist",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "image": "https://i.imgur.com/LohyFIN.jpg"
+    "image": "https://happyhospital.in/wp-content/uploads/2016/08/single-doctor.jpg"
   },
   {
     "id": 2,
-    "name": "Dr. Jane Smith",
-    "specialization": "Pediatrician",
+    "name": "Dr. Margaret Chung",
+    "specialization": " Endocrinology",
     "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "image": "https://media.istockphoto.com/id/1330046035/photo/headshot-portrait-of-smiling-female-doctor-in-hospital.jpg?s=612x612&w=0&k=20&c=fsNQPbmFIxoKA-PXl3G745zj7Cvr_cFIGsYknSbz_Tg="
+    "image": "https://st4.depositphotos.com/2024219/25128/i/450/depositphotos_251285702-stock-photo-young-doctor-woman-smiling-isolated.jpg"
   },
   {
     "id": 3,
-    "name": "Dr. Jane Smith",
-    "specialization": "Pediatrician",
+    "name": "Dr. Mary Edwards",
+    "specialization": "Dermatology",
     "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_K0iR0bcmA9mfWcPoqGFfJVg1GakllyV1biCqbm6wZw&s"
+    "image": "https://www.shutterstock.com/image-photo/medical-concept-indian-beautiful-female-600nw-1635029716.jpg"
   },
   {
     "id": 4,
     "name": "Dr. Jane Smith",
     "specialization": "Pediatrician",
     "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "image": "https://i.imgur.com/LohyFIN.jpg"
-  },
-  {
-    "id": 5,
-    "name": "Dr. Jane Smith",
-    "specialization": "Pediatrician",
-    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "image": "https://i.imgur.com/LohyFIN.jpg"
+    "image": "https://lakeforestgroup.com/wp-content/uploads/2014/11/doctor-profile-02.jpg"
   }
 ]
