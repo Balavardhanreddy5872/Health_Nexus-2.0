@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
 
-body {
+.body {
     font-family: 'Maven Pro', sans-serif
 }
 
-body {
+.body {
     background-color: #eee
 }
 
