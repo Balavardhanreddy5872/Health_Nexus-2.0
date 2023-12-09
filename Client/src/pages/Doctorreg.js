@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Layout from '../components/Layout/Layout';
-
+import React ,{useState} from 'react'
+import {Link} from 'react-router-dom' 
+// import '../styles/Doctorreg.css'
+import Layout from '../components/Layout/Layout'
 const Doctorreg = () => {
   const [details, setDetails] = useState({
     name: "",
@@ -74,11 +74,9 @@ const Doctorreg = () => {
   const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")';
 
   return (
+    // Done
     <Layout>
-      <section className="vh-10" style={{
-        backgroundImage: backgroundURL, backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
+      <section className="vh-10" style={{ backgroundColor: "#00BFFF" }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-lg-12 col-xl-11" style={{ width: "700px" }}>

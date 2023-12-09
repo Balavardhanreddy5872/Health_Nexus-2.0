@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../context/cart";
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import "../styles/Productdetails.css"
 
 
 const Productdetails = () => {

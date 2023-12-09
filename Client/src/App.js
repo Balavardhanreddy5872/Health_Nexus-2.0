@@ -21,12 +21,12 @@ import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders"
 import Doctorsapp from "./pages/user/Doctorsapp";
 import LabTests from "./pages/user/LabTests";
-import Labreport from "./pages/Admin/Labreport";
 import Products from "./pages/Admin/Product";
 import UpdateProduct from "./pages/Admin/Updateproduct";
 import Search from "./pages/Search";
 import Productdetails from "./pages/Productdetails";
 import Cart from "./pages/Cart";
+import AdminOrders from "./pages/Admin/Adminorders";
 
 
 
@@ -51,7 +51,7 @@ function App() {
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/products" element={<Products/>} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
-          <Route path = "admin/labs" element = {<Labreport/>} />
+         <Route path = "admin/orders" element = {<AdminOrders/>} />
         </Route>
         <Route path = "/login" element= {<Login />}/>
         <Route path = "/aboutus" element= {<Aboutus />}/>

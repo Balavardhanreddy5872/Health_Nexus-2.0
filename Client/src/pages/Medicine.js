@@ -44,7 +44,7 @@ const Medicine = () => {
                 <h5 className="card-title">{p.name}</h5>
                 <p className="card-text">{p.letter}</p>
                 <p className="card-text">{p.description.substring(0, 30)}...</p>
-                <p className="card-text">₹ {p.price}</p>
+                <p className="card-text"><b>₹ {p.price}</b></p>
                 <button className="btn btn-success ms-1" onClick={() => navigate(`/productdetails/${p.slug}`)}>More Details</button>
                 <button className="btn btn-secondary ms-1" onClick={()=> {setCart([...cart, p]); toast.success("Item Added to cart");}}>ADD TO CART</button>
               </div>
