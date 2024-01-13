@@ -1,8 +1,20 @@
-import React ,{useState} from 'react'
-import {Link} from 'react-router-dom' 
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 // import '../styles/Doctorreg.css'
 import Layout from '../components/Layout/Layout'
+
+
+
 const Doctorreg = () => {
+
+  const navigate = useNavigate();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repassword, setRepassword] = useState('');
+  const [specialization, setSpecialization] = useState('');
+
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -93,28 +105,53 @@ const Doctorreg = () => {
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registration</p>
                       <form
                         className="mx-1 mx-md-4"
-                        action="#"
+                        action="/doctorlogin"
                         method="POST"
-                        onSubmit={(e) => {
+                        onSubmit={async (e) => {
                           e.preventDefault();
-                          if (validateForm()) {
-                            setDetails({
-                              name: "",
-                              email: "",
-                              password: "",
-                              repassword: "",
-                              specialization: "",
+                          try {
+
+                            if (validateForm()) {
+                              setDetails({
+                                name: "",
+                                email: "",
+                                password: "",
+                                repassword: "",
+                                specialization: "",
+                              });
+
+                            } else {
+                              setActive({
+                                name: true,
+                                email: true,
+                                password: true,
+                                repassword: true,
+                                specialization: true,
+                              });
+
+                            }
+
+                            const response = await fetch('http://localhost:8080/register', {
+                              method: 'POST',
+                              body: JSON.stringify({
+                                name,
+                                email,
+                                password,
+                                repassword,
+                                specialization
+                              }),
+                              headers: { 'content-type': 'application/json' },
                             });
-                            window.location.reload();
-                          } else {
-                            setActive({
-                              name: true,
-                              email: true,
-                              password: true,
-                              repassword: true,
-                              specialization: true,
-                            });
+                            console.log(await response.json())
+                            if (response.status === 200) {
+                              navigate('/doctorlogin');
+
+                            }
+                          } catch (err) {
+                            alert(err);
+                            console.log(err)
                           }
+
                         }}
                       >
                         <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
@@ -127,6 +164,7 @@ const Doctorreg = () => {
                               placeholder="Your Name"
                               className={`form-control ${isActive.name && 'is-invalid'}`}
                               onChange={(e) => {
+                                setName(e.target.value)
                                 setDetails({
                                   ...details,
                                   name: e.target.value,
@@ -149,7 +187,9 @@ const Doctorreg = () => {
                               placeholder="Your Email"
                               className={`form-control ${isActive.email && 'is-invalid'}`}
                               onChange={(e) => {
+                                setEmail(e.target.value)
                                 setDetails({
+
                                   ...details,
                                   email: e.target.value,
                                 });
@@ -170,6 +210,7 @@ const Doctorreg = () => {
                               placeholder="Your Password"
                               className={`form-control ${isActive.password && 'is-invalid'}`}
                               onChange={(e) => {
+                                setPassword(e.target.value)
                                 setDetails({
                                   ...details,
                                   password: e.target.value,
@@ -191,6 +232,7 @@ const Doctorreg = () => {
                               placeholder="ReEnter password"
                               className={`form-control ${isActive.repassword && 'is-invalid'}`}
                               onChange={(e) => {
+                                setRepassword(e.target.value)
                                 setDetails({
                                   ...details,
                                   repassword: e.target.value,
@@ -212,6 +254,7 @@ const Doctorreg = () => {
                               name="specialization"
                               className={`form-control ${isActive.specialization && 'is-invalid'}`}
                               onChange={(e) => {
+                                setSpecialization(e.target.value)
                                 setDetails({
                                   ...details,
                                   specialization: e.target.value,
@@ -225,7 +268,7 @@ const Doctorreg = () => {
 
                         <div className="d-grid gap-2 col-6 mx-auto">
                           <button
-                            type="submit"
+
                             className="btn btn-primary btn-lg"
                           >
                             Register

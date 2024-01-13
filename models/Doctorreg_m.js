@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const { Schema } = mongoose
+import mongoose from 'mongoose';
 
 const userschema = new mongoose.Schema({
     name: {
@@ -16,14 +15,12 @@ const userschema = new mongoose.Schema({
         type: String,
         required: true
     },
-    specialization:{
+    specialization: {
         type: String,
         required: true
     },
-    description:{
-        type: String,
-        required: true
-    }
 })
 
-module.exports = mongoose.model('doctorreg', userschema);
+const User = mongoose.model('doctorreg', userschema);
+
+export default User

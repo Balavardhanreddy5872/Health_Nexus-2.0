@@ -1,55 +1,239 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout/Layout'
-// import '../styles/Doctpat.css'
-const Doctor = () => {
-    return (
-        <Layout>
-            <div class="doct-appointment">
-                <div class="doctor-container">
-                    <img src="/images/carousel.jpg" alt="" />
-                    <div class="timings-appoinment">
-                        <h1 style={{ color: "rgba(0, 225, 225, 1)", paddingBottom: "15px" }}>Business Hours</h1>
-                        <h3>OPENING DAYS</h3>
-                        <p>Monday - Friday: 9am to 10pm</p>
-                        <p>Saturday: 9am to 7pm</p>
-                        <h3>Vacations</h3>
-                        <p>All Sundays</p>
-                        <p>All Official Holidays</p>
+import '../styles/Doctpat.css'
 
-                        <h2 style={{ borderTop: "2px solid white", paddingTop: "10px" }}>For Emergency cases</h2>
-                        <p><b>(+01) 123 456 7890</b></p>
-                    </div>
-                    <div class="appointment-top">
-                        <div class="appointment">
-                            <h4>Booking Appointment</h4>
-                            <h2>Free Consultation</h2>
-                            <form method="post" action="/doctor">
-                                <div class="option-class">
-                                    <label for="doctors"></label>
-                                    <select name="doct" id="doctors1" required>
-                                        <option name="doct5" selected hidden disabled>Select Issue</option>
-                                        <option name="doct1">Orthopedics</option>
-                                        <option name="doct2">Obstetrics and Gynecology</option>
-                                        <option name="doct3">Dermatology</option>
-                                        <option name="doct4">Pediatrics</option>
-                                        <option name="doct4">Radiology</option>
-                                    </select>
-                                    <input type="text" placeholder="Your Name" name="name" pattern="[A-Za-z]+" required />
-                                    <br />
-                                    <input type="tel" placeholder="Phone Number" name="doctors1" pattern="[6-9][0-9]{9}" required />
-                                    <input class="maill" type="email" placeholder="Your Email" name="mail" required />
-                                    <br />
-                                    <input type="date" class="Appointment-Date" placeholder="Appointment Date" name="date" required />
-                                    <input type="time" class="Appointment-Time" placeholder="Appointment Time" name="time" required />
-                                </div>
-                                <input class="appointment-button" type="submit" />
-                            </form>
+const Doctor = () => {
+    const [patientName, setPatientName] = useState('')
+    const [patientEmail, setPatientEmail] = useState('')
+    const [patientPhone, setPatientPhone] = useState('')
+    const [appointmentDate, setAppointmentDate] = useState('')
+    const [specialization, setSpecialization] = useState('')
+    const [reason, setReason] = useState('')
+
+    const navigate = useNavigate();
+
+    const [formValues, setFormValues] = useState({
+        patientName: '',
+        patientEmail: '',
+        patientPhone: '',
+        appointmentDate: '',
+        specialization: '',
+        reason: '',
+    });
+
+    const [errors, setErrors] = useState({});
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues({ ...formValues, [name]: value });
+    };
+
+    const validateForm = () => {
+        let errors = {};
+        let formIsValid = true;
+
+        // Name validation
+        if (!formValues.patientName) {
+            formIsValid = false;
+            errors["patientName"] = "*Please enter your name.";
+        }
+
+        // Email validation
+        if (!formValues.patientEmail) {
+            formIsValid = false;
+            errors["patientEmail"] = "*Please enter your email.";
+        } else if (!/\S+@\S+\.\S+/.test(formValues.patientEmail)) {
+            formIsValid = false;
+            errors["patientEmail"] = "*Email is not valid.";
+        }
+
+        // Phone validation
+        if (!formValues.patientPhone) {
+            formIsValid = false;
+            errors["patientPhone"] = "*Please enter your phone number.";
+        } else if (!/^\d{10}$/.test(formValues.patientPhone)) { // Adjust regex according to the format you expect
+            formIsValid = false;
+            errors["patientPhone"] = "*Please enter a valid phone number.";
+        }
+
+        // Appointment Date validation
+        if (!formValues.appointmentDate) {
+            formIsValid = false;
+            errors["appointmentDate"] = "*Please choose an appointment date.";
+        }
+
+        // Specialization validation
+        if (!formValues.specialization) {
+            formIsValid = false;
+            errors["specialization"] = "*Please select a specialization.";
+        }
+
+        // Reason validation
+        if (!formValues.reason) {
+            formIsValid = false;
+            errors["reason"] = "*Please enter a reason for your visit.";
+        }
+
+        setErrors(errors);
+        return formIsValid;
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (validateForm()) {
+
+                console.log('Form Data Submitted:', formValues);
+                alert('Form is valid and ready to be submitted!');
+            }
+
+            const response = await fetch('http://localhost:8080/patientdetails', {
+                method: 'POST',
+                body: JSON.stringify({
+                    patientName,
+                    patientEmail,
+                    patientPhone,
+                    appointmentDate,
+                    specialization,
+                    reason,
+                }),
+                headers: { 'content-type': 'application/json' },
+            })
+            if (response.status === 200) {
+                navigate('/');
+            }
+        } catch (err) {
+            alert(err);
+            console.log(err)
+        }
+    };
+    //-------------------------------------
+
+
+    const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")';
+
+
+    return (
+        <div style={{ backgroundImage: backgroundURL, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <Layout>
+                <div className="registration-container">
+                    <h2>Appointment Registration</h2>
+                    <form className="registration-form" onSubmit={handleSubmit}>
+
+                        {/* Patient Name Field */}
+                        <div>
+                            <label htmlFor="patientName">Patient Name:</label>
+                            <input
+                                type="text"
+                                id="patientName"
+                                name="patientName"
+                                value={formValues.patientName}
+                                onChange={(e) => {
+                                    setPatientName(e.target.value);
+                                    handleInputChange(e);
+                                }}
+                                className={errors.patientName ? 'input-error' : ''}
+                            />
+                            {errors.patientName && <span className="error">{errors.patientName}</span>}
                         </div>
-                    </div>
+
+                        {/* Patient Email Field */}
+                        <div>
+                            <label htmlFor="patientEmail">Email:</label>
+                            <input
+                                type="email"
+                                id="patientEmail"
+                                name="patientEmail"
+                                value={formValues.patientEmail}
+                                onChange={(e) => {
+                                    setPatientEmail(e.target.value);
+                                    handleInputChange(e);
+                                }}
+                                className={errors.patientEmail ? 'input-error' : ''}
+                            />
+                            {errors.patientEmail && <span className="error">{errors.patientEmail}</span>}
+                        </div>
+
+                        {/* Patient Phone Field */}
+                        <div>
+                            <label htmlFor="patientPhone">Phone Number:</label>
+                            <input
+                                type="tel"
+                                id="patientPhone"
+                                name="patientPhone"
+                                value={formValues.patientPhone}
+                                onChange={(e) => {
+                                    setPatientPhone(e.target.value);
+                                    handleInputChange(e);
+                                }}
+                                className={errors.patientPhone ? 'input-error' : ''}
+                            />
+                            {errors.patientPhone && <span className="error">{errors.patientPhone}</span>}
+                        </div>
+
+                        {/* Appointment Date Field */}
+                        <div>
+                            <label htmlFor="appointmentDate">Appointment Date:</label>
+                            <input
+                                type="date"
+                                id="appointmentDate"
+                                name="appointmentDate"
+                                value={formValues.appointmentDate}
+                                onChange={(e) => {
+                                    setAppointmentDate(e.target.value);
+                                    handleInputChange(e);
+                                }}
+                                className={errors.appointmentDate ? 'input-error' : ''}
+                            />
+                            {errors.appointmentDate && <span className="error">{errors.appointmentDate}</span>}
+                        </div>
+
+                        {/* Specialization Field */}
+                        <div>
+                            <label htmlFor="specialization">Specialization:</label>
+                            <select
+                                id="specialization"
+                                name="specialization"
+                                value={formValues.specialization}
+                                onChange={(e) => {
+                                    setSpecialization(e.target.value);
+                                    handleInputChange(e);
+                                }}
+                                className={errors.specialization ? 'input-error' : ''}
+                            >
+                                <option value="">--Please choose an option--</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="dentistry">Dentistry</option>
+                                <option value="neurology">Neurology</option>
+                                {/* Add other specializations as needed */}
+                            </select>
+                            {errors.specialization && <span className="error">{errors.specialization}</span>}
+                        </div>
+
+                        {/* Reason for Visit Field */}
+                        <div>
+                            <label htmlFor="reason">Reason for Visit:</label>
+                            <textarea
+                                id="reason"
+                                name="reason"
+                                rows="4"
+                                value={formValues.reason}
+                                onChange={(e) => {
+                                    setReason(e.target.value);
+                                    handleInputChange(e);
+                                }}
+                                className={errors.reason ? 'input-error' : ''}
+                            ></textarea>
+                            {errors.reason && <span className="error">{errors.reason}</span>}
+                        </div>
+
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
-            </div>
-        </Layout>
+            </Layout>
+        </div>
     )
 }
 
-export default Doctor
+export default Doctor;

@@ -18,7 +18,7 @@ const Doctorcard = (props) => {
             <div className="box22">
                 <div className="card2">
                     <div className="imgBx">
-                        <img src={props.img} alt="images"/>
+                        <img src={props.img} alt="images" />
                     </div>
                     <div className="details">
                         <h2>{props.name}<br /><span>{props.spec}</span></h2>
@@ -27,11 +27,11 @@ const Doctorcard = (props) => {
 
             </div>
 
-     
 
 
 
-           
+
+
 
         </>
     );

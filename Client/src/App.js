@@ -16,6 +16,8 @@ import Admindashboard from "./pages/Admin/Admindashboard";
 import Addmedicine from "./pages/Admin/Addmedicine";
 import Users from "./pages/Admin/User";
 import Doctorlogin from "./pages/Doctorlogin";
+import DoctorProfile from "./pages/DoctorProfile";
+import DoctPatient from "./pages/DoctPatient";
 import Doctorreg from "./pages/Doctorreg";
 import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders"
@@ -34,35 +36,37 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path = "/" element= {<Homepage />}/>
-        <Route path = "/register" element= {<Register/>}/>
-        <Route path = "/cart" element= {<Cart/>}/>
-        <Route path = "/productdetails/:slug" element= {<Productdetails/>}/>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/productdetails/:slug" element={<Productdetails />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
           <Route path="user" element={<Dashboard />} />
-          <Route path="user/orders" element = {<Orders />}/>
-          <Route path="user/profile" element = {<Profile />} />
-          <Route path = "user/app" element = {<Doctorsapp />} />
-          <Route path = "user/lab" element = {<LabTests />} />
+          <Route path="user/orders" element={<Orders />} />
+          <Route path="user/profile" element={<Profile />} />
+          <Route path="user/app" element={<Doctorsapp />} />
+          <Route path="user/lab" element={<LabTests />} />
         </Route>
-        <Route path="/dashboard" element={<AdminRoute/>}>
-          <Route path="admin" element={<Admindashboard/>} />
+        <Route path="/dashboard" element={<AdminRoute />}>
+          <Route path="admin" element={<Admindashboard />} />
           <Route path="admin/create-product" element={<Addmedicine />} />
           <Route path="admin/users" element={<Users />} />
-          <Route path="admin/products" element={<Products/>} />
+          <Route path="admin/products" element={<Products />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
-         <Route path = "admin/orders" element = {<AdminOrders/>} />
+          <Route path="admin/orders" element={<AdminOrders />} />
         </Route>
-        <Route path = "/login" element= {<Login />}/>
-        <Route path = "/aboutus" element= {<Aboutus />}/>
-        <Route path = "*" element= {<Pagenotfound />}/>
-        <Route path = "/medicine" element= {<Medicine />}/>
-        <Route path = "/search" element={<Search />}/>
-        <Route path = "/doctor" element= {<Doctor />}/>
-        <Route path = "/labtests" element= {<Labtest />}/>
-        <Route path = "/contact" element={<Contact />} />
-        <Route path = "/doctorlogin" element={<Doctorlogin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/aboutus" element={<Aboutus />} />
+        <Route path="*" element={<Pagenotfound />} />
+        <Route path="/medicine" element={<Medicine />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/doctor" element={<Doctor />} />
+        <Route path="/labtests" element={<Labtest />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/doctorlogin" element={<Doctorlogin />} />
+        <Route path="/doctorprofile" element={<DoctorProfile />} />
         <Route path="/doctorreg" element={<Doctorreg />} />
+        <Route path="/doctorpatient" element={<DoctPatient />} />
       </Routes>
     </>
   );

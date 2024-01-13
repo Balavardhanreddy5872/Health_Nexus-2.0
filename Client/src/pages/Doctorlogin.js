@@ -1,8 +1,16 @@
-import React ,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout/Layout'
 
+
 const Doctorlogin = () => {
+
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
     const [details, setDetails] = useState({
         email: "",
         password: "",
@@ -60,21 +68,38 @@ const Doctorlogin = () => {
 
                                             <form
                                                 className="mx-1 mx-md-4"
-                                                action="#"
                                                 method="POST"
-                                                onSubmit={(e) => {
+                                                onSubmit={async (e) => {
                                                     e.preventDefault();
-                                                    if (validateForm()) {                                   
-                                                        setDetails({
-                                                            email: "",
-                                                            password: "",
-                                                        });                                                      
-                                                        window.location.reload();
-                                                    } else {                                                       
-                                                        setActive({
-                                                            password: true,
-                                                            email: true,
+                                                    try {
+                                                        if (validateForm()) {
+                                                            setDetails({
+                                                                email: "",
+                                                                password: "",
+                                                            });
+                                                        } else {
+                                                            setActive({
+                                                                password: true,
+                                                                email: true,
+                                                            });
+                                                        }
+
+                                                        const response = await fetch('http://localhost:8080/login', {
+                                                            method: 'POST',
+                                                            body: JSON.stringify({ email, password }),
+                                                            headers: { 'Content-Type': 'application/json' },
+
                                                         });
+                                                        const data = await response.json()
+                                                        localStorage.id = data.id;
+                                                        if (response.status === 200) {
+                                                            navigate('/doctorprofile');
+                                                        }
+                                                        else {
+                                                            alert('wrong credientials');
+                                                        }
+                                                    } catch (err) {
+                                                        console.log(err)
                                                     }
                                                 }}
                                             >
@@ -88,6 +113,7 @@ const Doctorlogin = () => {
                                                             placeholder="Your Email"
                                                             className={`form-control ${isActive.email && 'is-invalid'}`}
                                                             onChange={(e) => {
+                                                                setEmail(e.target.value)
                                                                 setDetails({
                                                                     ...details,
                                                                     email: e.target.value,
@@ -113,6 +139,7 @@ const Doctorlogin = () => {
                                                             placeholder="Your Password"
                                                             className={`form-control ${isActive.password && 'is-invalid'}`}
                                                             onChange={(e) => {
+                                                                setPassword(e.target.value)
                                                                 setDetails({
                                                                     ...details,
                                                                     password: e.target.value,
