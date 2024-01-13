@@ -52,7 +52,6 @@ export const getlabReportController = async (req, res) => {
         const lab = await LabModel
             .find({})
             .populate("buyer", "name")
-            .sort({ createdAt: "-1" });
         res.status(200).json({ lab });
     } catch (error) {
         console.log(error);

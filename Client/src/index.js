@@ -16,6 +16,7 @@ root.render(
         <BrowserRouter>
           <App />
         </BrowserRouter>
+         {/*hi every  one this is ospicious day i am going to write a pseudo algorithm is very useful  */}
       </CartProvider>
     </SearchProvider>
   </AuthProvider>
