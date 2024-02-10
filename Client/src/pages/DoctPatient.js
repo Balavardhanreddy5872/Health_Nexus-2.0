@@ -100,6 +100,9 @@ const Doctor = () => {
                 }),
                 headers: { 'content-type': 'application/json' },
             })
+            const data = await response.json()
+            console.log(data);
+            // localStorage.specialization = data.id;
             if (response.status === 200) {
                 navigate('/');
             }
@@ -203,9 +206,23 @@ const Doctor = () => {
                                 className={errors.specialization ? 'input-error' : ''}
                             >
                                 <option value="">--Please choose an option--</option>
-                                <option value="cardiology">Cardiology</option>
-                                <option value="dentistry">Dentistry</option>
-                                <option value="neurology">Neurology</option>
+                                <option value="Dermatology
+">Dermatology
+</option>
+                                <option value="Allergist">Allergist</option>
+                                <option value="Anesthesiologist">Anesthesiologist</option>
+                                <option value="Cardiologist">Cardiologist</option>
+                                <option value="Dermatologist">Dermatologist</option>
+                                <option value="Endocrinologist">Endocrinologist</option>
+                                <option value="Gastroenterologist">Gastroenterologist</option>
+                                <option value="Geneticist">Geneticist</option>
+                                <option value="Hematologist">Hematologist</option>
+                                <option value="Neurologist">Neurologist</option>
+                                <option value="Psychiatrist">Psychiatrist</option>
+                                <option value="Surgeon">Surgeon</option>
+                                <option value="Urologist">Urologist</option>
+                                <option value="Plastic surgeon">Plastic surgeon</option>
+
                                 {/* Add other specializations as needed */}
                             </select>
                             {errors.specialization && <span className="error">{errors.specialization}</span>}

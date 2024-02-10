@@ -56,3 +56,48 @@
     background-color: #eaecf4;
     /* Slightly darker background on hover */
 }
+
+.appointments-table {
+    width: 100%;
+    text-align: center;
+}
+
+.no-appointments {
+    text-align: center;
+}
+
+/* Style for buttons */
+button {
+    background-color: #4e73df;
+    /* Green background color */
+    color: white;
+    /* White text color */
+    padding: 10px 15px;
+    /* Padding around text */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Add a slight border-radius for a rounded look */
+    cursor: pointer;
+    /* Add a pointer cursor on hover */
+    margin-right: 5px;
+    /* Add some margin between buttons */
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #4e73df;
+    /* Darker green on hover */
+}
+
+/* Adjust styles for better visibility */
+.appointments-table button {
+    font-size: 14px;
+    /* Adjust font size */
+}
+
+/* Center the buttons in the cell */
+.appointments-table td button {
+    display: block;
+    margin: 0 auto;
+}

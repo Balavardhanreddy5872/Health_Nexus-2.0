@@ -46,7 +46,7 @@ const Doctorreg = () => {
 
   const passwordRe = (repass) => details.password === repass;
 
-  const nameRegex = (namee) => /^[A-Z]{4,}$/.test(namee);
+  const nameRegex = (namee) => /^[A-Z][a-zA-Z]*$/.test(namee);
 
   const validateForm = () => {
     const newErrors = {

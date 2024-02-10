@@ -104,6 +104,21 @@ app.get('/UserPat', async (req, res) => {
   }
 })
 
+app.get('/UserPat2', async (req, res) => {
+  try {
+    const data = await Patient.find({})
+    // const data2 = await User.find({})
+    if (data) {
+      res.status(200).json(data);
+    }
+    else {
+      res.status(400).json("Wrong Credientials")
+    }
+  } catch (err) {
+    res.status(400).json(err)
+  }
+})
+
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email, password });
@@ -133,6 +148,29 @@ app.post('/doctprofile', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+
+
+// app.post('/doctprofile2', async(req,res)=>{
+//   try {
+//     const { specialization } = req.body;
+//     const user = await User.findOne({ _id: specialization });
+//     if (!user) {
+//       return res.status(404).send('User not found');
+//     }
+
+//     res.json({
+//       patientName: user.patientName,
+//       patientEmail: user.patientEmail,
+//       patientPhone: user.patientPhone,
+//       appointmentDate: user.appointmentDate,
+//       specialization: user.specialization
+//     });
+
+//   } catch (error) {
+//     res.status(500).send('Server error');
+//   }
+// })
 
 
 //Local host port number 
