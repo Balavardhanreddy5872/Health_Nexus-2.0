@@ -29,6 +29,7 @@ import Search from "./pages/Search";
 import Productdetails from "./pages/Productdetails";
 import Cart from "./pages/Cart";
 import AdminOrders from "./pages/Admin/Adminorders";
+import Labreport from "./pages/Admin/Labreport";
 
 
 
@@ -53,7 +54,9 @@ function App() {
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
-          <Route path="admin/orders" element={<AdminOrders />} />
+             <Route path = "admin/orders" element = {<AdminOrders/>} />
+
+
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" element={<Aboutus />} />
