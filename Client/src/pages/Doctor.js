@@ -2,34 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Layout from '../components/Layout/Layout';
 import Doctorcard from './Doctorcard';
-import doctorsData from './doctorsinfo.json';
 import "../styles/Doctorcard.css"
 
 const Doctor = () => {
   const [doctorDetails, setDoctorDetails] = useState([]);
-
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchall = async () => {
       try {
-        // Assuming doctorsData is an array of doctor objects
-        setDoctorDetails(doctorsData);
+        const response = await fetch("http://localhost:8080/doctordet", {
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+        setDoctorDetails(data);
       } catch (error) {
-        console.error('Error fetching data:', error.message);
+        console.error('Fetch error:', error.message);
       }
     };
-
-    fetchData();
+    fetchall();
   }, []);
 
-  const chunkArray = (arr, chunkSize) => {
-    const result = [];
-    for (let i = 0; i < arr.length; i += chunkSize) {
-      result.push(arr.slice(i, i + chunkSize));
-    }
-    return result;
-  };
-
-  const doctorRows = chunkArray(doctorDetails, 4);
+  const filteredAppointments = [];
+  for (let i = 0; i < doctorDetails.length; i++) {
+    const appointment = doctorDetails[i];
+      filteredAppointments.push(
+        <div className="col-md-3 mb-4">
+          <Doctorcard name={appointment.name} spec={appointment.specialization} desc={appointment.description} img={`http://localhost:8080/uploads/${appointment.profileImage}`} />
+        </div>
+      );
+  }
 
   return (
     <Layout>
@@ -44,21 +48,18 @@ const Doctor = () => {
         <br />
         <hr />
         <br />
-        {doctorRows.map((row, rowIndex) => (
-          <div key={rowIndex} className="row">
-            {row.map((doctor, index) => (
-              <div key={index} className="col-md-3">
-                <Doctorcard name={doctor.name} spec={doctor.specialization} desc={doctor.description} img={doctor.image} />
-              </div>
-            ))}
-          </div>
-        ))}
+        <div className="row">
+        {filteredAppointments.length > 0 ? (
+          filteredAppointments
+        ) : (
+          <tr>
+            <td colSpan="6" className="no-appointments">No appointments found</td>
+          </tr>
+        )}
+        </div>
 
         <br /><br />
         <hr /><br />
-        {/* <div className="sub-main" style={{ marginLeft: '35%' }}>
-          <Link className="button-three" to="../doctorpatient">Book Appointment</Link>
-        </div>  */}
 
         <br /><br /><br />
 

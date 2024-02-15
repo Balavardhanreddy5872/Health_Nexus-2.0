@@ -58,9 +58,12 @@ const Doctor = () => {
         }
 
         // Appointment Date validation
-        if (!formValues.appointmentDate) {
+        const currentDate = new Date();
+        const selectedDate = new Date(formValues.appointmentDate);
+
+        if (!formValues.appointmentDate || selectedDate < currentDate) {
             formIsValid = false;
-            errors["appointmentDate"] = "*Please choose an appointment date.";
+            errors["appointmentDate"] = "*Please choose a valid future appointment date.";
         }
 
         // Specialization validation
@@ -81,34 +84,35 @@ const Doctor = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
             if (validateForm()) {
+                const response = await fetch('http://localhost:8080/patientdetails', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        patientName,
+                        patientEmail,
+                        patientPhone,
+                        appointmentDate,
+                        specialization,
+                        reason,
+                    }),
+                    headers: { 'content-type': 'application/json' },
+                });
 
-                console.log('Form Data Submitted:', formValues);
-                alert('Form is valid and ready to be submitted!');
-            }
+                const data = await response.json();
+                console.log(data);
 
-            const response = await fetch('http://localhost:8080/patientdetails', {
-                method: 'POST',
-                body: JSON.stringify({
-                    patientName,
-                    patientEmail,
-                    patientPhone,
-                    appointmentDate,
-                    specialization,
-                    reason,
-                }),
-                headers: { 'content-type': 'application/json' },
-            })
-            const data = await response.json()
-            console.log(data);
-            // localStorage.specialization = data.id;
-            if (response.status === 200) {
-                navigate('/');
+                if (response.status === 200) {
+                    alert('Form is valid and submitted successfully!');
+                    navigate('/');
+                } else {
+                    alert('Form submission failed.');
+                }
             }
         } catch (err) {
-            alert(err);
-            console.log(err)
+            alert('An error occurred while submitting the form.');
+            console.error(err);
         }
     };
     //-------------------------------------
@@ -124,7 +128,6 @@ const Doctor = () => {
                     <h2>Appointment Registration</h2>
                     <form className="registration-form" onSubmit={handleSubmit}>
 
-                        {/* Patient Name Field */}
                         <div>
                             <label htmlFor="patientName">Patient Name:</label>
                             <input
@@ -141,7 +144,6 @@ const Doctor = () => {
                             {errors.patientName && <span className="error">{errors.patientName}</span>}
                         </div>
 
-                        {/* Patient Email Field */}
                         <div>
                             <label htmlFor="patientEmail">Email:</label>
                             <input
@@ -158,7 +160,6 @@ const Doctor = () => {
                             {errors.patientEmail && <span className="error">{errors.patientEmail}</span>}
                         </div>
 
-                        {/* Patient Phone Field */}
                         <div>
                             <label htmlFor="patientPhone">Phone Number:</label>
                             <input
@@ -175,7 +176,6 @@ const Doctor = () => {
                             {errors.patientPhone && <span className="error">{errors.patientPhone}</span>}
                         </div>
 
-                        {/* Appointment Date Field */}
                         <div>
                             <label htmlFor="appointmentDate">Appointment Date:</label>
                             <input
@@ -192,7 +192,6 @@ const Doctor = () => {
                             {errors.appointmentDate && <span className="error">{errors.appointmentDate}</span>}
                         </div>
 
-                        {/* Specialization Field */}
                         <div>
                             <label htmlFor="specialization">Specialization:</label>
                             <select
@@ -206,12 +205,11 @@ const Doctor = () => {
                                 className={errors.specialization ? 'input-error' : ''}
                             >
                                 <option value="">--Please choose an option--</option>
-                                <option value="Dermatology
-">Dermatology
-</option>
+                                <option value="Dermatology">Dermatology</option>
                                 <option value="Allergist">Allergist</option>
                                 <option value="Anesthesiologist">Anesthesiologist</option>
-                                <option value="Cardiologist">Cardiologist</option>
+                                <option value="CARDIOLOGY">Cardiologist</option>
+                                <option value="DENTIST">Dentist</option>
                                 <option value="Dermatologist">Dermatologist</option>
                                 <option value="Endocrinologist">Endocrinologist</option>
                                 <option value="Gastroenterologist">Gastroenterologist</option>
