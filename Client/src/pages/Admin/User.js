@@ -99,9 +99,18 @@ const User = () => {
   const [showMessageForm, setShowMessageForm] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   useEffect(() => {
+
+    const fetchall = async () => {
+      const response = await fetch("http://localhost:8080/UserPat", {
+        credentials: "include",
+      })
+      const data = await response.json();
+      // console.log(data)
+      setUserInfo(data)
     // Fetch user data when the component mounts
     fetchUsers();
   }, []);
+
 
   const fetchUsers = async () => {
     try {

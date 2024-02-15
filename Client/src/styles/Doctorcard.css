@@ -1,20 +1,14 @@
-/* body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: sans-serif;
-}
-*/
 .box {
     width: 1200px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 15px;
     margin: 0 auto;
-} 
+}
+
+.box-item {
+    margin-right: 0;
+}
 
 .card2 {
     position: relative;
@@ -30,7 +24,6 @@
 
 .box .card2:not(:nth-child(4n)) {
     margin-right: 0;
-    /* Remove right margin for all card2s except the last one in each row */
 }
 
 .box:hover .card2 {
