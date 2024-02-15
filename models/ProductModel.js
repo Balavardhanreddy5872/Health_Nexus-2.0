@@ -6,7 +6,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    letter :{
+    seller :{
         type :String,
         required : true,
     },

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import Layout2 from "../../components/Layout/Layout2";
 
 const UpdateProduct = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [name, setName] = useState("");
-  const [letter, setletter] = useState("");
+  const [seller, setseller] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -25,7 +25,7 @@ const UpdateProduct = () => {
       setName(data.product.name);
       setId(data.product._id);
       setDescription(data.product.description);
-      setletter(data.product.letter)
+      setseller(data.product.seller)
       setPrice(data.product.price);
       setPrice(data.product.price);
       setQuantity(data.product.quantity);
@@ -43,7 +43,7 @@ const UpdateProduct = () => {
     try {
       const productData = new FormData();
       productData.append("name", name);
-      productData.append('letter',letter);
+      productData.append('seller',seller);
       productData.append("description", description);
       productData.append("price", price);
       productData.append("quantity", quantity);
@@ -80,7 +80,7 @@ const UpdateProduct = () => {
     }
   };
   return (
-    <Layout title={"Dashboard - Create Product"}>
+    <Layout2 title={"Dashboard - Create Product"}>
       <div className="container-fluid p-3">
         <div className="row">
           <div className="col-md-3">
@@ -134,10 +134,10 @@ const UpdateProduct = () => {
               <div className="mb-3">
                 <input
                   type="text"
-                  value={letter}
+                  value={seller}
                   placeholder="write a name"
                   className="form-control"
-                  onChange={(e) => setletter(e.target.value)}
+                  onChange={(e) => setseller(e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -182,7 +182,7 @@ const UpdateProduct = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 };
 

@@ -8,9 +8,9 @@ import cors from 'cors';
 import productRoutes from './routes/ProductRoutes.js'
 import labRoutes from './routes/labRoutes.js'
 import User from "./models/Doctorreg_m.js";
+import mRoutes from "./routes/mRoutes.js"
 import Patient from "./models/PatientReg.js";
 import bodyParser from 'body-parser';
-// import jwt from 'jsonwebtoken';
 
 // calling env object 
 config();
@@ -36,7 +36,8 @@ app.use(bodyParser.json());
 // Routes 
 app.use("/api/auth", authRouter);
 app.use("/api/product", productRoutes);
-app.use("/api/lab", labRoutes)
+app.use("/api/lab", labRoutes);
+app.use("/api/blog",mRoutes);
 
 // Requests
 app.get("/", (req, res) => {

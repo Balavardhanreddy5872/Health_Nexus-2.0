@@ -6,7 +6,7 @@ body{
 }
 .image1{
     display: flex;
-    background-color: rgb(156, 240, 240);
+    background-color: #e0f8ff;
 }
 .error {
     color: red;
@@ -26,7 +26,7 @@ body{
   width: 30%;
   height: 50%;
  /* background-color: #E2C06A; */
- background-color: #58e298;
+ background-color: whitesmoke;
  left: 10px;
  margin: 50px;
  margin-top: 30px;
