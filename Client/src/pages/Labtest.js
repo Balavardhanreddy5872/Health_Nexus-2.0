@@ -375,7 +375,9 @@ const Labtest = () => {
               <del>Rs.910</del>
               <span> Rs.649</span>
             </div>
-            <button className="now"><a href="#bn">BOOK NOW</a> </button>
+            <button className="now" onClick={() => selectPackage('HealthNexus Pre-Scanning')}>
+              BOOK NOW
+            </button>
           </div>
           <div className='sm-image'>
             <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Antenatal_Care.png' alt='care' />
@@ -428,6 +430,7 @@ const Labtest = () => {
       <div className="light">
         <h2><b>Our Highlights</b></h2>
       </div>
+      <div className='highlight'>
       <div className="high">
           <div className="hh1 r">
             <img src='https://www.netmeds.com/assets/icons/location.png' alt='location' />
@@ -442,14 +445,15 @@ const Labtest = () => {
             <h4>NABL,CAP ISO Certified</h4>
           </div>
           <div className="hh4 r">
-          <img src=' https://www.netmeds.com/assets/icons/user.png' alt='location4' />
-            <h4>Upto 60% Discount </h4>
+          <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/75_discount.png' alt='location4' />
+            <h4>Upto 75% Discount </h4>
           </div>
+      </div>
       </div>
       <div className='partners'>
         <div className='hedaing-1'>
           <h2><b>Lab Partner</b></h2>
-          <p>We provide lab tests and health packages from well-reputed, certified diagnostic labs across the country.</p>
+          <p style={{fontSize:"20px"}}>We provide lab tests and health packages from well-reputed, certified diagnostic labs across the country.</p>
         </div>
         <div className='image-lab'>
           <img src='https://www.netmeds.com/images/cms/wysiwyg/Diagnostics/2022/thyrocare_newlogo.jpg' alt='Thyrocare' />
@@ -472,11 +476,12 @@ const Labtest = () => {
       </div>
       <div className="nxs">
         <p>
-          Nexus.com is one of India’s most trusted pharmacies, dispensing quality medicines at reasonable prices to over 7 million happy customers – PAN India.
+          Health Nexus is the most trusted pharmacies, dispensing quality medicines at reasonable prices to all customers – PAN India.
         </p>
       </div>
       <hr />
       <div className="foot">
+        <div className='ft-txt'>
         <div className="company">
           <h3>COMPANY</h3>
           <ul>
@@ -507,6 +512,7 @@ const Labtest = () => {
           <li>Youtube</li>
           <li>Refer &amp; Earn</li>
         </div>
+        
         <div className="subscribe">
           <h3>SUBSCRIBE TO OUR NEWSLETTER</h3>
           <p>Get a free subscription to our health and <br />fitness tip and stay tuned to our latest offers</p>
@@ -531,7 +537,20 @@ const Labtest = () => {
             )}
           </div>
         </div>
+        </div>
+        <div className='payment'>
+          <h3 style={{paddingLeft:"70px",marginTop:"20px"}}>Our Payment Partners</h3>
+          <div className='p-partner'>
+          <img class="g-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/google-pay.svg" alt='gpay'/>
+          <img class="p-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/phonepe.svg" alt="PhonePe" />
+          <img class="pt-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/paytm.svg" alt="Paytm" />
+          <img class="r-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/rupay.svg" alt="Rupay"/>
+          <img class="v-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/visa.svg" alt="Visa Card Network" />
+          <img class="vs-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/mastercard.svg" alt="MasterCard"/>
+        </div>
+        </div>
       </div>
+      
 
     </Layout>
 
