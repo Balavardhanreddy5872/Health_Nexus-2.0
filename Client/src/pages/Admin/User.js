@@ -65,7 +65,7 @@ const MessageForm = ({ onClose, onSubmit }) => {
           style={{
             padding: '10px 20px',
             background: '#32aeb1',
-            color: '#fff', 
+            color: '#fff',
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
@@ -99,23 +99,15 @@ const User = () => {
   const [showMessageForm, setShowMessageForm] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   useEffect(() => {
-
-    const fetchall = async () => {
-      const response = await fetch("http://localhost:8080/UserPat", {
-        credentials: "include",
-      })
-      const data = await response.json();
-      // console.log(data)
-      setUserInfo(data)
-    // Fetch user data when the component mounts
-    fetchUsers();
-  }, []);
+      fetchUsers();
+    }, []);
+  
 
 
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:8080/api/auth/allusers');
-      setUsers(response.data.user); 
+      setUsers(response.data.user);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
@@ -123,7 +115,7 @@ const User = () => {
 
   const handleSendMessage = async (message) => {
     if (!selectedUserId) return;
-    
+
     try {
       await axios.post(`http://localhost:8080/api/blog/message/${selectedUserId}`, { message });
     } catch (error) {
