@@ -11,21 +11,21 @@ const Homepage = () => {
     <Layout>
       <div>
         <div>
-          <br/>
+          {/* <br/> */}
           <div className="main">
             <div id="slider">
               <figure>
-                <img alt='web_home'src="/images/1677605292_Web_Home_Bannersgdgsd.jpg" />
-                <img alt='web_home'src="/images/1678990885_Healthvit_wellness_web.jpg" />
-                <img alt='web_home'src="/images/1677605378_Web_Home_Bannersguguui.jpg" />
-                <img alt='web_home'src="/images/1677684779_Web_Homekkkkkk.jpg" />
-                <img alt='web_home'src="/images/slider4.png" />
+                <img alt='web_home' src="/images/1677605292_Web_Home_Bannersgdgsd.jpg" />
+                <img alt='web_home' src="/images/1678990885_Healthvit_wellness_web.jpg" />
+                <img alt='web_home' src="/images/1677605378_Web_Home_Bannersguguui.jpg" />
+                <img alt='web_home' src="/images/1677684779_Web_Homekkkkkk.jpg" />
+                <img alt='web_home' src="/images/slider4.png" />
               </figure>
             </div>
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
         {/* discount section */}
         <section className="discount_section">
           <div className="container-fluid">
@@ -38,7 +38,6 @@ const Homepage = () => {
                     on
                     <span> 10% discount </span>
                   </h2>
-                  <p>click On Buy Now to contune shopping</p>
                   <div>
                     <Link to="/medicine"> Buy Now </Link>
                   </div>
@@ -46,7 +45,7 @@ const Homepage = () => {
               </div>
               <div className="col-lg-7 col-md-5">
                 <div className="img-box">
-                  <img alt='web_home'src="/images/download-removebg-preview-fotor-bg-remover-2023032022277.png" />
+                  <img alt='web_home' src="/images/download-removebg-preview-fotor-bg-remover-2023032022277.png" />
                 </div>
               </div>
             </div>
@@ -54,28 +53,40 @@ const Homepage = () => {
         </section>
         {/* end discount section */}
         {/* ----self section---- */}
-        <br />
-        <br />
+
         <div className="self">
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img alt='web_home'src="https://www.pngfind.com/pngs/m/170-1707648_truck-fast-delivery-speed-svg-png-icon-free.png" style={{ height: 100, marginLeft: 150 }} />
+            <img
+              alt="web_home"
+              src="https://www.pngfind.com/pngs/m/170-1707648_truck-fast-delivery-speed-svg-png-icon-free.png"
+              style={{ height: 100, marginLeft: 150 }}
+            />
             <br />
             <br />
             <h4>we assure safe and fastest delivery</h4>
           </div>
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img alt='web_home'src="https://www.shutterstock.com/image-illustration/best-price-guarantee-label-icon-260nw-259618541.jpg" style={{ height: 100, marginLeft: 100 }} />
+            <img
+              alt="web_home"
+              src="https://www.shutterstock.com/image-illustration/best-price-guarantee-label-icon-260nw-259618541.jpg"
+              style={{ height: 100, marginLeft: 100 }}
+            />
             <br />
             <br />
-            <h4>On of the top selling site</h4>
+            <h4>On of the top-selling sites</h4>
           </div>
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img alt='web_home'src="https://www.shutterstock.com/image-vector/medical-team-icon-260nw-689072647.jpg" style={{ height: 100, marginLeft: 110 }} />
+            <img
+              alt="web_home"
+              src="https://www.shutterstock.com/image-vector/medical-team-icon-260nw-689072647.jpg"
+              style={{ height: 100, marginLeft: 110 }}
+            />
             <br />
             <br />
-            <h4>Consult Top doctors at free</h4>
+            <h4>Consult Top doctors for free</h4>
           </div>
         </div>
+
         {/* ----end of self section---- */}
         <br />
         <br />
@@ -86,8 +97,8 @@ const Homepage = () => {
             </h1>
             <br />
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <Link to="/labtests"><img alt='web_home'src="/images/1581428021_Web_Landingabc_Banner.jpg" style={{ height: '50vh', width: '80%' }} /></Link>
-              <Link to="/labtests"><img alt='web_home'src="/images/Banner-02-scaled.jpg" style={{ height: '50vh', width: '80%' }} /></Link>
+              <Link to="/labtests"><img alt='web_home' src="/images/1581428021_Web_Landingabc_Banner.jpg" style={{ height: '50vh', width: '80%' }} /></Link>
+              <Link to="/labtests"><img alt='web_home' src="/images/Banner-02-scaled.jpg" style={{ height: '50vh', width: '80%' }} /></Link>
             </div>
           </div>
         </div>
@@ -103,7 +114,7 @@ const Homepage = () => {
             <div className="offerout">
               <div className="offeron">
                 <div className="doctorin">
-                  <img alt='web_home'src="/images/d5.jpg" style={{ height: 200, margin: '5px 40px' }} />
+                  <img alt='web_home' src="/images/d5.jpg" style={{ height: 200, margin: '5px 40px' }} />
                   <br />
                   <br />
                   <h5>Dr. M S Pushkala</h5>
@@ -116,7 +127,7 @@ const Homepage = () => {
               </div>
               <div className="offeron">
                 <div className="doctorin">
-                  <img alt='web_home'src="/images/d4.jpg" style={{ height: 200, margin: '5px 40px' }} />
+                  <img alt='web_home' src="/images/d4.jpg" style={{ height: 200, margin: '5px 40px' }} />
                   <br />
                   <br />
                   <h5>Dr. R kaladevi</h5>
@@ -129,7 +140,7 @@ const Homepage = () => {
               </div>
               <div className="offeron">
                 <div className="doctorin">
-                  <img alt='web_home'src="/images/d2.jpg" style={{ height: 200, margin: '5px 40px' }} />
+                  <img alt='web_home' src="/images/d2.jpg" style={{ height: 200, margin: '5px 40px' }} />
                   <br />
                   <br />
                   <h5>Dr.M BhanuPriya</h5>
@@ -142,7 +153,7 @@ const Homepage = () => {
               </div>
               <div className="offeron">
                 <div className="doctorin">
-                  <img alt='web_home'src="/images/d1.jpg" style={{ height: 200, margin: '5px 40px' }} />
+                  <img alt='web_home' src="/images/d1.jpg" style={{ height: 200, margin: '5px 40px' }} />
                   <br />
                   <br />
                   <h5>Dr Vishal Rao</h5>

@@ -644,3 +644,15 @@ a:focus {
         opacity:1;
     }
 }
+
+/* Add this CSS to your existing stylesheet or create a new one */
+
+.self_section {
+  position: relative;
+  transition: z-index 0.3s ease, box-shadow 0.3s ease;
+}
+
+.self_section:hover {
+  z-index: 1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}

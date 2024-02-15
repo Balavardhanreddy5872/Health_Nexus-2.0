@@ -338,3 +338,80 @@
       left: -400%;
     }
   }
+
+ /* Add this CSS to your existing stylesheet or create a new one */
+
+.discount_section {
+  position: relative;
+  overflow: hidden; /* Hide overflowing content */
+  background-color: #f8f8f8; /* Set background color for the entire section */
+  border-radius: 10px; /* Add border-radius for a rounded section */
+}
+
+.discount_section:hover {
+  animation: rainAnimation 3s forwards; /* Add falling sticks animation on hover */
+}
+
+@keyframes rainAnimation {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.img-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0; /* Add border-radius for a rounded top */
+  transition: transform 1s ease;
+}
+
+.img-box:hover img {
+  transform: translateY(-5px) scale(1.05); /* Add a subtle scale effect on hover */
+}
+
+.detail-box {
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.detail-box h2 span {
+  color: #ff6600; /* Highlight the discount percentage color */
+}
+
+.detail-box p {
+  margin-bottom: 15px;
+}
+
+.detail-box a {
+  display: inline-block;
+  background-color: #ff6600;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.detail-box a:hover {
+  background-color: #e55500; /* Darker color on hover */
+}
+
+/* Add animation for the floating effect */
+@keyframes floatAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.img-box img {
+  animation: floatAnimation 1s infinite; /* Adjust duration and other properties as needed */
+}

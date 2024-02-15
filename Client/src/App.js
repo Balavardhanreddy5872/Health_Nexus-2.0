@@ -30,6 +30,7 @@ import Productdetails from "./pages/Productdetails";
 import Cart from "./pages/Cart";
 import AdminOrders from "./pages/Admin/Adminorders";
 import Labreport from "./pages/Admin/Labreport";
+import Chat from "./pages/Admin/Chat";
 
 
 
@@ -54,9 +55,9 @@ function App() {
           <Route path="admin/users" element={<Users />} />
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
-             <Route path = "admin/orders" element = {<AdminOrders/>} />
-
-
+          <Route path="admin/orders" element={<AdminOrders />} />
+          <Route path = "admin/labreport" element={<Labreport /> }/>
+          <Route path = "admin/chat" element={<Chat />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" element={<Aboutus />} />

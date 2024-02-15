@@ -52,7 +52,8 @@ export const getlabReportController = async (req, res) => {
         const lab = await LabModel
             .find({})
             .populate("buyer", "name")
-        res.status(200).json({ lab });
+            res.status(200).json({ lab });
+
     } catch (error) {
         console.log(error);
         res.status(500).send({
@@ -63,3 +64,22 @@ export const getlabReportController = async (req, res) => {
     }
 }
 
+export const LabstatusController = async (req, res) => {
+    try {
+        const { orderId } = req.params;
+        const { status } = req.body;
+        const Labs = await LabModel.findByIdAndUpdate(
+            orderId,
+            { status },
+            { new: true }
+        );
+        res.json(Labs);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error While Updateing Order",
+            error,
+        });
+    }
+};
