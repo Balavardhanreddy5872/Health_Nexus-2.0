@@ -8,8 +8,7 @@ const patientschema = new mongoose.Schema({
     },
     patientEmail: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     patientPhone: {
         type: String,
@@ -26,7 +25,8 @@ const patientschema = new mongoose.Schema({
     reason: {
         type: String,
         required: true
-    }
+    },
+
 })
 
 const Patient = mongoose.model('Patients', patientschema);

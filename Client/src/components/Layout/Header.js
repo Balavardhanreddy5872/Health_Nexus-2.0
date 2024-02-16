@@ -18,7 +18,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: 'aqua' }}>
+      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#32aeb1',  height:'12vh' , position: 'sticky', top: 0, zIndex: 1020}}>
         <div className="container-fluid">
           <Link className="navbar-brand mx-4" to="/">HealthNexus</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,16 +26,16 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-3">
                 <NavLink className="nav-link " to="/"><i class="fa fa-home" /> Home</NavLink>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-3">
                 <NavLink className="nav-link " to="/medicine"> <i class="fa  fa-hand-holding-medical"></i>  Medicines</NavLink>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-3">
                 <NavLink className="nav-link " to="/labtests"> <i class="fa fa-x-ray"></i> Labtest</NavLink>
               </li>
-              <li className="nav-item mx-4">
+              <li className="nav-item mx-3">
                 <NavLink className="nav-link " to="/doctor"><i class="fa fa-user-nurse"></i> Doctor</NavLink>
               </li>
             </ul>

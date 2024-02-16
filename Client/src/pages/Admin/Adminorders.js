@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import AdminMenu from "../../components/Layout/AdminMenu";
-import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
-import { Select } from "antd";
+import { Select, Card, Row, Col } from "antd";
+import Layout2 from "../../components/Layout/Layout2";
 const { Option } = Select;
 
 const AdminOrders = () => {
@@ -13,16 +13,19 @@ const AdminOrders = () => {
     "Not Process",
     "Processing",
     "Shipped",
-    "deliverd",
-    "cancel",
+    "Delivered",
+    "Cancel",
   ]);
   const [changeStatus, setCHangeStatus] = useState("");
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+
   const getOrders = async () => {
     try {
       const { data } = await axios.get("http://localhost:8080/api/auth/all-orders");
-      setOrders(data);
+      // Sort orders by date from present to past
+      const sortedOrders = data.sort((a, b) => moment(b.createAt).valueOf() - moment(a.createAt).valueOf());
+      setOrders(sortedOrders);
     } catch (error) {
       console.log(error);
     }
@@ -42,24 +45,53 @@ const AdminOrders = () => {
       console.log(error);
     }
   };
+
+  const countByStatus = (status) => {
+    return orders.filter(order => order.status === status).length;
+  };
+
   return (
-    <Layout title={"All Orders Data"}>
-      <div className="row dashboard">
-        <div className="col-md-3">
-          <AdminMenu />
-        </div>
-        <div className="col-md-9">
-          <h1 className="text-center">All Orders</h1>
-          {orders?.map((o, i) => {
-            return (
-              <div className="border shadow">
+    <Layout2 title={"All Orders Data"}>
+      <div className="container-fluid p-3">
+        <div className="row">
+          <div className="col-md-3">
+            <AdminMenu />
+          </div>
+          <div className="col-md-9" style={{minHeight:'90vh'}}>
+            <h1 className="text-center w-75 p-3">Orders</h1>
+            <Row gutter={16}>
+              <Col span={6}>
+                <Card title="Total Orders" style={{border: '2px dashed black'}}>
+                  {orders.length}
+                </Card>
+              </Col>
+              <Col span={6}>
+                <Card title="Not Processed" style={{border: '2px dashed black'}} >
+                  {countByStatus("Not Process")}
+                </Card>
+              </Col>
+              <Col span={6}>
+                <Card title="Shipped" style={{border: '2px dashed black'}}>
+                  {countByStatus("Shipped")}
+                </Card>
+              </Col>
+              <Col span={6}>
+                <Card title="Delivered" style={{border: '2px dashed black'}}>
+                  {countByStatus("Delivered")}
+                </Card>
+              </Col>
+            </Row>
+            <br/>
+            <br/>
+            {orders?.map((o, i) => (
+              <div key={i} className="border shadow mb-4">
                 <table className="table">
                   <thead>
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">Status</th>
                       <th scope="col">Buyer</th>
-                      <th scope="col"> date</th>
+                      <th scope="col">Date</th>
                       <th scope="col">Quantity</th>
                     </tr>
                   </thead>
@@ -80,14 +112,15 @@ const AdminOrders = () => {
                         </Select>
                       </td>
                       <td>{o?.buyer?.name}</td>
-                      <td>{moment(o?.createAt).fromNow()}</td>
+                      <td>{o?.createdAt}</td>
                       <td>{o?.products?.length}</td>
+
                     </tr>
                   </tbody>
                 </table>
                 <div className="container">
-                  {o?.products?.map((p, i) => (
-                    <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                  {o?.products?.map((p, j) => (
+                    <div className="row mb-2 p-3 card flex-row" key={j}>
                       <div className="col-md-4">
                         <img
                           src={`http://localhost:8080/api/product/medicine-photo/${p._id}`}
@@ -106,11 +139,11 @@ const AdminOrders = () => {
                   ))}
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 };
 

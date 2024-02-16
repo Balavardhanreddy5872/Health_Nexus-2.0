@@ -19,14 +19,14 @@ var gateway = new braintree.BraintreeGateway({
 // Addmedicine "Admin Panel"
 export const addProductController = async (req, res) => {
     try {
-        const { name, letter, description, price, quantity } = req.fields;
+        const { name, seller, description, price, quantity } = req.fields;
         const { photo } = req.files;
         //alidation
         switch (true) {
             case !name:
                 return res.status(500).send({ error: "Name is Required" });
-            case !letter:
-                return res.status(500).send({ error: "Letter is Required" });
+            case !seller:
+                return res.status(500).send({ error: "seller is Required" });
             case !description:
                 return res.status(500).send({ error: "Description is Required" });
             case !price:
@@ -128,14 +128,14 @@ export const productPhotoController = async (req, res) => {
 // Update product 
 export const updateProductController = async (req, res) => {
     try {
-        const { name, letter,description, price,quantity} =
+        const { name, seller ,description, price,quantity} =
             req.fields;
         const { photo } = req.files;
         switch (true) {
             case !name:
                 return res.status(500).send({ error: "Name is Required" });
-            case !letter:
-                return res.status(500).send({ error: "letter is Required" });
+            case !seller:
+                return res.status(500).send({ error: "seller is Required" });
             case !description:
                 return res.status(500).send({ error: "Description is Required" });
             case !price:
@@ -264,3 +264,17 @@ export const braintreeTokenController = async (req, res) => {
       console.log(error);
     }
   };
+
+  export const getTotalProductCountController = async (req, res) => {
+    try {
+        const totalCount = await productModel.countDocuments();
+        res.json({ totalCount });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while getting total orders count",
+            error,
+        });
+    }
+};

@@ -14,6 +14,14 @@ const Doctorreg = () => {
   const [password, setPassword] = useState('');
   const [repassword, setRepassword] = useState('');
   const [specialization, setSpecialization] = useState('');
+  const [profileImage, setProfileImage] = useState(null);
+  const [experience, setExperience] = useState('');
+
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setProfileImage(file);
+  };
 
   const [details, setDetails] = useState({
     name: "",
@@ -21,6 +29,8 @@ const Doctorreg = () => {
     password: "",
     repassword: "",
     specialization: "",
+    profileImage: "",
+    experience: "",
   });
 
   const [isActive, setActive] = useState({
@@ -29,6 +39,8 @@ const Doctorreg = () => {
     password: false,
     repassword: false,
     specialization: false,
+    profileImage: false,
+    experience: false
   });
 
   const [errors, setErrors] = useState({
@@ -37,6 +49,8 @@ const Doctorreg = () => {
     password: "",
     repassword: "",
     specialization: "",
+    profileImage: "",
+    experience: ""
   });
 
   const testEmailValidity = (email) =>
@@ -46,7 +60,11 @@ const Doctorreg = () => {
 
   const passwordRe = (repass) => details.password === repass;
 
-  const nameRegex = (namee) => /^[A-Z]{4,}$/.test(namee);
+  const nameRegex = (namee) => /^[A-Z][a-zA-Z]*$/.test(namee);
+
+  const isValidImage = (image) => image !== null;
+
+  const experienceRegex = (experience) => /^\d{2}$/;
 
   const validateForm = () => {
     const newErrors = {
@@ -55,6 +73,8 @@ const Doctorreg = () => {
       password: "",
       repassword: "",
       specialization: "",
+      profileImage: "",
+      experience: ""
     };
 
     if (!nameRegex(details.name)) {
@@ -77,13 +97,21 @@ const Doctorreg = () => {
       newErrors.specialization = "Specialization not entered";
     }
 
+    if (!isValidImage(details.profileImage)) {
+      newErrors.profileImage = "profileImage is not valid";
+    }
+
+    if (!experienceRegex(details.experience)) {
+      newErrors.experience = "experience is not valid";
+    }
+
     setErrors(newErrors);
 
     // Check if there are no errors
     return Object.values(newErrors).every((error) => error === "");
   };
 
-  const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?size=626&ext=jpg&ga=GA1.1.780333128.1700286974&semt=ais")';
+  const backgroundURL = 'url("https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61809.jpg?size=626&ext=jpg&ga=GA1.1.1583734797.1707733052&semt=ais")';
 
   return (
     // Done
@@ -107,10 +135,10 @@ const Doctorreg = () => {
                         className="mx-1 mx-md-4"
                         action="/doctorlogin"
                         method="POST"
+                        encType="multipart/form-data"
                         onSubmit={async (e) => {
                           e.preventDefault();
                           try {
-
                             if (validateForm()) {
                               setDetails({
                                 name: "",
@@ -118,8 +146,9 @@ const Doctorreg = () => {
                                 password: "",
                                 repassword: "",
                                 specialization: "",
+                                profileImage: "",
+                                experience: ""
                               });
-
                             } else {
                               setActive({
                                 name: true,
@@ -127,31 +156,34 @@ const Doctorreg = () => {
                                 password: true,
                                 repassword: true,
                                 specialization: true,
+                                profileImage: true,
+                                experience: true
                               });
-
                             }
+                            // Create a FormData object to send the image file
+                            const formData = new FormData();
+                            formData.append('name', name);
+                            formData.append('email', email);
+                            formData.append('password', password);
+                            formData.append('repassword', repassword);
+                            formData.append('specialization', specialization);
+                            formData.append('profileImage', profileImage);
 
+                            // Send the formData to the server
                             const response = await fetch('http://localhost:8080/register', {
                               method: 'POST',
-                              body: JSON.stringify({
-                                name,
-                                email,
-                                password,
-                                repassword,
-                                specialization
-                              }),
-                              headers: { 'content-type': 'application/json' },
+                              body: formData,
                             });
-                            console.log(await response.json())
+
+                            console.log(await response.json());
+                            console.log('Profile Image:', profileImage);
                             if (response.status === 200) {
                               navigate('/doctorlogin');
-
                             }
                           } catch (err) {
                             alert(err);
-                            console.log(err)
+                            console.log(err);
                           }
-
                         }}
                       >
                         <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
@@ -243,6 +275,67 @@ const Doctorreg = () => {
                             {errors.repassword && <div className="invalid-feedback">{errors.repassword}</div>}
                           </div>
                         </div>
+
+                        <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-20px" }}>
+                          <i style={{ marginRight: "20px" }} class="fa-solid fa-image"></i>
+                          <div className="form-outline flex-fill mb-0">
+
+                            <input
+                              type="file"
+                              id="profileImage"
+                              name="profileImage"
+                              className={`form-control ${isActive.profileImage && 'is-invalid'}`}
+                              onChange={
+                                handleImageChange
+
+                              }
+                            />
+                            {errors.profileImage && <div className="invalid-feedback">{errors.profileImage}</div>}
+                          </div>
+                        </div>
+
+
+                        {/* <div className="mb-4">
+                          <i class="fa-solid fa-image"></i>
+                          <input
+                            type="file"
+                            id="profileImage"
+                            name="profileImage"
+                            className="form-control"
+                            onChange={
+                              handleImageChange
+                            }
+                          />
+                        </div> */}
+
+
+
+                        {/* <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
+                          <i className="fas fa-briefcase fa-lg me-3 fa-fw"></i>
+                          <div className="form-outline flex-fill mb-0">
+                            <input
+                              type="text"
+                              id="experience"
+                              name="experience"
+                              placeholder="Experience"
+                              className={`form-control ${isActive.experience && !errors.experience && 'is-valid'} ${isActive.experience && errors.experience && 'is-invalid'}`}
+                              onChange={(e) => {
+                                setExperience(e.target.value);
+                                setDetails({
+                                  ...details,
+                                  experience: e.target.value,
+                                });
+                              }}
+                              value={details.experience}
+                            />
+                            {errors.experience && <div className="invalid-feedback">{errors.experience}</div>}
+                          </div>
+                        </div> */}
+
+
+
+
+
 
                         <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-user-doctor fa-lg me-3 fa-fw"></i>

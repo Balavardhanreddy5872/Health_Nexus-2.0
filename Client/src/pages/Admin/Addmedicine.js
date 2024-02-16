@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Layout from "./../../components/Layout/Layout";
 import AdminMenu from "./../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Layout2 from "../../components/Layout/Layout2";
 
 const Addmedicine = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [letter, setletter] = useState("");
+  const [seller, setseller] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -20,20 +20,20 @@ const Addmedicine = () => {
     try {
       const productData = new FormData();
       productData.append("name", name);
-      productData.append("letter", letter);
+      productData.append("seller", seller);
       productData.append("description", description);
       productData.append("price", price);
       productData.append("quantity", quantity);
       productData.append("photo", photo);
-      const { data } =  await axios.post(`http://localhost:8080/api/product/add-medicine`,
+      const { data } = await axios.post(`http://localhost:8080/api/product/add-medicine`,
         productData
-      
+
       );
       if (data?.success) {
         toast.error(data?.message);
       } else {
-         toast.success("Product Created Successfully");
-         navigate("/admin");
+        toast.success("Product Created Successfully");
+        navigate("/admin");
       }
     } catch (error) {
       console.log(error);
@@ -42,13 +42,14 @@ const Addmedicine = () => {
   };
 
   return (
-    <Layout title={"Dashboard - Create Product"}>
+    <Layout2 title={"Dashboard - Create Product"}>
+
       <div className="container-fluid  p-3">
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9" style={{minHeight:'90vh'}}>
             <h1>Create Product</h1>
             <div className="m-1 w-72">
               <div className="mb-3">
@@ -87,10 +88,10 @@ const Addmedicine = () => {
               <div className="mb-3">
                 <input
                   type="text"
-                  value={letter}
-                  placeholder="write a letter"
+                  value={seller}
+                  placeholder="write a seller"
                   className="form-control"
-                  onChange={(e) => setletter(e.target.value)}
+                  onChange={(e) => setseller(e.target.value)}
                 />
               </div>
               <div className="mb-3">
@@ -130,7 +131,7 @@ const Addmedicine = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 }
 

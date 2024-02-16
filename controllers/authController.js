@@ -2,6 +2,7 @@ import { comaparePassword, hashPassword } from "../helpers/authHelpers.js"
 import User from "../models/UserModels.js"
 import JWT from "jsonwebtoken";
 import orderModel from '../models/orderModel.js'
+import UserModels from "../models/UserModels.js";
 
 export const registerController = async (req, res) => {
     try {
@@ -130,6 +131,23 @@ export const verifyController = (req, res) => {
     }
 };
 
+//  get all  users admin  
+export const getUsercontroller = async ( req,res) =>{
+    try {
+        const user = await UserModels
+            .find({})
+            res.status(200).json({ user });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error WHile Geting user",
+            error,
+        });
+    }
+}
+
 //update prfole
 export const updateProfileController = async (req, res) => {
     try {
@@ -217,6 +235,37 @@ export const orderStatusController = async (req, res) => {
         res.status(500).send({
             success: false,
             message: "Error While Updateing Order",
+            error,
+        });
+    }
+};
+
+// Total orders by count 
+export const getTotalOrdersCountController = async (req, res) => {
+    try {
+        const totalCount = await orderModel.countDocuments();
+        res.json({ totalCount });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while getting total orders count",
+            error,
+        });
+    }
+};
+
+
+// Total users by count 
+export const getTotalusersCountController = async (req, res) => {
+    try {
+        const totalCount = await UserModels.countDocuments();
+        res.json({ totalCount });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while getting total orders count",
             error,
         });
     }

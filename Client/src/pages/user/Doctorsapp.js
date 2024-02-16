@@ -1,71 +1,72 @@
-import React from 'react'
-import UserMenu from '../../components/Layout/UserMenu'
-import Layout from '../../components/Layout/Layout'
-import "./doct.css"
+import React, { useState, useEffect } from 'react';
+import UserMenu from '../../components/Layout/UserMenu';
+import Layout from '../../components/Layout/Layout';
+import './doct.css';
+import { useAuth } from "../../context/auth";
+// ... (imports and component definition)
 
 const Doctorsapp = () => {
+  const [userInfoo, setUserInfoo] = useState([]);
+  const [auth] = useAuth();
 
-  const userAppointments = [
-    {
-      id: 1,
-      doctorName: 'Dr. John Doe',
-      time: '10:00 AM',
-      date: '30-10-2024',
-      status: 'completed',
-    },
-    {
-      id: 2,
-      doctorName: 'Dr. Jane Smith',
-      time: '02:00 PM',
-      date: '13-09-2024',
-      status: 'Upcoming',
-    },
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('http://localhost:8080/UserPat2', {
+        credentials: 'include',
+      });
+      const data = await response.json();
+      console.log(data);
 
-  ];
+      // Filter appointments based on the condition
+      const filteredAppointments = data.filter(user => auth?.user?.email === user.patientEmail);
+
+      setUserInfoo(filteredAppointments);
+    };
+    fetchData();
+  }, [auth?.user?.name]); // Add auth?.user?.email as a dependency to re-fetch data when the email changes
 
   return (
     <Layout>
-      <div className="container-flui p-3">
+      <div className="container-fluid p-3">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
           </div>
           <div className="col-md-9">
-            <div class="user-account-page">
-              <div class="user-appointments-container">
+            <div className="user-account-page">
+              <div className="user-appointments-container">
                 <h2>My Appointments</h2>
+
+                {/* Display userInfoo details in a table */}
                 <table className="user-appointments-table">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Doctor Name</th>
-                      <th>Time</th>
+                      <th>Email</th>
+                      <th>Patient Name</th>
+                      <th>Specialization</th>
                       <th>Date</th>
-                      <th>Status</th>
+                      <th>Phone number</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {userAppointments.map((appointment) => (
-                      <tr key={appointment.id}>
-                        <td>{appointment.id}</td>
-                        <td>{appointment.doctorName}</td>
-                        <td>{appointment.time}</td>
-                        <td>{appointment.date}</td>
-                        <td>{appointment.status}</td>
+                    {userInfoo.map((user, index) => (
+                      <tr key={index}>
+                        <td>{user.patientEmail}</td>
+                        <td>{user.patientName}</td>
+                        <td>{user.specialization}</td>
+                        <td>{user.appointmentDate}</td>
+                        <td>{user.patientPhone}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
             </div>
-
-
-
           </div>
         </div>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Doctorsapp
+export default Doctorsapp;
