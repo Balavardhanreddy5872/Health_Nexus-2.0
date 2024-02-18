@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { registerController, logincontroller, verifyController, updateProfileController, getOrdersController,getAllOrdersController,orderStatusController, getUsercontroller, getTotalusersCountController, getTotalOrdersCountController } from '../controllers/authController.js';
+import { registerController, logincontroller, verifyController, updateProfileController, getOrdersController,getAllOrdersController,orderStatusController, getUsercontroller, getTotalusersCountController, getTotalOrdersCountController, getOrdersCountController } from '../controllers/authController.js';
 import { isAdmin, requireSignIn } from '../middlewares/authMiddleware.js';
 // router object 
 const router = Router()
@@ -42,6 +42,7 @@ router.put(
 
 router.get('/userscount',requireSignIn,isAdmin,getTotalusersCountController);
 router.get('/ordercount',requireSignIn,isAdmin,getTotalOrdersCountController);
+router.get('/ordercnt',requireSignIn, getOrdersCountController);
 
 export default router;
 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import UserMenu from '../../components/Layout/UserMenu';
-import Layout from '../../components/Layout/Layout';
+import Layout2 from '../../components/Layout/Layout2';
 import './doct.css';
 import { useAuth } from "../../context/auth";
-// ... (imports and component definition)
 
 const Doctorsapp = () => {
   const [userInfoo, setUserInfoo] = useState([]);
@@ -26,7 +25,7 @@ const Doctorsapp = () => {
   }, [auth?.user?.name]); // Add auth?.user?.email as a dependency to re-fetch data when the email changes
 
   return (
-    <Layout>
+    <Layout2>
       <div className="container-fluid p-3">
         <div className="row">
           <div className="col-md-3">
@@ -65,7 +64,7 @@ const Doctorsapp = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 };
 

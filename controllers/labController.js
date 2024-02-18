@@ -83,3 +83,20 @@ export const LabstatusController = async (req, res) => {
         });
     }
 };
+
+
+
+// get total orders of particular user 
+export const getLabCountController = async (req, res) => {
+    try {
+        const totalCount = await LabModel.countDocuments({ buyer: req.user._id });
+        res.json({ totalCount });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error while getting total orders count",
+            error,
+        });
+    }
+};

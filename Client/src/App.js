@@ -21,6 +21,7 @@ import DoctPatient from "./pages/DoctPatient";
 import Doctorreg from "./pages/Doctorreg";
 import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders"
+import Chat2 from "./pages/user/Chat"
 import Doctorsapp from "./pages/user/Doctorsapp";
 import LabTests from "./pages/user/LabTests";
 import Products from "./pages/Admin/Product";
@@ -48,6 +49,7 @@ function App() {
           <Route path="user/profile" element={<Profile />} />
           <Route path="user/app" element={<Doctorsapp />} />
           <Route path="user/lab" element={<LabTests />} />
+          <Route path = "user/chat" element={ <Chat2 />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<Admindashboard />} />
@@ -57,7 +59,8 @@ function App() {
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/orders" element={<AdminOrders />} />
           <Route path = "admin/labreport" element={<Labreport /> }/>
-          <Route path = "admin/chat" element={<Chat />} />
+          <Route path = "admin/chat" element={<Chat/>} />
+          
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" element={<Aboutus />} />
