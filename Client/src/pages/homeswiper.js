@@ -175,7 +175,6 @@ import toast from 'react-hot-toast';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/homeswiper.css';
 // Install Swiper modules
 SwiperCore.use([Navigation]);
 
