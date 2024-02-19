@@ -418,6 +418,7 @@ a:focus {
 
 .self {
   display: flex;
+  justify-content: center;
 }
 
 /* self section */

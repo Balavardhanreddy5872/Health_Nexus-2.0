@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
 import Layout from '../components/Layout/Layout'
 import { Link } from 'react-router-dom'
 import '../styles/style.css'
 import '../styles/style2.css'
-
-
+import '../styles/Homepage.css'
+import  Homeswiper  from './homeswiper';
 
 const Homepage = () => {
+  
+  // Get 6 random products
+  
   return (
     <Layout>
       <div>
@@ -51,122 +54,119 @@ const Homepage = () => {
             </div>
           </div>
         </section>
-        {/* end discount section */}
-        {/* ----self section---- */}
-
+        <br/>
         <div className="self">
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img
-              alt="web_home"
-              src="https://www.pngfind.com/pngs/m/170-1707648_truck-fast-delivery-speed-svg-png-icon-free.png"
-              style={{ height: 100, marginLeft: 150 }}
-            />
+            <img alt='web_home'src="https://www.pngfind.com/pngs/m/170-1707648_truck-fast-delivery-speed-svg-png-icon-free.png" style={{ height: 100, marginLeft: 150 }} />
             <br />
             <br />
             <h4>we assure safe and fastest delivery</h4>
           </div>
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img
-              alt="web_home"
-              src="https://www.shutterstock.com/image-illustration/best-price-guarantee-label-icon-260nw-259618541.jpg"
-              style={{ height: 100, marginLeft: 100 }}
-            />
+            <img alt='web_home'src="https://www.shutterstock.com/image-illustration/best-price-guarantee-label-icon-260nw-259618541.jpg" style={{ height: 100, marginLeft: 100 }} />
             <br />
             <br />
-            <h4>On of the top-selling sites</h4>
+            <h4>On of the top selling site</h4>
           </div>
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img
-              alt="web_home"
-              src="https://www.shutterstock.com/image-vector/medical-team-icon-260nw-689072647.jpg"
-              style={{ height: 100, marginLeft: 110 }}
-            />
+            <img alt='web_home'src="https://www.shutterstock.com/image-vector/medical-team-icon-260nw-689072647.jpg" style={{ height: 100, marginLeft: 110 }} />
             <br />
             <br />
-            <h4>Consult Top doctors for free</h4>
+            <h4>Consult Top doctors at free</h4>
           </div>
         </div>
-
-        {/* ----end of self section---- */}
         <br />
         <br />
-        <div className="lab">
           <div className="headsell1">
-            <h1 style={{ color: '#000' }}>
-              <marquee><b>LABTESTS</b></marquee>
+            <h1 style={{ color: '#fff' }}>
+              <h2><b>LABTESTS</b></h2>
             </h1>
             <br />
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <Link to="/labtests"><img alt='web_home' src="/images/1581428021_Web_Landingabc_Banner.jpg" style={{ height: '50vh', width: '80%' }} /></Link>
-              <Link to="/labtests"><img alt='web_home' src="/images/Banner-02-scaled.jpg" style={{ height: '50vh', width: '80%' }} /></Link>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Link to="/labtests"><img alt='web_home'src="/images/1581428021_Web_Landingabc_Banner.jpg" style={{ height: '40vh', width: '80%' }} /></Link>
+              <Link to="/labtests"><img alt='web_home'src="/images/Banner-02-scaled.jpg" style={{ height: '40vh', width: '80%' }} /></Link>
             </div>
+          </div><br/>
+        <div style={{marginTop:"10px",top:"0px", padding: "5px", background: `
+        url("https://www.netmeds.com/images/cms/section/images/1704906417_Limited_Time.png") no-repeat left bottom / 240px,
+        linear-gradient(to bottom, rgb(255 255 255 / -2%), rgba(255, 255, 255, .4) 78%),
+        linear-gradient(180deg, #ab1e24, #ab1e24)
+      `}}>
+          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '10px'}}>
+            <h4 style={{paddingLeft:"10px",color:"white"}}><b>Limited Time Deals</b></h4>
+            <h6 style={{paddingLeft:"10px",color:"white"}}><b>Grab the deal</b></h6>
+          </div>
+          {/* <p style={{color:"white"}}>Grab  this limited time offer before it’s gone!</p> */}
+          <div style={{margin:"20px"}}>
+           <Homeswiper/>
+          </div>
+        </div>
+        <div style={{marginTop:"30px", padding: "5px", background: `
+        url("https://www.netmeds.com/images/cms/section/images/1708192463_Accu-chek_#009BC6.png") no-repeat left bottom / 240px,
+        linear-gradient(to bottom, rgb(255 255 255 / -2%), rgba(255, 255, 255, .4) 78%),
+        linear-gradient(180deg, #009BC6, #009BC6)
+      `}}>
+          <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', marginBottom: '10px'}}>
+            <h4 style={{paddingLeft:"10px",color:"white"}}><b>New Arrivals</b></h4>
+          </div>
+          {/* <p style={{color:"white"}}>Grab  this limited time offer before it’s gone!</p> */}
+          <div style={{margin:"20px"}}>
+           <Homeswiper/>
           </div>
         </div>
         <br />
-        <br />
-        <br />
-        {/* Doctors section */}
-        <div className="doctor">
-          <div className="headsell">
-            <div>
-              <h1><b>DOCTORS</b></h1>
-            </div>
-            <div className="offerout">
-              <div className="offeron">
-                <div className="doctorin">
-                  <img alt='web_home' src="/images/d5.jpg" style={{ height: 200, margin: '5px 40px' }} />
-                  <br />
-                  <br />
-                  <h5>Dr. M S Pushkala</h5>
-                  <br />
-                  <h6>
-                    Urologist, Robotic Surgeon | Urologist And Robotic Prostate
-                    Surgeon
-                  </h6>
-                </div>
+        <div style={{background:`linear-gradient(180deg,#ef4281 50%,#f3f7fb 50%)`}}>
+          <h2 style={{padding:"10px",color:"white"}}>Health Library</h2>
+          <div style={{display:"flex"}}>
+          <div>
+              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <img className="card-img-top" src="https://www.netmeds.com/images/cms/wysiwyg/blog/2020/12/1608540328_Kaunch_big_1.jpg" alt="Card" />
+              <div className="card-body">
+                <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Kaunch Beej</h5>
+                <p className="card-text">helps in quick healing of wound, decreases swelling and brings back the normal texture of the skin. </p>
+               </div>
               </div>
-              <div className="offeron">
-                <div className="doctorin">
-                  <img alt='web_home' src="/images/d4.jpg" style={{ height: 200, margin: '5px 40px' }} />
-                  <br />
-                  <br />
-                  <h5>Dr. R kaladevi</h5>
-                  <br />
-                  <h6>
-                    Endocrinologists commonly treat diabetes, thyroid dysfunction,
-                    and reproductive health.
-                  </h6>
-                </div>
+          </div>
+          <div>
+              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <img className="card-img-top" src="https://images.hindustantimes.com/rf/image_size_960x540/HT/p2/2017/06/01/Pictures/_233c555a-4676-11e7-ae7e-b192f5497e3d.jpg" alt="Card" />
+              <div className="card-body">
+                <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Almonds</h5>
+                <p className="card-text">Almonds are rich in vitamin E,essential oils antioxidants which are beneficial for all .</p>
+               </div>
               </div>
-              <div className="offeron">
-                <div className="doctorin">
-                  <img alt='web_home' src="/images/d2.jpg" style={{ height: 200, margin: '5px 40px' }} />
-                  <br />
-                  <br />
-                  <h5>Dr.M BhanuPriya</h5>
-                  <br />
-                  <h6>
-                    A neurologist focuses on the anatomy, functions, and disorders
-                    of the nerves and nervous systems
-                  </h6>
-                </div>
+          </div>
+          <div>
+              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <img className="card-img-top" src="https://www.shutterstock.com/image-photo/walnut-isolated-unpeeled-walnuts-nut-260nw-2306979049.jpg" alt="Card" />
+              <div className="card-body">
+                <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Walnuts</h5>
+                <p className="card-text">Walnuts help to reduce stress and prevents from cancer good for skins and hairs.</p>
+               </div>
               </div>
-              <div className="offeron">
-                <div className="doctorin">
-                  <img alt='web_home' src="/images/d1.jpg" style={{ height: 200, margin: '5px 40px' }} />
-                  <br />
-                  <br />
-                  <h5>Dr Vishal Rao</h5>
-                  <br />
-                  <h6>
-                    Allergist/Immunologists are trained to treat allergies and
-                    disease of the immune system, such as asthma.
-                  </h6>
-                </div>
+          </div>
+          <div>
+              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <img className="card-img-top" src="https://static.toiimg.com/thumb/msid-106130391,width-1280,height-720,resizemode-4/106130391.jpg" alt="Card" />
+              <div className="card-body">
+                <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Raisins</h5>
+                <p className="card-text">Raisins are dried grapes it is rich source of iron and treatment for anaemia.</p>
+               </div>
               </div>
-            </div>
+          </div>
+          <div>
+              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <img className="card-img-top" src="https://images.healthshots.com/healthshots/en/uploads/2023/09/04073149/pistachip-1600x900.jpg" alt="Card" />
+              <div className="card-body">
+                <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Pistachio</h5>
+                <p className="card-text">Pistachio prevents from diabetes and boosts immunity and helps to reduce weight.</p>
+               </div>
+              </div>
           </div>
         </div>
+        </div>
+        <br />
+        <br />
         <br />
         <br />
       </div>
