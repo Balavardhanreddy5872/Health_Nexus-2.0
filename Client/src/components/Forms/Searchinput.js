@@ -27,6 +27,7 @@ const SearchInput = () => {
         borderRadius: '5px',
         cursor: 'pointer',
         transition: 'background-color 0.3s',
+        padding : '-10px'
     };
     return (
         <div>
@@ -40,8 +41,7 @@ const SearchInput = () => {
                     onChange={(e) => setValues({ ...values, keyword: e.target.value })}
                     style={{ width: '330px' }}
                 />
-
-                <button type="submit" style={buttonStyle}>
+                <button type="submit" style={buttonStyle} >
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>

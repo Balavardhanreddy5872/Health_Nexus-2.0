@@ -49,12 +49,12 @@ const Cart = () => {
     }
   };
 
-  const updateQuantity = (pid, quantity) => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [pid]: quantity,
-    }));
-  };
+  // const updateQuantity = (pid, quantity) => {
+  //   setQuantities((prevQuantities) => ({
+  //     ...prevQuantities,
+  //     [pid]: quantity,
+  //   }));
+  // };
   //get payment gateway token
   const getToken = async () => {
     try {
@@ -122,13 +122,13 @@ const Cart = () => {
                   <p><b> Name:{p.name}</b></p>
                   <p><b>{p.description.substring(0, 30)}</b></p>
                   <p><b> ₹ {p.price} </b> </p>
-                  <input
+                  {/* <input
                     type="number"
                     min="1"
                     value={quantities[p._id] || 1}
                     onChange={(e) => updateQuantity(p._id, parseInt(e.target.value, 10))}
                     style={{ border: 'none', outline: 'none' }}
-                  />
+                  /> */}
                   <br />
                   <br/>
                   <i class="fa-solid fa-trash" onClick={() => removeCartItem(p._id)} style={{cursor:'pointer'}}></i>

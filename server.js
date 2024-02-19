@@ -1,21 +1,22 @@
 import express, { json } from "express";
-const app = express();
 import { config } from 'dotenv';
+const app = express();
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import fs from 'fs';
+import path from 'path';
+import rfs from 'rotating-file-stream';
 import authRouter from './routes/authRoutes.js';
 import cors from 'cors';
-import productRoutes from './routes/ProductRoutes.js'
-import labRoutes from './routes/labRoutes.js'
+import productRoutes from './routes/ProductRoutes.js';
+import labRoutes from './routes/labRoutes.js';
 import User from "./models/Doctorreg_m.js";
-import mRoutes from "./routes/mRoutes.js"
+import mRoutes from "./routes/mRoutes.js";
 import Patient from "./models/PatientReg.js";
 import bodyParser from 'body-parser';
-
 import multer from 'multer';
-import path from 'path';
-// import jwt from 'jsonwebtoken';
-
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 config();
 
@@ -29,21 +30,29 @@ db.once('open', () => {
   console.log('Connected to the database.');
 });
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
+const logDirectory = join(__dirname, 'logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
-// middle ware 
+const accessLogStream = rfs.createStream('access.log', {
+  interval: '1h',
+  path: logDirectory
+});
+ 
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(json());
-app.use(morgan('dev'));
+app.use(morgan('combined', { stream: accessLogStream })); // Use combined format for logging
 app.use(bodyParser.json());
+
+
 
 // Routes 
 app.use("/api/auth", authRouter);
 app.use("/api/product", productRoutes);
-
 app.use("/api/lab", labRoutes)
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
-app.use("/api/lab", labRoutes);
 app.use("/api/blog",mRoutes);
 
 
