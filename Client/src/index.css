@@ -5,7 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/* * body {
+  background-color: #1803A5;
+  color : #96ffbd
+} */
 /* //navbar css */
 .navbar {
   font-family: "Poppins", sans-serif;

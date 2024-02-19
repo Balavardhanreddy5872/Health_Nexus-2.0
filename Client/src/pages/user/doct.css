@@ -1,9 +1,9 @@
 .user-account-page {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    max-width: 1000px;
+    /* max-width: 1000px; */
     margin: 20px auto;
     padding: 20px;
-    background: #f5f5f5;
+    /* background: #f5f5f5; */
     /* Soft background for the whole page */
 }
 
@@ -25,7 +25,7 @@
 .user-appointments-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    /* background-color: #fff; */
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
@@ -40,7 +40,7 @@
 }
 
 .user-appointments-table th {
-    background-color: #4e73df;
+    background-color: #212529;
     color: white;
     font-weight: normal;
 }
@@ -54,7 +54,7 @@
 }
 
 .user-appointments-table tbody tr:last-of-type {
-    border-bottom: 2px solid #4e73df;
+    border-bottom: 2px solid #212529;
 }
 
 .user-appointments-table tbody tr:hover {

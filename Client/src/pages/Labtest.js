@@ -109,7 +109,7 @@ const Labtest = () => {
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        navigate("/");
+        navigate("/dashboard/user/lab");
       } else {
         toast.error(res.data.message);
       }

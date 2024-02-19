@@ -62,6 +62,13 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+app.post('/api/upload', upload.single('image'), (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded' });
+  }
+  res.status(200).json({ filename: req.file.filename });
+});
+
 
 app.post('/register', upload.single('profileImage'), async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserMenu from "../../components/Layout/UserMenu";
-import Layout from "./../../components/Layout/Layout";
+import Layout2 from "./../../components/Layout/Layout2";
 import { useAuth } from "../../context/auth";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -50,8 +50,8 @@ const Profile = () => {
     }
   };
   return (
-    <Layout title={"Your Profile"}>
-      <div className="container-fluid m-3 p-3">
+    <Layout2 title={"Your Profile"}>
+      <div className="container-fluid p-3">
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
@@ -121,7 +121,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 };
 
