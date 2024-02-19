@@ -29,12 +29,7 @@ const UserMenu = () => {
           <h4>Dashboard</h4>
           <NavLink
             to="/dashboard/user/profile"
-            style={linkStyle}
-
-
-
-
-            
+            style={linkStyle}           
           >
             Profile
           </NavLink>

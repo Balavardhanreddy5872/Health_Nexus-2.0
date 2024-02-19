@@ -4,11 +4,13 @@ import Layout2 from "./../../components/Layout/Layout2";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
+import { Dropdown } from 'react-bootstrap';
 import "./Orders.css";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
+  const [sortByDate, setSortByDate] = useState("desc"); // Default sort by descending order
 
   const calculateProgress = (startDate, deliveryDate, status) => {
     const start = moment(startDate);
@@ -42,6 +44,18 @@ const Orders = () => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
 
+  const toggleSortOrder = () => {
+    setSortByDate(sortByDate === "asc" ? "desc" : "asc");
+  };
+
+  const sortedOrders = [...orders].sort((a, b) => {
+    if (sortByDate === "asc") {
+      return moment(a.createdAt).unix() - moment(b.createdAt).unix();
+    } else {
+      return moment(b.createdAt).unix() - moment(a.createdAt).unix();
+    }
+  });
+
   return (
     <Layout2 title={"Your Orders"}>
       <div className="container-fluid p-3 dashboard">
@@ -50,10 +64,23 @@ const Orders = () => {
             <UserMenu />
           </div>
           <div className="col-md-9">
+            <div className="order-filter">
+              <span className="filter-label">Sort Orders : </span>
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                  {sortByDate === "asc" ? "Oldest First" : "Newest First"}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => setSortByDate("asc")}>Oldest First</Dropdown.Item>
+                  <Dropdown.Item onClick={() => setSortByDate("desc")}>Newest First</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
             <h1 className="text-center"> My Orders</h1>
             <br />
             <br />
-            {orders?.map((o, i) => {
+            {sortedOrders.map((o, i) => {
               const progress = calculateProgress(
                 o.createdAt,
                 o.deliveryDate,
