@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 
 
 
-// Routes 
+// Routes  middlewares 
 app.use("/api/auth", authRouter);
 app.use("/api/product", productRoutes);
 app.use("/api/lab", labRoutes)
