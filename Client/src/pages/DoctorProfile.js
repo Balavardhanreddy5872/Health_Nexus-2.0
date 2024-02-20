@@ -1,24 +1,73 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout';
 import '../styles/DoctorProfile.css';
-
+import { useAuth } from "../context/auth";
 
 const Doctorlogin = ({ userId }) => {
     const [userInfo, setUserInfo] = useState({});
     const [userInfoo, setUserInfoo] = useState([]);
+    const [auth] = useAuth();
+    const [acceptedAppointments, setAcceptedAppointments] = useState(() => {
+        const storedData = localStorage.getItem('acceptedAppointments');
+        return storedData ? JSON.parse(storedData) : [];
+    });
+    const [rejectedAppointments, setRejectedAppointments] = useState(() => {
+        const storedData = localStorage.getItem('rejectedAppointments');
+        return storedData ? JSON.parse(storedData) : [];
+    });
 
-    const handleRejectAppointment = async (id) => {
+    const handleAcceptAppointment = async (id, prescription) => {
         try {
-            // Make a POST request to update the appointment status
-            const response = await fetch(`http://localhost:8080/rejectAppointment`, {
+            const response = await fetch(`http://localhost:8080/updateAppointmentStatus`, {
                 method: 'POST',
                 body: JSON.stringify({
                     appointmentId: id,
+                    status: 'accepted',
+                    prescription: prescription,
                 }),
                 headers: { "Content-type": "application/json" }
             });
             if (response.ok) {
-                setUserInfoo(prevAppointments => prevAppointments.filter(appointment => appointment._id !== id));
+                // Update local state
+                setUserInfoo(prevAppointments =>
+                    prevAppointments.map(appointment =>
+                        appointment._id === id ? { ...appointment, status: 'accepted', prescription: prescription } : appointment
+                    )
+                );
+                // Update acceptedAppointments and localStorage
+                setAcceptedAppointments(prevAcceptedAppointments => [...prevAcceptedAppointments, id]);
+                localStorage.setItem('acceptedAppointments', JSON.stringify([...acceptedAppointments, id]));
+
+                console.log(`Appointment with id ${id} accepted successfully`);
+            } else {
+                console.error(`Failed to accept appointment with id ${id}`);
+            }
+        } catch (err) {
+            console.error('Failed to accept appointment:', err);
+        }
+    };
+
+
+    const handleRejectAppointment = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:8080/updateAppointmentStatus`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    appointmentId: id,
+                    status: 'rejected',
+                }),
+                headers: { "Content-type": "application/json" }
+            });
+            if (response.ok) {
+                // Update local state for rejectedAppointments and localStorage
+                setUserInfoo(prevAppointments =>
+                    prevAppointments.map(appointment =>
+                        appointment._id === id ? { ...appointment, status: 'rejected' } : appointment
+                    )
+                );
+                setRejectedAppointments(prevRejectedAppointments => [...prevRejectedAppointments, id]);
+                localStorage.setItem('rejectedAppointments', JSON.stringify([...rejectedAppointments, id]));
+
                 console.log(`Appointment with id ${id} rejected successfully`);
             } else {
                 console.error(`Failed to reject appointment with id ${id}`);
@@ -72,22 +121,42 @@ const Doctorlogin = ({ userId }) => {
         return <div>Loading...</div>;
     }
 
-    const targetSpecialization = userInfo.specialization; 
+    const targetSpecialization = auth?.user?.name; 
 
     const filteredAppointments = [];
     for (let i = 0; i < userInfoo.length; i++) {
         const appointment = userInfoo[i];
+        const isAccepted = acceptedAppointments.includes(appointment._id);
+
         if (appointment.specialization === targetSpecialization) {
             filteredAppointments.push(
                 <tr key={appointment.id}>
-                    <td>{appointment.specialization}</td>
+                    <td>{appointment.reason}</td>
                     <td>{appointment.patientEmail}</td>
                     <td>{appointment.patientName}</td>
                     <td>{appointment.appointmentDate}</td>
                     <td>{appointment.patientPhone}</td>
                     <td>
-                        <button onClick={() => handleRejectAppointment(appointment._id)}>Reject</button>
+                        {!isAccepted && appointment.status !== 'rejected' && (
+                            <>
+                                <button
+                                    className='mx-3'
+                                    style={{ backgroundColor: 'green' }}
+                                    onClick={() => handleAcceptAppointment(appointment._id)}
+                                >
+                                    Accept
+                                </button>
+                                <button onClick={() => handleRejectAppointment(appointment._id)}>
+                                    Reject
+                                </button>
+                            </>
+                        )}
+                        {isAccepted && <span style={{ color: "green" }}>Accepted</span>}
+                        {!isAccepted && appointment.status === 'rejected' && (
+                            <span style={{color: "red"}}>Rejected</span>
+                        )}
                     </td>
+
                 </tr>
             );
         }
@@ -115,8 +184,10 @@ const Doctorlogin = ({ userId }) => {
                             <div className="text-content1">
                                 <p><strong>Name:</strong>{userInfo.name}</p>
                                 <p><strong>Specialization:</strong> {userInfo.specialization}</p>
-                                <p><strong>Experience:</strong> 10 years</p>
+                                <p><strong>Experience:</strong> {userInfo.experience}</p>
                                 <p><strong>Email:</strong> {userInfo.email}</p>
+                                <p><strong>address:</strong> {userInfo.address}</p>
+                                <p><strong>phoneNumber:</strong> {userInfo.phoneNumber}</p>
                             </div>
                         </div>
                     </div>
@@ -128,7 +199,7 @@ const Doctorlogin = ({ userId }) => {
                     <table className="appointments-table1">
                         <thead>
                             <tr>
-                                <th>Specialization</th>
+                                <th>Reason</th>
                                 <th>Email</th>
                                 <th>Patient Name</th>
                                 <th>Date</th>

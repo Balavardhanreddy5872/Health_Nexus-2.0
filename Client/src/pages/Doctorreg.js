@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 // import '../styles/Doctorreg.css'
 import Layout from '../components/Layout/Layout'
-
+import { useAuth } from "../context/auth";
 
 
 const Doctorreg = () => {
@@ -15,8 +15,8 @@ const Doctorreg = () => {
   const [repassword, setRepassword] = useState('');
   const [specialization, setSpecialization] = useState('');
   const [profileImage, setProfileImage] = useState(null);
-  const [experience, setExperience] = useState('');
-
+  // const [experience, setExperience] = useState('');
+  const [auth] = useAuth();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -203,7 +203,8 @@ const Doctorreg = () => {
                                 });
                                 setActive((x) => ({ ...x, name: e.target.value !== "" }));
                               }}
-                              value={details.name}
+                              value={auth?.user?.name}
+                              readOnly
                             />
                             {errors.name && <div className="invalid-feedback">{errors.name}</div>}
                           </div>
@@ -293,50 +294,6 @@ const Doctorreg = () => {
                             {errors.profileImage && <div className="invalid-feedback">{errors.profileImage}</div>}
                           </div>
                         </div>
-
-
-                        {/* <div className="mb-4">
-                          <i class="fa-solid fa-image"></i>
-                          <input
-                            type="file"
-                            id="profileImage"
-                            name="profileImage"
-                            className="form-control"
-                            onChange={
-                              handleImageChange
-                            }
-                          />
-                        </div> */}
-
-
-
-                        {/* <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
-                          <i className="fas fa-briefcase fa-lg me-3 fa-fw"></i>
-                          <div className="form-outline flex-fill mb-0">
-                            <input
-                              type="text"
-                              id="experience"
-                              name="experience"
-                              placeholder="Experience"
-                              className={`form-control ${isActive.experience && !errors.experience && 'is-valid'} ${isActive.experience && errors.experience && 'is-invalid'}`}
-                              onChange={(e) => {
-                                setExperience(e.target.value);
-                                setDetails({
-                                  ...details,
-                                  experience: e.target.value,
-                                });
-                              }}
-                              value={details.experience}
-                            />
-                            {errors.experience && <div className="invalid-feedback">{errors.experience}</div>}
-                          </div>
-                        </div> */}
-
-
-
-
-
-
                         <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-user-doctor fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">

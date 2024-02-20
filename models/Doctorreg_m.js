@@ -11,9 +11,17 @@ const userschema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    password: {
+    address: {
         type: String,
         required: true
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+    },
+    experience: {
+        type: String,
+        required: true,
     },
     specialization: {
         type: String,
@@ -21,6 +29,11 @@ const userschema = new mongoose.Schema({
     },
     profileImage: {
         type: String,
+    },
+    status: {
+        type: String,
+        enum: ['Accepted', 'Rejected', 'Pending'],
+        default: 'Pending',
     },
 })
 

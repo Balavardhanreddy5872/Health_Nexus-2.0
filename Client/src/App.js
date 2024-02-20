@@ -18,6 +18,7 @@ import Users from "./pages/Admin/User";
 import Doctorlogin from "./pages/Doctorlogin";
 import DoctorProfile from "./pages/DoctorProfile";
 import DoctPatient from "./pages/DoctPatient";
+import D2 from "./pages/d2";
 import Doctorreg from "./pages/Doctorreg";
 import Profile from "./pages/user/Profile";
 import Orders from "./pages/user/Orders"
@@ -32,6 +33,7 @@ import Cart from "./pages/Cart";
 import AdminOrders from "./pages/Admin/Adminorders";
 import Labreport from "./pages/Admin/Labreport";
 import Chat from "./pages/Admin/Chat";
+import Doctorfeed from "./pages/Admin/doctorfeed";
 
 
 
@@ -59,6 +61,9 @@ function App() {
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/orders" element={<AdminOrders />} />
           <Route path = "admin/labreport" element={<Labreport /> }/>
+          <Route path="admin/chat" element={<Chat />} />
+          <Route path="admin/doctorfeed" element={<Doctorfeed />} />
+
           <Route path = "admin/chat" element={<Chat/>} />
           
         </Route>
@@ -74,6 +79,7 @@ function App() {
         <Route path="/doctorprofile" element={<DoctorProfile />} />
         <Route path="/doctorreg" element={<Doctorreg />} />
         <Route path="/doctorpatient" element={<DoctPatient />} />
+        <Route path="/d2" element={<D2 />} />
       </Routes>
     </>
   );
