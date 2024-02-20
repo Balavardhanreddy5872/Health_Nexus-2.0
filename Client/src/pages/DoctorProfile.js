@@ -121,7 +121,7 @@ const Doctorlogin = ({ userId }) => {
         return <div>Loading...</div>;
     }
 
-    const targetSpecialization = auth?.user?.name; 
+    const targetSpecialization = userInfo.name; 
 
     const filteredAppointments = [];
     for (let i = 0; i < userInfoo.length; i++) {

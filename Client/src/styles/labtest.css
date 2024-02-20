@@ -1,6 +1,9 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
+.inputfields{
+    background-color: inherit;
+}
 .labtest{
     margin-left: 20px;
 }
