@@ -18,10 +18,10 @@ const Homepage = () => {
           <div className="main">
             <div id="slider">
               <figure>
-                <img alt='web_home' src="/images/1677605292_Web_Home_Bannersgdgsd.jpg" />
-                <img alt='web_home' src="/images/1678990885_Healthvit_wellness_web.jpg" />
-                <img alt='web_home' src="/images/1677605378_Web_Home_Bannersguguui.jpg" />
-                <img alt='web_home' src="/images/1677684779_Web_Homekkkkkk.jpg" />
+                <img alt='web_home' src="/images/slider1.jpeg" />
+                <img alt='web_home' src="/images/slider2.jpg"/>
+                <img alt='web_home' src="/images/slider3.jpg" />
+                <img alt='web_home' src="/images/slider4.png" />
                 <img alt='web_home' src="/images/slider4.png" />
               </figure>
             </div>
@@ -30,7 +30,7 @@ const Homepage = () => {
         <br />
         <br />
         {/* discount section */}
-        <section className="discount_section">
+        {/* <section className="discount_section">
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-3 col-md-5 offset-md-2">
@@ -53,23 +53,23 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
         <br/>
         <div className="self">
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img alt='web_home'src="https://www.pngfind.com/pngs/m/170-1707648_truck-fast-delivery-speed-svg-png-icon-free.png" style={{ height: 100, marginLeft: 150 }} />
+            <img alt='web_home'src="https://www.pngfind.com/pngs/m/170-1707648_truck-fast-delivery-speed-svg-png-icon-free.png" style={{ height: 100, marginLeft: 70 }} />
             <br />
             <br />
             <h4>we assure safe and fastest delivery</h4>
           </div>
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img alt='web_home'src="https://www.shutterstock.com/image-illustration/best-price-guarantee-label-icon-260nw-259618541.jpg" style={{ height: 100, marginLeft: 100 }} />
+            <img alt='web_home'src="https://www.shutterstock.com/image-illustration/best-price-guarantee-label-icon-260nw-259618541.jpg" style={{ height: 100, marginLeft: 70 }} />
             <br />
             <br />
-            <h4>On of the top selling site</h4>
+            <h4>One of the top selling site</h4>
           </div>
           <div className="self_section" style={{ padding: 40, margin: '20px 40px' }}>
-            <img alt='web_home'src="https://www.shutterstock.com/image-vector/medical-team-icon-260nw-689072647.jpg" style={{ height: 100, marginLeft: 110 }} />
+            <img alt='web_home'src="https://www.shutterstock.com/image-vector/medical-team-icon-260nw-689072647.jpg" style={{ height: 100, marginLeft: 70 }} />
             <br />
             <br />
             <h4>Consult Top doctors at free</h4>
@@ -119,7 +119,7 @@ const Homepage = () => {
           <h2 style={{padding:"10px",color:"white"}}>Health Library</h2>
           <div style={{display:"flex"}}>
           <div>
-              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <div className="card" style={{width: "16rem",margin:"20px"}}>
               <img className="card-img-top" src="https://www.netmeds.com/images/cms/wysiwyg/blog/2020/12/1608540328_Kaunch_big_1.jpg" alt="Card" />
               <div className="card-body">
                 <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Kaunch Beej</h5>
@@ -128,7 +128,7 @@ const Homepage = () => {
               </div>
           </div>
           <div>
-              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <div className="card" style={{width: "16rem",margin:"20px"}}>
               <img className="card-img-top" src="https://images.hindustantimes.com/rf/image_size_960x540/HT/p2/2017/06/01/Pictures/_233c555a-4676-11e7-ae7e-b192f5497e3d.jpg" alt="Card" />
               <div className="card-body">
                 <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Almonds</h5>
@@ -137,7 +137,7 @@ const Homepage = () => {
               </div>
           </div>
           <div>
-              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <div className="card" style={{width: "16rem",margin:"20px"}}>
               <img className="card-img-top" src="https://www.shutterstock.com/image-photo/walnut-isolated-unpeeled-walnuts-nut-260nw-2306979049.jpg" alt="Card" />
               <div className="card-body">
                 <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Walnuts</h5>
@@ -146,7 +146,7 @@ const Homepage = () => {
               </div>
           </div>
           <div>
-              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <div className="card" style={{width: "16rem",margin:"20px"}}>
               <img className="card-img-top" src="https://static.toiimg.com/thumb/msid-106130391,width-1280,height-720,resizemode-4/106130391.jpg" alt="Card" />
               <div className="card-body">
                 <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Raisins</h5>
@@ -155,7 +155,7 @@ const Homepage = () => {
               </div>
           </div>
           <div>
-              <div className="card" style={{width: "18rem",margin:"20px"}}>
+              <div className="card" style={{width: "16rem",margin:"20px"}}>
               <img className="card-img-top" src="https://images.healthshots.com/healthshots/en/uploads/2023/09/04073149/pistachip-1600x900.jpg" alt="Card" />
               <div className="card-body">
                 <h5 className="card-title" style={{textAlign:"center",fontSize:"22px",fontFamily: 'Roboto, sans-serif'}}>Pistachio</h5>

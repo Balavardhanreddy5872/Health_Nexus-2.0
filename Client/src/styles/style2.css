@@ -410,7 +410,7 @@ a:focus {
 .self_section {
   display: inline-block;
   /* border: 2px solid black; */
-  background-color: #32aeb1;
+  background-color: lightskyblue;
 }
 .self_section:hover{
   box-shadow:1px 1px 5px 3px rgb(63, 62, 62);

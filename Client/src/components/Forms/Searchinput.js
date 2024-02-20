@@ -21,7 +21,7 @@ const SearchInput = () => {
     const buttonStyle = {
 
         fontSize: '20px',
-        backgroundColor: '#32aeb1',
+        backgroundColor: 'skyblue',
         color: 'black',
         border: 'none',
         borderRadius: '5px',
