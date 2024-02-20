@@ -85,7 +85,7 @@ const Labreport = () => {
               <div key={order._id} style={{ flexBasis: "50%", paddingRight: index % 2 === 0 ? "8px" : "0" }}>
                 <Card
                   style={{ margin: "16px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
-                  title={<h5>User: <span style={{ fontSize: "1.2em" }}>{order.buyer.name}</span></h5>}
+                  title={<h5>User: <span style={{ fontSize: "1.2em" }}>{order.name}</span></h5>}
                   extra={<Select
                     style={{ width: 150 }}
                     onChange={(value) => handleChange(order._id, value)}
