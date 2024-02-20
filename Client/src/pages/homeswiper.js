@@ -175,6 +175,7 @@ import toast from 'react-hot-toast';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useNavigate } from 'react-router-dom';
+// import '../styles/homeswiper.css';
 // Install Swiper modules
 SwiperCore.use([Navigation]);
 
@@ -235,7 +236,7 @@ const Homeswiper = () => {
       >
         {randomProducts.map((p) => (
           <SwiperSlide key={p._id} style={{width: '15rem'}}>
-              <div onClick={() => navigate(`/productdetails/${p.slug}`)} className="card " style={{ cursor: 'pointer'}}>
+              <div onClick={() => navigate(`/productdetails/${p.slug}`)} className="card" style={{ cursor: 'pointer', width: '220px'}}>
                 <img
                   src={`http://localhost:8080/api/product/medicine-photo/${p._id}`}
                   className="card-img-top"
