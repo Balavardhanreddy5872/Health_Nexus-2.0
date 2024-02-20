@@ -32,27 +32,28 @@ const Productdetails = () => {
   return (
     <Layout>
       <div className="container mt-4" >
-        <div style={{display:"flex",justifyContent:"center",backgroundColor:"skyblue"}}>
-          <div style={{marginLeft:"100px",marginTop:"150px"}}>
+      <h1 className="text-center" style={{paddingTop:"15px"}}>Medicine Info</h1>
+        <div style={{display:"flex",justifyContent:"center",backgroundColor:'skyblue' ,border:'2px solid grey' , borderRadius: '9px'}}>
+          <div style={{marginLeft:"100px",marginTop:"100px"}}>
             <img
               src={`http://localhost:8080/api/product/medicine-photo/${product._id}`}
               className="img-fluid rounded"
               alt={product}
+              style={{boxShadow:'2px 2px 2px 2px grey',height:'50vh' , width:'50vw'}}
             />
           </div>
-          <div className="col-md-6" style={{ textAlign: "left" }}>
-            <h1 className="text-center" style={{paddingTop:"15px"}}>Medicine Details</h1>
+          <div className="col-md-6" style={{ textAlign: "left" ,marginLeft:'10vw' ,backgroundColor:'whitesmoke'}}>
             <br />
-            <div style={{backgroundColor:"whitesmoke",margin:"20px",marginRight:"30px",padding:"10px"}}>
-            <h3 className="mb-3">Name: {product.name}</h3>
-            <p className="lead">{product.description}</p>
-            <p>MRP: <b style={{fontSize:"20px"}}>₹{product.price*2}</b></p>
-            <p>incusive all taxes</p>
-            <div style={{backgroundColor:"#d6c4ff",width:"70%",borderRadius:"10px",display:"flex"}}>
+            <div style={{margin:"20px",marginRight:"30px",paddingLeft:"50px"}}>
+            <h1 className="mb-3">{product.name}</h1>
+            <h5 className="lead">{product.description}</h5>
+            <p>MRP:<b style={{fontSize:"20px"}}>₹{product.price*2}</b></p>
+            <p>inclusive all taxes</p>
+            <div style={{backgroundColor:"aquamarine",width:"70%",borderRadius:"10px",display:"flex"}}>
                 {/* <strong>Price:</strong> ₹{product.price *2} */}
                 <p>Get this at<b style={{fontSize:"20px",color:"red"}}>₹{product.price}</b><br/>
                 simply add this item to the cart</p>
-                <p style={{backgroundColor:"white",height:"50%",width:"20%",borderRadius:"5px"}}><i style={{fontSize:"20px",padding:"7px"}} class="fa-solid fa-cart-shopping"></i>cart:{counter}</p>
+                <p style={{backgroundColor:"white",height:"50%",width:"30%",borderRadius:"5px"}}><i style={{fontSize:"20px",padding:"7px"}} class="fa-solid fa-cart-shopping"></i>cart:{counter}</p>
             </div> 
             
             <p className="lead">
