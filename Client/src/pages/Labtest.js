@@ -149,7 +149,7 @@ const Labtest = () => {
           <form className="form1" id="fm" onSubmit={handleSubmit}>
             <p>Please fill in your details </p>
             <label htmlFor="name">NAME</label><br />
-            <input type="text" name="name" id="name" maxLength={50} onChange={handleChange} value={inputFields.name}
+            <input className="inputfields" type="text" name="name" id="name" maxLength={50} onChange={handleChange} value={inputFields.name}
               style={{ border: errors.name ? "1px solid red" : null }}
               onBlur={() => handleBlur('name')} />
             {errors.name ? (
@@ -159,7 +159,7 @@ const Labtest = () => {
             ) : null}<br />
             <label htmlFor="number">MOBILE NUMBER</label>
             <br />
-            <input type="tel" pattern="[6-9][0-9]{9}" name="number" id="number" onChange={handleChange} value={inputFields.number}
+            <input className="inputfields" type="tel" pattern="[6-9][0-9]{9}" name="number" id="number" onChange={handleChange} value={inputFields.number}
               style={{ border: errors.number ? "1px solid red" : null }}
               onBlur={() => handleBlur('number')} />
             {errors.number ? (
@@ -168,7 +168,7 @@ const Labtest = () => {
               </p>
             ) : null}<br />
             <label htmlFor="pincode">PINCODE</label><br />
-            <input type="tel" name="pincode" id="pincode" maxLength={6} style={{ border: errors.pincode ? "1px solid red" : null }}
+            <input className="inputfields" type="tel" name="pincode" id="pincode" maxLength={6} style={{ border: errors.pincode ? "1px solid red" : null }}
               onChange={handleChange} value={inputFields.pincode}
               onBlur={() => handleBlur('pincode')} />
             {errors.pincode ? (
@@ -177,7 +177,7 @@ const Labtest = () => {
               </p>
             ) : null}<br />
             <label htmlFor="package" id="ff">CHOOSE PACKAGE</label><br />
-            <input list="medic" id="Package" name="Package" onChange={handleChange} value={inputFields.Package}
+            <input className='inputfields' list="medic" id="Package" name="Package" onChange={handleChange} value={inputFields.Package}
               style={{ border: errors.Package ? "1px solid red" : null }}
               onBlur={() => handleBlur('package')} />
             {errors.Package ? (
@@ -200,7 +200,7 @@ const Labtest = () => {
               <option value="Aarogyam xl">Aarogyam XL</option>
             </datalist>
             <label htmlFor="tet" id={11}>CHOOSE Test</label><br />
-            <input list="medicover" id="test" name="test" onChange={handleChange} value={inputFields.test}
+            <input list="medicover" className='inputfields' id="test" name="test" onChange={handleChange} value={inputFields.test}
               style={{ border: errors.test ? "1px solid red" : null }}
               onBlur={() => handleBlur('test')} />
             {
@@ -226,7 +226,7 @@ const Labtest = () => {
               <option className="scroll">PRL</option>
             </datalist>
             <div className="error" id="terror" /><br />
-            <input type="checkbox" />I agree to HealthNexus Terms and Conditions. <br />
+            <input className="inputfields" type="checkbox" />I agree to HealthNexus Terms and Conditions. <br />
             <button type="submit" className='button' name="BOOK NOW">BOOK NOW</button>
           </form>
         </div>
