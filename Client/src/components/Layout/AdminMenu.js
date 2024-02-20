@@ -57,7 +57,7 @@ const AdminMenu = () => {
             LabReports
           </NavLink>
           <NavLink
-            to="/dashboard/admin/orders"
+            to="/dashboard/admin/doctorfeed"
             style={linkStyle}
           >
             Doctors
