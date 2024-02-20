@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import UserMenu from '../../components/Layout/UserMenu';
 import Layout2 from '../../components/Layout/Layout2';
 import './doct.css';
-import { useAuth } from "../../context/auth";
+import { useAuth } from '../../context/auth';
+
 
 const Doctorsapp = () => {
   const [userInfoo, setUserInfoo] = useState([]);
@@ -17,12 +18,25 @@ const Doctorsapp = () => {
       console.log(data);
 
       // Filter appointments based on the condition
-      const filteredAppointments = data.filter(user => auth?.user?.email === user.patientEmail);
+      const filteredAppointments = data.filter(
+        (user) => auth?.user?.email === user.patientEmail
+      );
 
       setUserInfoo(filteredAppointments);
     };
     fetchData();
-  }, [auth?.user?.name]); // Add auth?.user?.email as a dependency to re-fetch data when the email changes
+  }, [auth?.user?.email]); // Update dependency to auth?.user?.email
+
+  const handleStatusDisplay = (status) => {
+    switch (status) {
+      case 'accepted':
+        return <span style={{ color: 'green' }}>Accepted</span>;
+      case 'rejected':
+        return <span style={{ color: 'red' }}>Rejected</span>;
+      default:
+        return 'Pending';
+    }
+  };
 
   return (
     <Layout2>
@@ -35,16 +49,15 @@ const Doctorsapp = () => {
             <div className="user-account-page">
               <div className="user-appointments-container">
                 <h2>My Appointments</h2>
-
-                {/* Display userInfoo details in a table */}
                 <table className="user-appointments-table">
                   <thead>
                     <tr>
                       <th>Email</th>
                       <th>Patient Name</th>
-                      <th>Specialization</th>
+                      <th>Doctor</th>
                       <th>Date</th>
                       <th>Phone number</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -55,6 +68,7 @@ const Doctorsapp = () => {
                         <td>{user.specialization}</td>
                         <td>{user.appointmentDate}</td>
                         <td>{user.patientPhone}</td>
+                        <td>{handleStatusDisplay(user.status)}</td>
                       </tr>
                     ))}
                   </tbody>

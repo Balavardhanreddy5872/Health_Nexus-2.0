@@ -81,15 +81,21 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
 
 app.post('/register', upload.single('profileImage'), async (req, res) => {
   try {
-    const { name, email, password, repassword, specialization } = req.body;
+    const { name,
+      email,
+      address,
+      phoneNumber,
+      specialization,
+      experience } = req.body;
     const profileImage = req.file ? req.file.filename : null;
     const newUser = await User.create({
       name,
       email,
-      password,
-      repassword,
+      address,
+      phoneNumber,
       specialization,
-      profileImage,
+      experience,
+      profileImage
     });
     res.json(newUser)
     // res.status(200).json({ message: 'Registration successful' });
@@ -112,26 +118,6 @@ app.get("/", (req, res) => {
   });
 });
 
-
-// app.post("/register", async (req, res) => {
-//   const { name,
-//     email,
-//     password,
-//     repassword,
-//     specialization } = req.body
-//   try {
-//     const userDoc = await User.create({
-//       name,
-//       email,
-//       password,
-//       repassword,
-//       specialization
-//     })
-//     res.json(userDoc)
-//   } catch (err) {
-//     res.status(400).json(err)
-//   }
-// });
 
 app.post("/patientdetails", async (req, res) => {
   const {
@@ -175,6 +161,42 @@ app.get('/UserPat', async (req, res) => {
   }
 })
 
+
+app.get('/alldoctors', async (req, res) => {
+  try {
+    const data = await User.find({})
+    if (data) {
+      res.status(200).json(data);
+    }
+    else {
+      res.status(400).json("Something went wrong")
+    }
+  } catch (err) {
+    res.status(400).json(err)
+  }
+})
+
+
+app.put("/updateStatus/:id", async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    const updatedDoctor = await User.findByIdAndUpdate(id, { status }, { new: true });
+
+    if (!updatedDoctor) {
+      return res.status(404).json({ error: "Doctor not found" });
+    }
+
+    res.status(200).json(updatedDoctor);
+  } catch (error) {
+    console.error("Error updating doctor status:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
 app.get('/doctordet', async (req, res) => {
   try {
     const data = await User.find({})
@@ -193,7 +215,20 @@ app.get('/doctordet', async (req, res) => {
 app.get('/UserPat2', async (req, res) => {
   try {
     const data = await Patient.find({})
-    // const data2 = await User.find({})
+    if (data) {
+      res.status(200).json(data);
+    }
+    else {
+      res.status(400).json("Wrong Credientials")
+    }
+  } catch (err) {
+    res.status(400).json(err)
+  }
+})
+
+app.get('/doctorres', async (req, res) => {
+  try {
+    const data = await User.find({})
     if (data) {
       res.status(200).json(data);
     }
@@ -208,10 +243,10 @@ app.get('/UserPat2', async (req, res) => {
 
 
 app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email, password });
+  const {email} = req.body;
+  const user = await User.findOne({ email });
   console.log(user)
-  if (user && password === user.password) {
+  if (user) {
     res.json({ id: user._id })
   } else {
     res.status(401).send('Authentication failed');
@@ -230,7 +265,10 @@ app.post('/doctprofile', async (req, res) => {
       email: user.email,
       name: user.name,
       specialization: user.specialization,
-      profileImage: user.profileImage
+      profileImage: user.profileImage,
+      address: user.address,
+      phoneNumber: user.phoneNumber,
+      experience: user.experience,
     });
 
   } catch (error) {
@@ -239,47 +277,27 @@ app.post('/doctprofile', async (req, res) => {
 });
 
 
-
-// app.post('/doctprofile2', async(req,res)=>{
-//   try {
-//     const { specialization } = req.body;
-//     const user = await User.findOne({ _id: specialization });
-//     if (!user) {
-//       return res.status(404).send('User not found');
-//     }
-
-//     res.json({
-//       patientName: user.patientName,
-//       patientEmail: user.patientEmail,
-//       patientPhone: user.patientPhone,
-//       appointmentDate: user.appointmentDate,
-//       specialization: user.specialization
-//     });
-
-//   } catch (error) {
-//     res.status(500).send('Server error');
-//   }
-// })
-
-
-
-
-app.post('/rejectAppointment', async (req, res) => {
-  const { appointmentId } = req.body;
+app.post('/updateAppointmentStatus', async (req, res) => {
+  const { appointmentId, status, prescription } = req.body;
 
   try {
-    const appointmentToDelete = await Patient.findById(appointmentId);
+    const appointmentToUpdate = await Patient.findByIdAndUpdate(
+      appointmentId,
+      { $set: { status, prescription } }, // Updated to include prescription if available
+      { new: true }
+    );
 
-    if (!appointmentToDelete) {
+    if (!appointmentToUpdate) {
       return res.status(404).json({ error: 'Appointment not found' });
     }
-    await appointmentToDelete.deleteOne();
-    res.status(200).json({ message: 'Appointment deleted successfully' });
+
+    res.status(200).json({ message: 'Appointment status updated successfully' });
   } catch (err) {
-    console.error('Failed to delete appointment:', err);
+    console.error('Failed to update appointment status:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 
 
