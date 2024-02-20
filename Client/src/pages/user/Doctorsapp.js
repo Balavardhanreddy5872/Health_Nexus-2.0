@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import UserMenu from '../../components/Layout/UserMenu';
-import Layout from '../../components/Layout/Layout';
+import Layout2 from '../../components/Layout/Layout2';
 import './doct.css';
 import { useAuth } from '../../context/auth';
+
 
 const Doctorsapp = () => {
   const [userInfoo, setUserInfoo] = useState([]);
@@ -38,7 +39,7 @@ const Doctorsapp = () => {
   };
 
   return (
-    <Layout>
+    <Layout2>
       <div className="container-fluid p-3">
         <div className="row">
           <div className="col-md-3">
@@ -77,7 +78,7 @@ const Doctorsapp = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout2>
   );
 };
 

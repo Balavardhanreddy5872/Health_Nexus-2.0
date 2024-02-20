@@ -21,7 +21,7 @@
   /* text-shadow: 2px 2px 10px red; */
   size: 50px;
   height: 500px;
-  background: linear-gradient(16deg, #40E0D0 50%,  rgb(179, 218, 242) 50%);
+  background: url("https://www.netmeds.com/images/cms/section/images/1707973426_Common_Brand_Logo.png") no-repeat left bottom / 240px, linear-gradient(to bottom, rgb(255 255 255 / -2%), rgba(255, 255, 255, .4) 78%), linear-gradient(180deg, skyblue, skyblue);
   padding: 20px 20px;
 }
 .card{
@@ -305,9 +305,10 @@
   }
   .main #slider figure img {
      
-    height: 70vh;
+    height: 87vh;
     float: left;
     width: 20%;
+    /* opacity: 80%; */
   }
   @keyframes slider {
     0% {

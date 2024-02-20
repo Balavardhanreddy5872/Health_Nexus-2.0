@@ -18,7 +18,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#32aeb1',  height:'12vh' , position: 'sticky', top: 0, zIndex: 1020}}>
+      <nav className="navbar navbar-expand-lg" style={{ backgroundColor:'skyblue',  height:'12vh' , position: 'sticky', top: 0, zIndex: 1020}}>
         <div className="container-fluid">
           <Link className="navbar-brand mx-4" to="/">HealthNexus</Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@ const Header = () => {
               {!auth?.user ? (
                 <>
                   <li className="nav-item ">
-                    <NavLink className="nav-link " to="/login"> <i class="fa-regular fa-user fa-beat-fade"></i> Login</NavLink>
+                    <NavLink className="nav-link " to="/login"><i class="fa-regular fa-user fa-beat-fade"></i> Login</NavLink>
                   </li>
                 </>
               ) : (

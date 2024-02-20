@@ -109,7 +109,7 @@ const Labtest = () => {
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
-        navigate("/");
+        navigate("/dashboard/user/lab");
       } else {
         toast.error(res.data.message);
       }
@@ -117,9 +117,6 @@ const Labtest = () => {
       console.log(error);
       toast.error('Something went wrong');
     }
-
-
-
   };
 
   const [imageSource, setImageSource] = useState('');
@@ -138,6 +135,12 @@ const Labtest = () => {
         console.error('Error fetching image:', error);
       });
   }, []);
+  const selectPackage = (packageDetails) => {
+    setInputFields({
+      ...inputFields,
+      Package: packageDetails,
+    });
+  };
   return (
     <Layout>
       <div className="image1">
@@ -174,10 +177,10 @@ const Labtest = () => {
               </p>
             ) : null}<br />
             <label htmlFor="package" id="ff">CHOOSE PACKAGE</label><br />
-            <input list="medic" id="Package" name="Package" onChange={handleChange} value={inputFields.package}
-              style={{ border: errors.pincode ? "1px solid red" : null }}
+            <input list="medic" id="Package" name="Package" onChange={handleChange} value={inputFields.Package}
+              style={{ border: errors.Package ? "1px solid red" : null }}
               onBlur={() => handleBlur('package')} />
-            {errors.package ? (
+            {errors.Package ? (
               <p className="error">
                 {errors.package}
               </p>
@@ -249,6 +252,7 @@ const Labtest = () => {
         </div>
       </div>
       <div className="spackages">
+
         <h2>Top Selling Packages</h2>
         <p>Choose from the list of top-selling packages tailored for you. We care for your health!</p>
         <div className="selling">
@@ -263,7 +267,13 @@ const Labtest = () => {
                 <del>Rs.3200</del>&nbsp;
                 <span>Rs.1100</span>
               </div>
-              <button className="now"><a href="#bn">BOOK NOW</a> </button>
+              
+              <button className="now" onClick={() => selectPackage('HealthNexus Swasthya')}>
+              BOOK NOW
+            </button>
+            </div>
+            <div className='swa-image'>
+              <img  src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/family.png' alt="family image" />
             </div>
           </div>
           <div className="shield">
@@ -275,7 +285,12 @@ const Labtest = () => {
                 <del>Rs.3000</del>
                 <span>Rs.900</span>
               </div>
-              <button className="now"><a href="#bn">BOOK NOW</a> </button>
+              <button className="now" onClick={() => selectPackage('HealthNexus Shield Pack')}>
+              BOOK NOW
+            </button>
+            </div>
+            <div className='s-image'>
+              <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Aarogyam-1.3.png' alt='aarogyam'/>
             </div>
           </div>
           <div className="Health">
@@ -284,47 +299,70 @@ const Labtest = () => {
               <p>Health check-ups are very useful in the early detection of all types of illnesses and risk factors. Simple to
                 understand and less time consuming, our HealthNexus Health Pack comprises of 35 parameters of regular tests that have been
                 specially designed keeping your health in mind.</p>
-            </div>
             <div>
               <del>Rs.1699</del>&nbsp;
               <span>Rs.499</span>
             </div>
-            <button className="now"><a href="#bn">BOOK NOW</a> </button>
+            <button className="now" onClick={() => selectPackage('HealthNexus Health Pack')}>
+              BOOK NOW
+            </button>
+            </div>
+            <div className='h-image'>
+              <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Allergy.png' alt='allergy' />
+            </div>
           </div>
+          
           <div className="diabetes">
             <div className="diabets-matter">
               <h3>HealthNexus Diabetic Checkup</h3>
               <p>Meant for people who want to get regular reports to prevent/check their diabetes levels. It includes 49 tests.</p>
-            </div>
             <div>
               <del>Rs.3450</del>&nbsp;
               <span>Rs.899</span>
             </div>
             <div className='button-wrap'>
-              <button className="now"><a href="#bn">BOOK NOW</a> </button>
+            <button className="now" onClick={() => selectPackage('HealthNexus Diabetic checkup')}>
+              BOOK NOW
+            </button>
+            </div>
+            </div>
+            <div className='d-image'>
+              <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Diabetes.png' />
             </div>
           </div>
           <div className="Aarogyam">
             <div className="Aarogyam-matter">
               <h3>Aarogyam B</h3>
               <p>Meant for people who want to get regular reports to prevent/check their diabetes levels. It includes 49 tests.</p>
-            </div>
+            
             <div>
               <del>Rs.2600</del>&nbsp;
               <span>Rs.1050</span>
             </div>
-            <button className="now"><a href="#bn">BOOK NOW</a> </button>
+            <button className="now" onClick={() => selectPackage('Aarogyam B')}>
+              BOOK NOW
+            </button>
+            </div>
+            <div className='a-image'>
+              <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Fever.png' alt='fever'/>
+            </div>
           </div>
           <div className="nhealthy">
             <div className="nhealthy-matter">
               <h3>HealthNexus Healthy</h3>
               <p>HealthNexus Healthy Full Body Checkup Package will help you know the functioning of your major body organs.</p>
-            </div>
+            
             <div>
               <del>Rs.3000</del>
               <span>Rs.999</span>
             </div>
-            <button className="now"><a href="#bn">BOOK NOW</a> </button>
+            <button className="now" onClick={() => selectPackage('HealthNexus Healthy')}>
+              BOOK NOW
+            </button>
+            </div>
+            <div className='n-image'>
+              <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Netmeds-Health-Pack.png' alt='pack' />
+            </div>
           </div>
           <div className="screens">
             <div className="screens-matter">
@@ -332,13 +370,19 @@ const Labtest = () => {
               <p>HealthNexus Pre-Screening helps to evaluate against common illness /infection of blood / urine / stool and also
                 determines blood group of a person which is an important parameter required in cases of anaemia (due to chronic blood
                 loss) and for identity.</p>
-            </div>
+            
             <div>
               <del>Rs.910</del>
               <span> Rs.649</span>
             </div>
-            <button className="now"><a href="#bn">BOOK NOW</a> </button>
+            <button className="now" onClick={() => selectPackage('HealthNexus Pre-Scanning')}>
+              BOOK NOW
+            </button>
           </div>
+          <div className='sm-image'>
+            <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/Antenatal_Care.png' alt='care' />
+          </div>
+        </div>
         </div>
       </div>
       <div className="customers">
@@ -386,26 +430,30 @@ const Labtest = () => {
       <div className="light">
         <h2><b>Our Highlights</b></h2>
       </div>
+      <div className='highlight'>
       <div className="high">
-        <div className="hh">
           <div className="hh1 r">
+            <img src='https://www.netmeds.com/assets/icons/location.png' alt='location' />
             <h4>Home Sample Collection</h4>
           </div>
           <div className="hh2 r">
+          <img src=' https://www.netmeds.com/assets/icons/store.png' alt='location2' />
             <h4>2000+Location Served</h4>
           </div>
           <div className="hh3 r">
+          <img src=' https://www.netmeds.com/assets/icons/user.png' alt='location3' />
             <h4>NABL,CAP ISO Certified</h4>
           </div>
           <div className="hh4 r">
-            <h4>Upto 80% offer</h4>
+          <img src='https://www.netmeds.com/images/cms/wysiwyg/health-packages/pathology/75_discount.png' alt='location4' />
+            <h4>Upto 75% Discount </h4>
           </div>
-        </div>
+      </div>
       </div>
       <div className='partners'>
         <div className='hedaing-1'>
           <h2><b>Lab Partner</b></h2>
-          <p>We provide lab tests and health packages from well-reputed, certified diagnostic labs across the country.</p>
+          <p style={{fontSize:"20px"}}>We provide lab tests and health packages from well-reputed, certified diagnostic labs across the country.</p>
         </div>
         <div className='image-lab'>
           <img src='https://www.netmeds.com/images/cms/wysiwyg/Diagnostics/2022/thyrocare_newlogo.jpg' alt='Thyrocare' />
@@ -428,11 +476,12 @@ const Labtest = () => {
       </div>
       <div className="nxs">
         <p>
-          Nexus.com is one of India’s most trusted pharmacies, dispensing quality medicines at reasonable prices to over 7 million happy customers – PAN India.
+          Health Nexus is the most trusted pharmacies, dispensing quality medicines at reasonable prices to all customers – PAN India.
         </p>
       </div>
       <hr />
       <div className="foot">
+        <div className='ft-txt'>
         <div className="company">
           <h3>COMPANY</h3>
           <ul>
@@ -463,6 +512,7 @@ const Labtest = () => {
           <li>Youtube</li>
           <li>Refer &amp; Earn</li>
         </div>
+        
         <div className="subscribe">
           <h3>SUBSCRIBE TO OUR NEWSLETTER</h3>
           <p>Get a free subscription to our health and <br />fitness tip and stay tuned to our latest offers</p>
@@ -487,7 +537,20 @@ const Labtest = () => {
             )}
           </div>
         </div>
+        </div>
+        <div className='payment'>
+          <h3 style={{paddingLeft:"70px",marginTop:"20px"}}>Our Payment Partners</h3>
+          <div className='p-partner'>
+          <img class="g-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/google-pay.svg" alt='gpay'/>
+          <img class="p-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/phonepe.svg" alt="PhonePe" />
+          <img class="pt-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/paytm.svg" alt="Paytm" />
+          <img class="r-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/rupay.svg" alt="Rupay"/>
+          <img class="v-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/visa.svg" alt="Visa Card Network" />
+          <img class="vs-img" src="https://www.netmeds.com/assets/global/images/footer-payment-icon/mastercard.svg" alt="MasterCard"/>
+        </div>
+        </div>
       </div>
+      
 
     </Layout>
 

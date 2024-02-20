@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { LabstatusController, getlabReportController, labformController, labstatusController } from "../controllers/labController.js";
+import { LabstatusController, getLabCountController, getlabReportController, labformController, labstatusController } from "../controllers/labController.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 
 
@@ -14,6 +14,6 @@ router.put(
   isAdmin,
   LabstatusController
 );
-
+router.get('/labcnt',requireSignIn,getLabCountController);
 
 export default router;
