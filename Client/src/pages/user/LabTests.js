@@ -32,15 +32,17 @@ const LabTests = () => {
   }, [auth?.token]);
 
   return (
-    <Layout2>
-      <div className="container-fluid p-3 dashboard">
+    <Layout2 >
+      <div className="container-fluid" style={{backgroundColor:'whitesmoke', height:'88vh'}}>
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
           </div>
-          <div className="col-md-9">
-            <h1 className="text-center mb-4">My Reports</h1>
-            <table className="table table-hover">
+          <div className="col-md-9"> 
+           <br/>
+           <br/>
+            <h1 className="text-center">My Reports</h1>
+            <table className="table table-hover" style={{marginTop:'60px'}}>
               <thead className="thead-dark">
                 <tr>
                   <th scope="col">Patient Name</th>

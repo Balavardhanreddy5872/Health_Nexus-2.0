@@ -68,11 +68,12 @@ const Chat = () => {
                             <textarea
                                 className="form-control"
                                 rows="3"
-                                placeholder="Type your message here"
+                                placeholder="Message to HealthNexus...."
                                 value={newMessage}
                                 onChange={e => setNewMessage(e.target.value)}
+                                style={{ backgroundColor: 'whitesmoke' }} 
                             ></textarea>
-                            <button className="btn btn-primary mt-2" onClick={handleSendMessage}>Send Message</button>
+                            <button className="btn btn-primary mt-2" onClick={handleSendMessage} style={{backgroundColor:'lightgreen',color:'black'}}>Send Message</button>
                         </div>
                     </div>
                 </div>

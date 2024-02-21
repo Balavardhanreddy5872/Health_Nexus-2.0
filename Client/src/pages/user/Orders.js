@@ -11,6 +11,7 @@ const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useAuth();
   const [sortByDate, setSortByDate] = useState("desc"); // Default sort by descending order
+  const [filterByDate, setFilterByDate] = useState("all"); // Default filter: All orders
 
   const calculateProgress = (startDate, deliveryDate, status) => {
     const start = moment(startDate);
@@ -48,7 +49,26 @@ const Orders = () => {
     setSortByDate(sortByDate === "asc" ? "desc" : "asc");
   };
 
-  const sortedOrders = [...orders].sort((a, b) => {
+  const handleFilterChange = (filterType) => {
+    setFilterByDate(filterType);
+  };
+
+  const filteredOrders = orders.filter(order => {
+    if (filterByDate === "all") return true;
+    const currentDate = moment();
+    switch (filterByDate) {
+      case "lastMonth":
+        return moment(order.createdAt).isSameOrAfter(currentDate.clone().subtract(1, "month"));
+      case "lastWeek":
+        return moment(order.createdAt).isSameOrAfter(currentDate.clone().subtract(1, "week"));
+      case "last3Days":
+        return moment(order.createdAt).isSameOrAfter(currentDate.clone().subtract(3, "days"));
+      default:
+        return true;
+    }
+  });
+
+  const sortedOrders = filteredOrders.sort((a, b) => {
     if (sortByDate === "asc") {
       return moment(a.createdAt).unix() - moment(b.createdAt).unix();
     } else {
@@ -63,31 +83,35 @@ const Orders = () => {
           <div className="col-md-3">
             <UserMenu />
           </div>
+          
           <div className="col-md-9">
-            <div className="order-filter">
-              <span className="filter-label">Sort Orders : </span>
-              <Dropdown>
-                <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-                  {sortByDate === "asc" ? "Oldest First" : "Newest First"}
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => setSortByDate("asc")}>Oldest First</Dropdown.Item>
-                  <Dropdown.Item onClick={() => setSortByDate("desc")}>Newest First</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
             <h1 className="text-center"> My Orders</h1>
             <br />
             <br />
+            <div className="order-filter">
+                    <span className="filter-label">Filter Orders : </span>
+                    <Dropdown>
+                      <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                        Filter by Date
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => handleFilterChange("all")}>All Orders</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleFilterChange("lastMonth")}>Last Month</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleFilterChange("lastWeek")}>Last Week</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleFilterChange("last3Days")}>Last 3 Days</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </div>
             {sortedOrders.map((o, i) => {
               const progress = calculateProgress(
                 o.createdAt,
                 o.deliveryDate,
                 o.status
               );
+
               return (
                 <div className="order-container" key={o._id}>
+
                   <div className="border shadow">
                     <table className="table">
                       <thead>
@@ -95,8 +119,8 @@ const Orders = () => {
                           <th scope="col">#</th>
                           <th scope="col">Status</th>
                           <th scope="col">Buyer</th>
-                          <th scope="col">Order-Date</th>
-                          <th scope="col">Delivery-Date</th>
+                          <th scope="col">Order Date</th>
+                          <th scope="col">Delivery Date</th>
                           <th scope="col">Quantity</th>
                         </tr>
                       </thead>
@@ -153,7 +177,7 @@ const Orders = () => {
                           }}
                         ></div>
                         <div className="states">
-                          <div className="state" style={{ left: "0%" }}>
+                          <div className="state" style={{ left: "0%" , }}>
                             Ordered
                           </div>
                           <div className="state" style={{ left: "20%" }}>

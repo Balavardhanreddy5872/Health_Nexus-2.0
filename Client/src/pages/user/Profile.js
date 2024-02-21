@@ -51,7 +51,7 @@ const Profile = () => {
   };
   return (
     <Layout2 title={"Your Profile"}>
-      <div className="container-fluid p-3">
+      <div className="container-fluid p-3" style={{backgroundColor:'whitesmoke', height:'88vh'}} >
         <div className="row">
           <div className="col-md-3">
             <UserMenu />
