@@ -43,7 +43,8 @@ const MessageForm = ({ onClose, onSubmit }) => {
           position: 'absolute',
           top: '10px',
           right: '10px',
-          background: 'none',
+          background:'none',
+          color:'black',
           border: 'none',
           cursor: 'pointer',
           fontSize: '20px',
@@ -64,8 +65,8 @@ const MessageForm = ({ onClose, onSubmit }) => {
           type="submit"
           style={{
             padding: '10px 20px',
-            background: '#32aeb1',
-            color: '#fff',
+            background: 'darkblue',
+            color: 'white',
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
@@ -85,7 +86,7 @@ const MessageIcon = ({ onClick }) => (
       position: 'absolute',
       bottom: '10px',
       right: '10px',
-      color: '#32aeb1',
+      color: 'darkblue',
       fontSize: '24px',
       cursor: 'pointer',
     }}
@@ -131,7 +132,9 @@ const User = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>All Users</h1>
+            {/* <h1>All Users</h1> */}
+            <br/>
+            <br/>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
               {users.map(user => (
                 <div
@@ -144,6 +147,8 @@ const User = () => {
                     borderRadius: '5px',
                     padding: '20px',
                     boxSizing: 'border-box',
+                    backgroundColor:'aquamarine',
+                    color:'black'
                   }}
                 >
                   <h5>Name: {user.name}</h5>

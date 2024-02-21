@@ -57,7 +57,7 @@ const Medicine = () => {
         <div className="d-flex flex-wrap" style={{ margin: '80px', marginTop: '20px' }}>
           {products?.map((p) => (
             <div key={p._id} onClick={() => navigate(`/productdetails/${p.slug}`)} style={{ cursor: 'pointer' }}>
-              <div className="card m-2" style={{ width: '20rem', height: '65vh' }}>
+              <div className="card m-2" style={{ width: '20rem', height: '60vh' }}>
                 <img
                   src={`http://localhost:8080/api/product/medicine-photo/${p._id}`}
                   className="card-img-top"

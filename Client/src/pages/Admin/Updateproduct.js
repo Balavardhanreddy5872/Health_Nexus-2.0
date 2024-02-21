@@ -81,17 +81,17 @@ const UpdateProduct = () => {
   };
   return (
     <Layout2 title={"Dashboard - Create Product"}>
-      <div className="container-fluid p-3">
+      <div className="container-fluid p-3" style={{backgroundColor:'whitesmoke'}}>
         <div className="row">
           <div className="col-md-3">
             <AdminMenu />
           </div>
-          <div className="col-md-9">
+          <div className="col-md-9" >
             <h1>Update Product</h1>
-            <div className="m-1 w-75">
-              <div className="mb-3">
+            <div style={{width:'35vw' , marginLeft:'220px', marginRight:'120px', marginTop:'5vh',backgroundColor:'wheat', padding:'30px'}}>
+              <div className="mb-3" style={{backgroundColor:'whitesmoke',color:'black'}}>
                 <label className="btn btn-outline-secondary col-md-12">
-                  {photo ? photo.name : "Upload Photo"}
+                  {photo ? photo.name : "Update Photo"}
                   <input
                     type="file"
                     name="photo"
@@ -169,7 +169,7 @@ const UpdateProduct = () => {
                 />
               </div>
               <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleUpdate}>
+                <button className="btn btn-primary" onClick={handleUpdate} style={{backgroundColor:'aquamarine' ,color:"black"}} >
                   UPDATE PRODUCT
                 </button>
               </div>

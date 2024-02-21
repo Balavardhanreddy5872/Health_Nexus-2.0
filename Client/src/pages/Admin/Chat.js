@@ -4,10 +4,10 @@ import axios from 'axios';
 import Layout2 from '../../components/Layout/Layout2';
 
 const UserIcon = () => <i className="fa fa-user" style={{ marginRight: '5px' }}></i>;
-const EmailIcon = () =><i className="fa-regular fa-envelope" style={{ marginRight: '5px' }}></i>;
-const MessageIcon = () => <i className="fa-regular fa-message" style={{marginRight:'5px'}}></i>
+const EmailIcon = () => <i className="fa-regular fa-envelope" style={{ marginRight: '5px' }}></i>;
+const MessageIcon = () => <i className="fa-regular fa-message" style={{ marginRight: '5px' }}></i>
 
-const Chat = () => { 
+const Chat = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
 
@@ -36,7 +36,7 @@ const Chat = () => {
             console.error('Error sending message:', error);
         }
     };
-    
+
 
     return (
         <Layout2>
@@ -46,17 +46,17 @@ const Chat = () => {
                         <AdminMenu />
                     </div>
                     <div className='col-md-9'>
-                        <br/>
+                        <br />
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
                             {messages.map(message => (
                                 <div key={message._id} style={{ border: '1px solid #ccc', borderRadius: '5px', boxShadow: '0 0 5px rgba(0, 0, 0, 0.1)' }}>
                                     <div style={{ padding: '20px' }}>
                                         <div>
-                                            <UserIcon /> : <b>{message.sender.name}</b> <br/>
-                                            <EmailIcon/> : <b>{message.sender.email}</b>
+                                            <UserIcon /> : <b>{message.sender.name}</b> <br />
+                                            <EmailIcon /> : <b>{message.sender.email}</b>
                                         </div>
                                         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                                            <MessageIcon/>
+                                            <MessageIcon />
                                             <p>{message.message}</p>
                                         </div>
                                     </div>
@@ -71,9 +71,11 @@ const Chat = () => {
                                 placeholder="Type your message here"
                                 value={newMessage}
                                 onChange={e => setNewMessage(e.target.value)}
+                                style={{ backgroundColor: 'whitesmoke' }} // Add color style here
                             ></textarea>
-                            <button className="btn btn-primary mt-2" onClick={handleSendMessage}>Send Message</button>
+                            <button className="btn btn-primary mt-2" onClick={handleSendMessage} style={{backgroundColor:'lightgreen',color:'black'}}>Send Message</button>
                         </div>
+
                     </div>
                 </div>
             </div>

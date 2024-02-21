@@ -59,7 +59,7 @@ const Admindashboard = () => {
               <CountDisplay icon="fas fa-users" label="Users" count={userCount} redirectTo="/dashboard/admin/users" />
               <CountDisplay icon="fas fa-shopping-cart" label="Orders" count={orderCount} redirectTo="/dashboard/admin/orders" />
               <CountDisplay icon="fas fa-box" label="Products" count={productCount} redirectTo="/dashboard/admin/products" />
-              <CountDisplay icon="fas fa-user-md" label="Doctors" count={userCount} redirectTo="/dashboard/admin/orders" />
+              <CountDisplay icon="fas fa-user-md" label="Doctors" count={userCount} redirectTo="/dashboard/admin/doctorfeed" />
             </div>
             <br/>
             <br/>
