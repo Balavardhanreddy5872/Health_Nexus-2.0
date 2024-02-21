@@ -16,7 +16,7 @@ const patientschema = new mongoose.Schema({
     },
     appointmentDate: {
         type: Date,
-        required: true
+        required: true,
     },
     specialization: {
         type: String,

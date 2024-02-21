@@ -99,7 +99,6 @@ const Doctorreg = () => {
 
     setErrors(newErrors);
 
-    // Check if there are no errors
     return Object.values(newErrors).every((error) => error === '');
   };
 
@@ -124,7 +123,7 @@ const Doctorreg = () => {
                 style={{
                   borderRadius: '25px',
                   width: '700px',
-                  height: '750px',
+                  height: '850px',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
@@ -142,29 +141,46 @@ const Doctorreg = () => {
                           e.preventDefault();
                           try {
                             if (validateForm()) {
-                              // Create a FormData object to send the image file
-                              const formData = new FormData();
-                              formData.append('name', name);
-                              formData.append('email', email);
-                              formData.append('specialization', specialization);
-                              formData.append('profileImage', profileImage);
-                              formData.append('experience', experience);
-                              formData.append('address', address);
-                              formData.append('phoneNumber', phoneNumber);
-
-                              // Send the formData to the server
-                              const response = await fetch('http://localhost:8080/register', {
-                                method: 'POST',
-                                body: formData,
+                              setDetails({
+                                name: '',
+                                email: '',
+                                specialization: '',
+                                profileImage: '',
+                                experience: '',
+                                address: '',
+                                phoneNumber: '',
                               });
 
-                              console.log(await response.json());
-                              console.log('Profile Image:', profileImage);
-                              if (response.status === 200) {
-                                navigate('/');
-                              }
                             } else {
-                              // Handle validation errors or other feedback
+                              setActive({
+                                name: true,
+                                email: true,
+                                specialization: true,
+                                profileImage: true,
+                                experience: true,
+                                address: true,
+                                phoneNumber: true,
+                              });
+                            }
+                            const formData = new FormData();
+                            formData.append('name', name);
+                            formData.append('email', email);
+                            formData.append('specialization', specialization);
+                            formData.append('profileImage', profileImage);
+                            formData.append('experience', experience);
+                            formData.append('address', address);
+                            formData.append('phoneNumber', phoneNumber);
+
+                            // Send the formData to the server
+                            const response = await fetch('http://localhost:8080/register', {
+                              method: 'POST',
+                              body: formData,
+                            });
+
+                            console.log(await response.json());
+                            console.log('Profile Image:', profileImage);
+                            if (response.status === 200) {
+                              navigate('/');
                             }
                           } catch (err) {
                             alert(err);
@@ -172,7 +188,7 @@ const Doctorreg = () => {
                           }
                         }}
                       >
-                        
+
                         <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-23px" }}>
                           <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div className="form-outline flex-fill mb-0">
@@ -267,7 +283,7 @@ const Doctorreg = () => {
                         </div>
 
 
-                        
+
 
                         <div className="d-flex flex-row align-items-center mb-4" style={{ marginLeft: "-20px" }}>
                           <i style={{ marginRight: "20px" }} class="fa-solid fa-image"></i>
