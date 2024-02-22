@@ -46,7 +46,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(json());
 app.use(morgan('combined', { stream: accessLogStream })); // Use combined format for logging
 app.use(bodyParser.json());
-app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 
 // Routes  middlewares 
