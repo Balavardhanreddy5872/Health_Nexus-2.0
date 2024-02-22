@@ -11,21 +11,34 @@ const Doctorsapp = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://localhost:8080/UserPat2', {
-        credentials: 'include',
-      });
-      const data = await response.json();
-      console.log(data);
+      try {
+        const response = await fetch('http://localhost:8080/UserPat3', {
+          credentials: 'include',
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Data from API:', data);
 
-      // Filter appointments based on the condition
-      const filteredAppointments = data.filter(
-        (user) => auth?.user?.email === user.patientEmail
-      );
-
-      setUserInfoo(filteredAppointments);
+        // Check if data is an array before filtering
+        if (Array.isArray(data)) {
+          const filteredAppointments = data.filter(
+            (user) => auth?.user?.email === user.patientEmail
+          );
+          setUserInfoo(filteredAppointments);
+        } else {
+          console.error('Data is not an array:', data);
+          // Handle unexpected data format
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        // Handle fetch error
+      }
     };
     fetchData();
-  }, [auth?.user?.email]); // Update dependency to auth?.user?.email
+  }, [auth?.user?.email]);
+
 
   const handleStatusDisplay = (status) => {
     switch (status) {

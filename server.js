@@ -229,6 +229,20 @@ app.get('/UserPat2', async (req, res) => {
   }
 })
 
+app.get('/UserPat3', async (req, res) => {
+  try {
+    const data = await Patient.find({})
+    if (data) {
+      res.status(200).json(data);
+    }
+    else {
+      res.status(400).json("Wrong Credientials")
+    }
+  } catch (err) {
+    res.status(400).json(err)
+  }
+})
+
 app.get('/doctorres', async (req, res) => {
   try {
     const data = await User.find({})
