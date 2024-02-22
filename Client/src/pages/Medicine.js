@@ -83,6 +83,8 @@ const Medicine = () => {
               </div>
             ))}
           </div>
+          <br/>
+          <br/>
           <div className="col-auto">
             <div className="dropdown">
               <button
@@ -90,8 +92,9 @@ const Medicine = () => {
                 type="button"
                 id="sortDropdown"
                 onClick={() => setShowSortDropdown(!showSortDropdown)}
+                style={{width:'15vw', backgroundColor:'#32aeb1', color:'black'}}
               >
-                Sort
+                Sort your Products
               </button>
               <div className={`dropdown-menu ${showSortDropdown ? 'show' : ''}`} aria-labelledby="sortDropdown">
                 <button
@@ -155,8 +158,12 @@ const Medicine = () => {
                         style={{ background: "#24aeb1", width: "100%" }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setCart([...cart, p]);
-                          toast.success('Item Added to Cart');
+                          if (cart.find(item => item._id === p._id)) {
+                            toast.error('Item already in cart');
+                          } else {
+                            setCart([...cart, p]);
+                            toast.success('Item Added to Cart');
+                          }
                         }}
                       >
                         ADD TO CART

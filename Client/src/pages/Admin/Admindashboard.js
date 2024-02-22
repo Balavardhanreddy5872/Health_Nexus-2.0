@@ -68,6 +68,9 @@ const Admindashboard = () => {
               <h3> Email : {auth?.user?.email}</h3>
               <h3> contact : {auth?.user?.phone}</h3>
             </div>
+            <div className="image-container" style={{height:'60vh', width:'60vw' , marginTop:'100px' , marginLeft:'180px'}}>
+              <img src="/images/graph1.png" alt="Image" />
+            </div>
           </div>
         </div>
       </div>
