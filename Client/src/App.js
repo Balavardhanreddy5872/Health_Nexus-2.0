@@ -17,6 +17,7 @@ import Addmedicine from "./pages/Admin/Addmedicine";
 import Users from "./pages/Admin/User";
 import Doctorlogin from "./pages/Doctorlogin";
 import DoctorProfile from "./pages/DoctorProfile";
+import DoctorProfile2 from "./pages/DoctorProfile2";
 import DoctPatient from "./pages/DoctPatient";
 import D2 from "./pages/d2";
 import Doctorreg from "./pages/Doctorreg";
@@ -51,7 +52,7 @@ function App() {
           <Route path="user/profile" element={<Profile />} />
           <Route path="user/app" element={<Doctorsapp />} />
           <Route path="user/lab" element={<LabTests />} />
-          <Route path = "user/chat" element={ <Chat2 />} />
+          <Route path="user/chat" element={<Chat2 />} />
         </Route>
         <Route path="/dashboard" element={<AdminRoute />}>
           <Route path="admin" element={<Admindashboard />} />
@@ -60,12 +61,12 @@ function App() {
           <Route path="admin/products" element={<Products />} />
           <Route path="admin/product/:slug" element={<UpdateProduct />} />
           <Route path="admin/orders" element={<AdminOrders />} />
-          <Route path = "admin/labreport" element={<Labreport /> }/>
+          <Route path="admin/labreport" element={<Labreport />} />
           <Route path="admin/chat" element={<Chat />} />
           <Route path="admin/doctorfeed" element={<Doctorfeed />} />
 
-          <Route path = "admin/chat" element={<Chat/>} />
-          
+          <Route path="admin/chat" element={<Chat />} />
+
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" element={<Aboutus />} />
@@ -77,6 +78,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/doctorlogin" element={<Doctorlogin />} />
         <Route path="/doctorprofile" element={<DoctorProfile />} />
+        <Route path="/doctorprofile2" element={<DoctorProfile2 />} />
         <Route path="/doctorreg" element={<Doctorreg />} />
         <Route path="/doctorpatient" element={<DoctPatient />} />
         <Route path="/d2" element={<D2 />} />
