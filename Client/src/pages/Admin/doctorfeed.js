@@ -100,13 +100,13 @@ const AdminOrders = () => {
               <div className="user-appointments-container">
                 <h2>Doctors</h2>
                 <div>
-                  <button onClick={() => handleShowDoctors("all")}>
+                  <button onClick={() => handleShowDoctors("all")} style={{margin:'20px',  backgroundColor:'blue'}}>
                     All Doctors
                   </button>
-                  <button onClick={() => handleShowDoctors("accepted")}>
+                  <button onClick={() => handleShowDoctors("accepted")} style={{margin:'20px',  backgroundColor:'blue'}}>
                     Accepted Doctors
                   </button>
-                  <button onClick={() => handleShowDoctors("rejected")}>
+                  <button onClick={() => handleShowDoctors("rejected")} style={{margin:'20px',  backgroundColor:'blue'}}>
                     Rejected Doctors
                   </button>
                 </div>

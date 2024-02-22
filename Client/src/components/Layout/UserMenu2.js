@@ -40,7 +40,7 @@ const UserMenu = () => {
                         Profile
                     </NavLink>
                     <NavLink
-                        to="/"
+                        to="/updateprofile"
                         style={linkStyle}
                     >
                         Settings
