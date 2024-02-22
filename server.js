@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 const app = express();
 import mongoose from 'mongoose';
 import morgan from 'morgan';
+import helmet from "helmet";
 import fs from 'fs';
 import path from 'path';
 import rfs from 'rotating-file-stream';
@@ -45,7 +46,7 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(json());
 app.use(morgan('combined', { stream: accessLogStream })); // Use combined format for logging
 app.use(bodyParser.json());
-
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 
 // Routes  middlewares 
