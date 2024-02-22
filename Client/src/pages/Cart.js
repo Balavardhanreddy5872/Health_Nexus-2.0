@@ -167,75 +167,87 @@ const Cart = () => {
           </div>
         )}
 
-        <div className="row">
-          <div className="col-md-12 text-center">
-            <h2>Cart Summary</h2>
-            <p>Total | Checkout | Payment</p>
-            {/* <h4>Total : {totalPrice()}</h4> */}
-            
-            {auth?.user?.address ? (
-              <>
-                <div className="mb-3">
-                  <h4>Current Address</h4>
-                  <h5>{auth?.user?.address}</h5>
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
-                  >
-                    Update Address
-                  </button>
+<div className="row justify-content-center">
+            <div className="col-md-8">
+              {/* <div className="checkout-box text-center p-4">
+                <h2 className="mb-4">Cart Summary</h2>
+                <div className="checkout-options mb-4">
+                  <p className="checkout-option">Total</p>
+                  <p className="checkout-option">Checkout</p>
+                  <p className="checkout-option">Payment</p>
                 </div>
-              </>
-            ) : (
-              <div className="mb-3">
-                {auth?.token ? (
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
-                  >
-                    Update Address
-                  </button>
+              </div> */}
+
+              {/* Address Box */}
+              <div className="checkout-box address-box text-center p-4 mb-4">
+                {auth?.user?.address ? (
+                  <>
+                    <div className="mb-3">
+                      <h4>Current Address : {auth?.user?.address}</h4>
+                      <button
+                        className="btn btn-outline-warning"
+                        onClick={() => navigate("/dashboard/user/profile")}
+                      >
+                        Update Address
+                      </button>
+                    </div>
+                  </>
                 ) : (
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() =>
-                      navigate("/login", {
-                        state: "/cart",
-                      })
-                    }
-                  >
-                    Plase Login to checkout
-                  </button>
+                  <div className="mb-3">
+                    {auth?.token ? (
+                      <button
+                        className="btn btn-outline-warning"
+                        onClick={() => navigate("/dashboard/user/profile")}
+                      >
+                        Update Address
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-outline-warning"
+                        onClick={() =>
+                          navigate("/login", {
+                            state: "/cart",
+                          })
+                        }
+                      >
+                        Please Login to Checkout
+                      </button>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
-             <div className="mt-2">
-              {!clientToken || !cart?.length ? (
-                ""
-              ) : (
-                <>
-                  <DropIn
-                    options={{
-                      authorization: clientToken,
-                      paypal: {
-                        flow: "vault",
-                      },
-                    }}
-                    onInstance={(instance) => setInstance(instance)}
-                  />
 
-                  <button
-                    className="btn btn-primary"
-                    onClick={handlePayment}
-                    disabled={loading || !instance || !auth?.user?.address}
-                  >
-                    {loading ? "Processing ...." : "Make Payment"}
-                  </button>
-                </>
-              )}
+              {/* Payment Box */}
+              <div className="checkout-box text-center p-4">
+                <div className="mt-4">
+                  {!clientToken || !cart?.length ? (
+                    ""
+                  ) : (
+                    <>
+                      <DropIn
+                        options={{
+                          authorization: clientToken,
+                          paypal: {
+                            flow: "vault",
+                          },
+                        }}
+                        onInstance={(instance) => setInstance(instance)}
+                      />
+
+                      <button
+                        className="btn btn-primary mt-3"
+                        onClick={handlePayment}
+                        disabled={loading || !instance || !auth?.user?.address}
+                      >
+                        {loading ? "Processing ...." : `Pay ${totalPrice()}`}
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+      
       </div>
     </Layout>
   );

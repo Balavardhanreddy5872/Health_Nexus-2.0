@@ -68,4 +68,74 @@
   vertical-align: middle;
 }
 
-/* Add any additional styles as needed */
+/* style.css */
+
+/* Reset some default styles */
+body, h1, h2, h3, p, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply a background color to the body */
+body {
+  background-color: #f8f9fa;
+}
+
+/* Style the container */
+.container {
+  margin-top: 20px;
+}
+
+/* Style the checkout boxes */
+.checkout-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff;
+  margin-bottom: 20px; /* Add margin between the boxes */
+}
+
+/* Style the checkout options */
+.checkout-options {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.checkout-option {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+/* Style the address box */
+.address-box {
+  margin-bottom: 20px; /* Add margin between the boxes */
+}
+
+/* Style the address and button */
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.btn-outline-warning {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
