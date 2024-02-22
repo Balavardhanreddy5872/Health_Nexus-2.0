@@ -214,7 +214,8 @@ app.get('/doctordet', async (req, res) => {
 
 app.get('/UserPat2', async (req, res) => {
   try {
-    const data = await Patient.find({})
+    const doctor = await User.findById(req.header("id"));
+    const data = await Patient.find({specialization:doctor.name})
     if (data) {
       res.status(200).json(data);
     }

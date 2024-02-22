@@ -28,31 +28,25 @@ const UserMenu = () => {
                 <div className="list-group" style={style}>
                     <h4>Dashboard</h4>
                     <NavLink
-                        to="/dashboard/user/profile"
+                        to="/doctorprofile"
                         style={linkStyle}
                     >
                         Home
                     </NavLink>
                     <NavLink
-                        to="/dashboard/user/profile"
+                        to="/doctorprofile2"
                         style={linkStyle}
                     >
                         Profile
                     </NavLink>
                     <NavLink
-                        to="/dashboard/user/orders"
-                        style={linkStyle}
-                    >
-                        Appointments
-                    </NavLink>
-                    <NavLink
-                        to="/dashboard/user/orders"
+                        to="/"
                         style={linkStyle}
                     >
                         Settings
                     </NavLink>
                     <NavLink
-                        to="/dashboard/user/orders"
+                        to="/"
                         style={linkStyle}
                     >
                         Chat

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout/Layout2';
 import '../styles/DoctorProfile.css';
-import { useAuth } from "../context/auth";
 import UserMenu2 from "../components/Layout/UserMenu2";
 
 
 const Doctorlogin = ({ userId }) => {
+
     const [userInfo, setUserInfo] = useState({});
     const [userInfoo, setUserInfoo] = useState([]);
-    const [auth] = useAuth();
+    const [doctorDetails, setDoctorDetails] = useState([]);
+    const [count, setcount] = useState(0);
+    
     const [acceptedAppointments, setAcceptedAppointments] = useState(() => {
         const storedData = localStorage.getItem('acceptedAppointments');
         return storedData ? JSON.parse(storedData) : [];
@@ -35,11 +37,12 @@ const Doctorlogin = ({ userId }) => {
                     prevAppointments.map(appointment =>
                         appointment._id === id ? { ...appointment, status: 'accepted', prescription: prescription } : appointment
                     )
+                    
                 );
+                setcount(count + 1);
                 // Update acceptedAppointments and localStorage
                 setAcceptedAppointments(prevAcceptedAppointments => [...prevAcceptedAppointments, id]);
                 localStorage.setItem('acceptedAppointments', JSON.stringify([...acceptedAppointments, id]));
-
                 console.log(`Appointment with id ${id} accepted successfully`);
             } else {
                 console.error(`Failed to accept appointment with id ${id}`);
@@ -61,7 +64,6 @@ const Doctorlogin = ({ userId }) => {
                 headers: { "Content-type": "application/json" }
             });
             if (response.ok) {
-                // Update local state for rejectedAppointments and localStorage
                 setUserInfoo(prevAppointments =>
                     prevAppointments.map(appointment =>
                         appointment._id === id ? { ...appointment, status: 'rejected' } : appointment
@@ -79,7 +81,24 @@ const Doctorlogin = ({ userId }) => {
         }
     };
 
-
+    useEffect(() => {
+        const fetchall = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/doctordet", {
+                    credentials: "include",
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data);
+                setDoctorDetails(data);
+            } catch (error) {
+                console.error('Fetch error:', error.message);
+            }
+        };
+        fetchall();
+    }, []);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -105,19 +124,33 @@ const Doctorlogin = ({ userId }) => {
             try {
                 const response = await fetch("http://localhost:8080/UserPat2", {
                     credentials: "include",
+                    headers: {
+                        "id": localStorage.getItem('id'),
+                    }
                 });
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
                 const data = await response.json();
+                
                 console.log(data);
                 setUserInfoo(data);
+                let c=0
+                data.forEach(async (e)=>{
+                    if(e.status === "accepted"){
+                      c++;
+                    }
+                })
+                setcount(c)
             } catch (error) {
                 console.error('Fetch error:', error.message);
             }
         };
         fetchall();
+        
     }, []);
+
+
 
     if (!userInfo) {
         return <div>Loading...</div>;
@@ -126,6 +159,8 @@ const Doctorlogin = ({ userId }) => {
     const targetSpecialization = userInfo.name;
 
     const filteredAppointments = [];
+
+   
     for (let i = 0; i < userInfoo.length; i++) {
         const appointment = userInfoo[i];
         const isAccepted = acceptedAppointments.includes(appointment._id);
@@ -139,32 +174,41 @@ const Doctorlogin = ({ userId }) => {
                     <td>{appointment.appointmentDate}</td>
                     <td>{appointment.patientPhone}</td>
                     <td>
-                        {!isAccepted && appointment.status !== 'rejected' && (
-                            <>
-                                <button
-                                    className='mx-3'
-                                    style={{ backgroundColor: 'green' }}
-                                    onClick={() => handleAcceptAppointment(appointment._id)}
-                                >
-                                    Accept
-                                </button>
-                                <button onClick={() => handleRejectAppointment(appointment._id)}>
-                                    Reject
-                                </button>
-                            </>
-                        )}
-                        {isAccepted && <span style={{ color: "green" }}>Accepted</span>}
-                        {!isAccepted && appointment.status === 'rejected' && (
-                            <span style={{ color: "red" }}>Rejected</span>
-                        )}
+                        <div className="action-buttons">
+                            {!isAccepted && appointment.status !== 'rejected' && (
+                                <>
+                                    <button
+                                        className='mx-3'
+                                        style={{ backgroundColor: 'green' }}
+                                        onClick={() => {
+                                            handleAcceptAppointment(appointment._id);
+                                        }}
+                                    >
+                                        Accept
+                                    </button>
+                                    <button onClick={() => {
+                                        handleRejectAppointment(appointment._id);
+                                    }}>
+                                        Reject
+                                    </button>
+                                </>
+                            )}
+                            {isAccepted && <span style={{ color: "green" }}>Accepted</span>}
+                            {!isAccepted && appointment.status === 'rejected' && (
+                                <span style={{ color: "red" }}>Rejected</span>
+                            )}
+                        </div>
                     </td>
 
                 </tr>
             );
         }
     }
+    
 
     const backgroundURL = 'url("https://img.freepik.com/free-photo/simple-blue-white-background-with-text-space_1017-46764.jpg?size=626&ext=jpg&ga=GA1.1.1583734797.1707733052&semt=ais")';
+
+    const b2 = 'url("https://img.freepik.com/free-photo/top-view-stethoscope-heart-with-copy-space_23-2148488221.jpg?size=626&ext=jpg&ga=GA1.1.1583734797.1707733052&semt=ais")';
 
 
     const countLabel = (label, count) => (
@@ -191,13 +235,11 @@ const Doctorlogin = ({ userId }) => {
     };
 
 
-    const userCount = 10; // Replace with your actual user count
-    const orderCount = 5; // Replace with your actual order count
-    const productCount = 20; // Replace with your actual product count
-    const doctorCount = 8; // Replace with your actual doctor count
 
 
-
+    const userCount = count;
+    const orderCount = filteredAppointments.length;
+    const doctorCount = doctorDetails.length;
 
     return (
         <Layout>
@@ -208,43 +250,24 @@ const Doctorlogin = ({ userId }) => {
                     </div>
                     <div className="col-md-9">
 
-                        <div style={{ display: 'flex', marginTop: '40px', justifyContent: 'space-between' }}>
-                            <CountDisplay icon="fas fa-user-injured float-start" label="Total Patients" count={userCount} redirectTo="/dashboard/admin/users" />
-                            <CountDisplay icon="fas fa-user-plus fa-2x" label="Total Appointments" count={orderCount} redirectTo="/dashboard/admin/orders" />
-                            {/* <CountDisplay icon="fas fa-box" label="Products" count={productCount} redirectTo="/dashboard/admin/products" /> */}
-                            <CountDisplay icon="fas fa-user-md" label="Today's Appointments" count={doctorCount} redirectTo="/dashboard/admin/doctors" />
+                        <div className="doctor-banner" style={{ backgroundImage: b2, backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
+                            <div className="doctor-banner-content">
+                                <h1>Hello Dr.{userInfo.name}</h1>
+                                <p>Here are your important tasks and reports.</p>
+                                <p>Please check the next appointment.</p>
+                            </div>
                         </div>
 
-                
-
-
-                        <div className="doctor-profile-page1" style={{ backgroundImage: backgroundURL, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                            <div className="doctor-profile-page1">
-                                <div className="doctor-profile-container1">
-                                    <h2>Doctor Profile</h2>
-                                    <div className="doctor-info1">
-                                        <div className="profile-image1">
-                                            {userInfo.profileImage && (
-                                                <img
-                                                    src={`http://localhost:8080/uploads/${userInfo.profileImage}`}
-                                                    alt=""
-                                                    className="img-fluid"
-                                                />
-                                            )}
-                                        </div>
-                                        <div className="text-content1">
-                                            <p><strong>Name:</strong>{userInfo.name}</p>
-                                            <p><strong>Specialization:</strong> {userInfo.specialization}</p>
-                                            <p><strong>Experience:</strong> {userInfo.experience}</p>
-                                            <p><strong>Email:</strong> {userInfo.email}</p>
-                                            <p><strong>address:</strong> {userInfo.address}</p>
-                                            <p><strong>phoneNumber:</strong> {userInfo.phoneNumber}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                        <div style={{ display: 'flex', marginTop: '40px', justifyContent: 'space-between' }}>
+                            <CountDisplay icon="fas fa-user-injured float-start" label="Total Patients" count={userCount} />
+                            <CountDisplay icon="fas fa-user-plus fa-2x" label="Total Appointments" count={orderCount}/>
+                            {/* <CountDisplay icon="fas fa-box" label="Products" count={productCount} redirectTo="/dashboard/admin/products" /> */}
+                            <CountDisplay icon="fas fa-user-md" label="Available Doctors" count={doctorCount}/>
+                        </div>
+                        
+                        <br />
+                        <br />
+                     
 
                             <div className="appointments-container1">
                                 <h3>Appointments</h3>
@@ -273,12 +296,11 @@ const Doctorlogin = ({ userId }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+        
         </Layout>
     );
 };
 
 export default Doctorlogin;
-
 
 
