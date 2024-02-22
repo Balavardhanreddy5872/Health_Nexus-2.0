@@ -87,6 +87,7 @@ app.post('/register', upload.single('profileImage'), async (req, res) => {
       phoneNumber,
       specialization,
       experience } = req.body;
+      
     const profileImage = req.file ? req.file.filename : null;
     const newUser = await User.create({
       name,
@@ -299,6 +300,30 @@ app.post('/updateAppointmentStatus', async (req, res) => {
   }
 });
 
+// Define route to update doctor profile
+app.post('/updateProfile/:email', async (req, res) => {
+  try {
+      const { name, specialization, experience, address, phoneNumber } = req.body;
+      const email = req.params.email; // Extract email from URL parameter
+
+      // Update doctor profile in the database based on email
+      const updatedDoctor = await User.findOneAndUpdate(
+          { email }, // Using email as unique identifier
+          { name, specialization, experience, address, phoneNumber },
+          { new: true }
+      );
+
+      if (!updatedDoctor) {
+          return res.status(404).json({ error: 'Doctor not found' });
+      }
+
+      // Send updated doctor data as response
+      res.json(updatedDoctor);
+  } catch (error) {
+      console.error('Error updating doctor profile:', error);
+      res.status(500).json({ error: 'Failed to update doctor profile' });
+  }
+});
 
 
 

@@ -35,6 +35,8 @@ import AdminOrders from "./pages/Admin/Adminorders";
 import Labreport from "./pages/Admin/Labreport";
 import Chat from "./pages/Admin/Chat";
 import Doctorfeed from "./pages/Admin/doctorfeed";
+import Dprofile from "./pages/Dprofile";
+
 
 
 
@@ -82,6 +84,7 @@ function App() {
         <Route path="/doctorreg" element={<Doctorreg />} />
         <Route path="/doctorpatient" element={<DoctPatient />} />
         <Route path="/d2" element={<D2 />} />
+        <Route path="/updateprofile" element={<Dprofile/>} />
       </Routes>
     </>
   );
