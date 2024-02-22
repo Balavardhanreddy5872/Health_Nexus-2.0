@@ -155,8 +155,12 @@ const Medicine = () => {
                         style={{ background: "#24aeb1", width: "100%" }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setCart([...cart, p]);
-                          toast.success('Item Added to Cart');
+                          if (cart.find(item => item._id === p._id)) {
+                            toast.error('Item already in cart');
+                          } else {
+                            setCart([...cart, p]);
+                            toast.success('Item Added to Cart');
+                          }
                         }}
                       >
                         ADD TO CART

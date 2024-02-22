@@ -15,31 +15,29 @@ const Addmedicine = () => {
   const [photo, setPhoto] = useState("");
 
   //create product function
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    try {
-      const productData = new FormData();
-      productData.append("name", name);
-      productData.append("seller", seller);
-      productData.append("description", description);
-      productData.append("price", price);
-      productData.append("quantity", quantity);
-      productData.append("photo", photo);
-      const { data } = await axios.post(`http://localhost:8080/api/product/add-medicine`,
-        productData
+const handleCreate = async (e) => {
+  e.preventDefault();
+  try {
+    const productData = new FormData();
+    productData.append("name", name);
+    productData.append("seller", seller);
+    productData.append("description", description);
+    productData.append("price", price);
+    productData.append("quantity", quantity);
+    productData.append("photo", photo);
+    const { data } = await axios.post(`http://localhost:8080/api/product/add-medicine`, productData);
 
-      );
-      if (data?.success) {
-        toast.error(data?.message);
-      } else {
-        toast.success("Product Created Successfully");
-        navigate("/admin");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("something went wrong");
+    if (data?.success) {
+      toast.success("Product Created Successfully");
+      navigate("/dashboard/admin/products"); 
+    } else {
+      toast.error(data?.message || "Failed to create product");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
 
   return (
     <Layout2 title={"Dashboard - Create Product"}>
