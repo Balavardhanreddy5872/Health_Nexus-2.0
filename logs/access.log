@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ::1 - - [22/Feb/2024:07:34:34 +0000] "GET /api/product/braintree/token HTTP/1.1" 200 2321 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 ::1 - - [22/Feb/2024:07:34:43 +0000] "GET /api/product/braintree/token HTTP/1.1" 200 2321 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 ::1 - - [22/Feb/2024:07:34:49 +0000] "GET /api/product/braintree/token HTTP/1.1" 200 2321 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
@@ -550,3 +551,5 @@
 ::1 - - [22/Feb/2024:10:00:24 +0000] "GET /api/product/medicine-photo/undefined HTTP/1.1" 500 311 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 ::1 - - [22/Feb/2024:10:00:24 +0000] "GET /api/product/get-medicine/Bilavel HTTP/1.1" 304 - "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 ::1 - - [22/Feb/2024:10:00:29 +0000] "GET /api/product/braintree/token HTTP/1.1" 200 2321 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
+=======
+>>>>>>> e5d3067b538d6abd0d68a9efdc38fd6c54f02e75
