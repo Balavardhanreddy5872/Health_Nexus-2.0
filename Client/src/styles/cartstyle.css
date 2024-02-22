@@ -1,141 +1,29 @@
-/* cartstyle.css */
-/* npm install --save @fortawesome/fontawesome-free
- */
- @import "~@fortawesome/fontawesome-free/css/all.css";
-.container {
-  margin-top: 20px;
-}
-
-.row {
-  margin-bottom: 20px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.card img {
-  max-width: 100%;
-  height: auto;
-}
-
-.col-md-2,
-.col-md-6 {
-  display: flex;
-  align-items: center;
-}
-
-.col-md-2 input {
-  width: 50px;
-  padding: 5px;
-}
-
-.col-md-2 button {
-  margin-top: 10px;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.btn-outline-warning {
-  border-color: #ffc107;
-  color: #ffc107;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-  color: #fff;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #fff;
-}
-
-.btn-primary:disabled {
-  background-color: #d6d6d6;
-  border-color: #d6d6d6;
-  color: #555;
-}
-
-.table th, .table td {
-  text-align: center; /* Center the text in table cells */
-  vertical-align: middle;
-}
-
-/* style.css */
-
-/* Reset some default styles */
-body, h1, h2, h3, p, button {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Apply a background color to the body */
-body {
-  background-color: #f8f9fa;
-}
-
-/* Style the container */
-.container {
-  margin-top: 20px;
-}
-
-/* Style the checkout boxes */
-.checkout-box {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  background-color: #fff;
-  margin-bottom: 20px; /* Add margin between the boxes */
-}
-
-/* Style the checkout options */
-.checkout-options {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.checkout-option {
-  flex-grow: 1;
-  font-weight: bold;
-}
-
-/* Style the address box */
-.address-box {
-  margin-bottom: 20px; /* Add margin between the boxes */
-}
-
-/* Style the address and button */
-.mb-3 {
-  margin-bottom: 1rem;
-}
-
-.btn-outline-warning {
-  color: #ffc107;
-  border-color: #ffc107;
-}
-
-.btn-outline-warning:hover {
-  background-color: #ffc107;
-  color: #fff;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
+.cart-page {
+    margin-top: 64px;
+  }
+  
+  .cart-page h1 {
+    padding: 15px !important;
+    font-family: "roboto", sans-serif;
+    font-weight: normal;
+    background-color: rgba(0, 0, 255, 0.072) !important;
+  }
+  .cart-page h1 > p {
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  
+  .cart-page .card {
+    padding: 5px !important;
+    height: 150px !important;
+    margin-bottom: 5px !important;
+  }
+  .cart-page .cart-remove-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cart-page .cart-summary {
+    text-align: center;
+    /* margin-top: -140px !important; */
+  }
